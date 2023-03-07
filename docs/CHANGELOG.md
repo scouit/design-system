@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/scouit/design-system/compare/v1.0.0...v1.1.0) (2023-03-07)
+
+
+### Features
+
+* public access 추가 ([f951d0c](https://github.com/scouit/design-system/commit/f951d0c787740f2981dd40f8ceeb946636a93c08))
+
 # 1.0.0 (2023-03-07)
 
 
