@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Block, EyeClose, EyeOpen, SearchIcon } from '../../assets/svg';
 import { keyOfColor } from '../../styles/theme/color';
@@ -15,16 +16,21 @@ export const Input = ({
   onRemoveIconClick,
   inputRightIconType,
 }: PropsType) => {
+  const [open, setOpen] = useState<boolean>(false);
   return (
     <_Wrapper>
       <_TextOnBorder>{borderText}</_TextOnBorder>
       <_Content>
         <SearchIcon color="gray400" onClick={onSearchIconClick} />
-        <_ChangeInput />
+        <_ChangeInput type={open ? inputRightIconType : 'text'} />
         {
           {
             remove: <Block onClick={onRemoveIconClick} />,
-            password: <EyeOpen />,
+            password: (
+              <div onClick={() => setOpen(!open)}>
+                {open ? <EyeOpen /> : <EyeClose />}
+              </div>
+            ),
           }[inputRightIconType]
         }
       </_Content>
@@ -78,6 +84,6 @@ const _ChangeInput = styled.input`
   min-width: 0;
   width: 168px;
   border: 0;
-  ${({ theme }) => theme.font.body4};
+  ${({ theme }) => theme.font.body1};
   background-color: transparent;
 `;

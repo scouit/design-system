@@ -16,3 +16,12 @@ contain.args = {
   onRemoveIconClick: () => {},
   inputRightIconType: 'remove',
 };
+
+export const contain2 = Template.bind({});
+
+contain2.args = {
+  borderText: 'label',
+  onSearchIconClick: () => {},
+  onRemoveIconClick: () => {},
+  inputRightIconType: 'password',
+};

@@ -1,22 +1,20 @@
 import styled from 'styled-components';
 import { keyOfColor } from '../../styles/theme/color';
 
-interface PropsType {
-  color?: keyOfColor;
-}
-
-export const EyeClose = ({ color = 'gray700' }: PropsType) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <_Path
-      d="M3 10C3.85861 11.0414 4.87009 11.9467 6 12.685M6 12.685C7.21621 13.4793 8.57444 14.0311 10 14.31C11.3212 14.5641 12.6788 14.5641 14 14.31C15.4256 14.0311 16.7838 13.4793 18 12.685M6 12.685L4.5 14.5M21 10C20.1414 11.0414 19.1299 11.9467 18 12.685M18 12.685L19.5 14.5M10 14.309L9.5 16.5M14 14.309L14.5 16.5"
-      stroke={color}
-      stroke-width="2"
+export const EyeClose = () => (
+  <_Svg width="18" height="18" viewBox="0 0 18 18">
+    <path
+      d="M2.25 7.5C2.89396 8.28107 3.65257 8.96003 4.5 9.51375M4.5 9.51375C5.41216 10.1095 6.43083 10.5233 7.5 10.7325C8.49092 10.9231 9.50908 10.9231 10.5 10.7325C11.5692 10.5233 12.5878 10.1095 13.5 9.51375M4.5 9.51375L3.375 10.875M15.75 7.5C15.106 8.28107 14.3474 8.96003 13.5 9.51375M13.5 9.51375L14.625 10.875M7.5 10.7318L7.125 12.375M10.5 10.7318L10.875 12.375"
+      stroke="black"
+      stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
-  </svg>
+  </_Svg>
 );
 
-const _Path = styled.path<{ stroke: keyOfColor }>`
-  stroke: ${({ theme, color }) => theme.color[color]};
+const _Svg = styled.svg`
+  > path {
+    stroke: ${({ theme }) => theme.color.gray700};
+  }
 `;
