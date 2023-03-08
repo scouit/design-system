@@ -66,17 +66,16 @@ const _TextOnBorder = styled.div<{ isError?: keyOfColor; isOutSide?: boolean }>`
     theme.color[isError ? 'error600' : 'gray400']};
   padding: 0 4px;
   background-color: ${({ theme }) => theme.color.gray25};
+  left: 15px;
   ${({ theme, isOutSide }) =>
     isOutSide
       ? css`
           ${theme.font.heading4};
           bottom: -18px;
-          left: 15px;
         `
       : css`
           ${theme.font.body4};
           top: -7px;
-          left: 15px;
         `}
 `;
 
