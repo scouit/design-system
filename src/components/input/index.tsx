@@ -6,24 +6,28 @@ import { keyOfColor } from '../../styles/theme/color';
 interface PropsType {
   label: string;
   hint: string;
+  value: string;
+  onChange: () => void;
   placeholder?: string;
   onSearchIconClick?: () => void;
   onRemoveIconClick?: () => void;
-  inputRightIconType?: 'remove' | 'password';
+  rightIconType?: 'remove' | 'password';
   isError: boolean;
 }
 
 export const Input = ({
   label = '',
   hint = '',
+  value = '',
+  onChange,
   placeholder = '',
   onSearchIconClick = undefined,
   onRemoveIconClick = undefined,
-  inputRightIconType = undefined,
+  rightIconType = undefined,
   isError = false,
 }: PropsType) => {
   const [open, setOpen] = useState<boolean>(false);
-  console.log(hint);
+
   return (
     <_Wrapper isError={isError}>
       <_TextOnBorder isError={isError}>{label}</_TextOnBorder>
@@ -32,8 +36,10 @@ export const Input = ({
           <SearchIcon color="gray400" onClick={onSearchIconClick} />
         )}
         <_ChangeInput
+          value={value}
+          onChange={onChange}
           placeholder={placeholder}
-          type={open ? inputRightIconType : 'text'}
+          type={open ? rightIconType : 'text'}
         />
         {
           {
@@ -43,7 +49,7 @@ export const Input = ({
                 {open ? <EyeOpen /> : <EyeClose />}
               </div>
             ),
-          }[inputRightIconType]
+          }[rightIconType]
         }
       </_Content>
       <_TextOnBorder isError={isError} isOutSide>
@@ -63,7 +69,6 @@ const _Wrapper = styled.div<{ isError: boolean }>`
   border: 1px solid
     ${({ theme, isError }) => theme.color[isError ? 'error600' : 'gray400']};
   background-color: ${({ theme }) => theme.color.gray25};
-  box-sizing: border-box;
   display: flex;
   align-items: center;
 `;
@@ -72,7 +77,6 @@ const _Content = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-  flex: 1;
 `;
 
 const _TextOnBorder = styled.div<{ isError?: boolean; isOutSide?: boolean }>`
@@ -96,8 +100,9 @@ const _TextOnBorder = styled.div<{ isError?: boolean; isOutSide?: boolean }>`
 
 const _ChangeInput = styled.input`
   min-width: 0;
-  width: 168px;
+  width: 100%;
   border: 0;
+  flex: 1;
   ${({ theme }) => theme.font.body1};
   background-color: transparent;
 `;
