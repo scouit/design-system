@@ -3,12 +3,11 @@ name: node.js CI
 on:
   push:
     branches:
-      - 'feature/**'
-      - 'hotfixes'
-      - 'develop'
+      - 'main'
+      - 'feat/**'
   pull_request:
     branches:
-      - 'feat/*'
+      - 'feat/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
