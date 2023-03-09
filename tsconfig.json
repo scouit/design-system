@@ -3,7 +3,7 @@
     "target": "es6",
     "module": "esnext",
     "moduleResolution": "node",
-    "outDir": "./dist",
+    "outDir": "./build",
     "noResolve": false,
     "noImplicitAny": false,
     "removeComments": false,
