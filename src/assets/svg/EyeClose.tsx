@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { keyOfColor } from '../../styles/theme/color';
+import { keyOfColor } from '../../styles/theme';
 
 interface PropsType {
   color?: keyOfColor;

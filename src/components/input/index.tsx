@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Block, EyeClose, EyeOpen, SearchIcon } from '../../assets/svg';
-import { keyOfColor } from '../../styles/theme/color';
+import { keyOfColor } from '../../styles/theme';
 
 interface PropsType {
   label: string;
