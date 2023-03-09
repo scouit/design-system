@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { Block, EyeClose, EyeOpen, SearchIcon } from '../../assets/svg';
 
 interface PropsType {
-  label?: string;
+  label: string;
   name?: string;
   hint?: string;
   value?: string;
