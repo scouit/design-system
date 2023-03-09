@@ -31,7 +31,7 @@ export const Input = ({
 
   return (
     <_Wrapper isError={isError}>
-      <_TextOnBorder isError={isError}>{label}</_TextOnBorder>
+      <_TextOnBorder>{label}</_TextOnBorder>
       {onSearchIconClick && (
         <SearchIcon color="gray400" onClick={onSearchIconClick} />
       )}
@@ -57,31 +57,13 @@ export const Input = ({
           }[rightIconType]
         }
       </div>
-      <_TextOnBorder isError={isError} isOutSide>
-        {hint}
-      </_TextOnBorder>
+      <_TextOnBorder isOutSide>{hint}</_TextOnBorder>
     </_Wrapper>
   );
 };
 
-const _Wrapper = styled.div<{ isError: boolean }>`
-  position: relative;
-  width: 240px;
-  height: 42px;
-  padding: 0 10px;
-  border-radius: 4px;
-  border: 1px solid
-    ${({ theme, isError }) => theme.color[isError ? 'error600' : 'gray400']};
-  background-color: ${({ theme }) => theme.color.gray25};
-  display: flex;
-  align-items: center;
-  gap: 5px;
-`;
-
 const _TextOnBorder = styled.div<{ isError?: boolean; isOutSide?: boolean }>`
   position: absolute;
-  color: ${({ theme, isError }) =>
-    theme.color[isError ? 'error600' : 'gray300']};
   padding: 0 4px;
   background-color: ${({ theme }) => theme.color.gray25};
   left: 15px;
@@ -95,6 +77,29 @@ const _TextOnBorder = styled.div<{ isError?: boolean; isOutSide?: boolean }>`
           ${theme.font.body4};
           top: -7px;
         `}
+`;
+
+const _Wrapper = styled.div<{ isError: boolean }>`
+  position: relative;
+  width: 240px;
+  height: 42px;
+  padding: 0 10px;
+  border-radius: 4px;
+  border: 1px solid
+    ${({ theme, isError }) => theme.color[isError ? 'error600' : 'gray400']};
+  background-color: ${({ theme }) => theme.color.gray25};
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  ${({ theme, isError }) => {
+    const currentColor = theme.color[isError ? 'error600' : 'gray400'];
+    return css`
+      border: 1px solid ${currentColor};
+      ${_TextOnBorder} {
+        color: ${currentColor};
+      }
+    `;
+  }}
 `;
 
 const _ChangeInput = styled.input`
