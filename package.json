@@ -75,8 +75,5 @@
   "lint-staged": {
     "*.{tsx,ts}": "prettier --write"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "packageManager": "yarn@3.4.1"
 }
