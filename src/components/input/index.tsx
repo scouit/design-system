@@ -100,7 +100,7 @@ const _Wrapper = styled.div<{ isError: boolean; width: string }>`
   width: ${({ width }) => width};
   height: 44px;
   padding: 0 10px;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.borderRadius.small};
   background-color: ${({ theme }) => theme.color.gray25};
   display: flex;
   align-items: center;
@@ -114,11 +114,13 @@ const _Wrapper = styled.div<{ isError: boolean; width: string }>`
       }
     `;
   }}
+  :focus-within {
+    box-shadow: ${({ theme }) => theme.shadow.primary};
+  }
 `;
 
 const _ChangeInput = styled.input`
   width: 100%;
   flex: 1;
   ${({ theme }) => theme.font.body1};
-  background-color: transparent;
 `;
