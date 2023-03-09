@@ -1,3 +1,31 @@
+## [1.1.5](https://github.com/scouit/design-system/compare/v1.1.4...v1.1.5) (2023-03-09)
+
+
+### Bug Fixes
+
+* as optional chaining ([f2ee15c](https://github.com/scouit/design-system/commit/f2ee15c3db6eb1c94c932ae3c7124ec21e987d40))
+
+## [1.1.4](https://github.com/scouit/design-system/compare/v1.1.3...v1.1.4) (2023-03-09)
+
+
+### Bug Fixes
+
+* main에서는 ci안돌게 ([faea1ec](https://github.com/scouit/design-system/commit/faea1ec6ddd0b28531402b5e907fa3a7ae01066e))
+
+## [1.1.3](https://github.com/scouit/design-system/compare/v1.1.2...v1.1.3) (2023-03-09)
+
+
+### Bug Fixes
+
+* dist 설정, export Text ([d337e51](https://github.com/scouit/design-system/commit/d337e510bfbbf89cb3924a5dfb88a95cc043b469))
+
+## [1.1.2](https://github.com/scouit/design-system/compare/v1.1.1...v1.1.2) (2023-03-09)
+
+
+### Bug Fixes
+
+* dist 삭제 및 tsconfig 빌드이름 build 폴더로 ([f4f6641](https://github.com/scouit/design-system/commit/f4f6641beb7109efd7acad0e8fbaeeb34cb8f44a))
+
 ## [1.1.1](https://github.com/scouit/design-system/compare/v1.1.0...v1.1.1) (2023-03-09)
 
 

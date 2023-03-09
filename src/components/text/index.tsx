@@ -4,7 +4,7 @@ import { keyOfColor, keyOfFont } from '../../styles/theme';
 
 interface PropsType {
   className?: string;
-  as: keyof JSX.IntrinsicElements;
+  as?: keyof JSX.IntrinsicElements;
   height?: string;
   align?: 'start' | 'center' | 'end';
   size?: keyOfFont;
