@@ -21,6 +21,9 @@ export const SearchIcon = ({ color, onClick }: PropsType) => (
 
 const _Svg = styled.svg<{ color: keyOfColor }>`
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   path {
     fill: ${({ theme, color }) => theme.color[color]};
   }

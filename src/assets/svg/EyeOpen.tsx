@@ -16,6 +16,9 @@ export const EyeOpen = ({ color = 'gray700' }: PropsType) => (
 
 const _Svg = styled.svg<PropsType>`
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   path {
     fill: ${({ theme, color }) => theme.color[color]};
   }

@@ -23,4 +23,7 @@ export const Block = ({ onClick }: PropsType) => (
 
 const _Svg = styled.svg`
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
