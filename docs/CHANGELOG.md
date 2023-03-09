@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/scouit/design-system/compare/v1.1.2...v1.1.3) (2023-03-09)
+
+
+### Bug Fixes
+
+* dist 설정, export Text ([d337e51](https://github.com/scouit/design-system/commit/d337e510bfbbf89cb3924a5dfb88a95cc043b469))
+
 ## [1.1.2](https://github.com/scouit/design-system/compare/v1.1.1...v1.1.2) (2023-03-09)
 
 
