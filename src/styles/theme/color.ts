@@ -55,5 +55,3 @@ export const color = {
   success800: '#05603A',
   success900: '#054F31',
 } as const;
-
-export type keyOfColor = keyof typeof color;

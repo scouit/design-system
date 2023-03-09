@@ -19,5 +19,3 @@ export const font = {
   body3: fontToCss(13, 400),
   body4: fontToCss(12, 400),
 };
-
-export type keyOfFont = keyof typeof font;

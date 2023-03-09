@@ -9,3 +9,6 @@ export const theme = {
   shadow,
   borderRadius,
 };
+
+export type keyOfFont = keyof typeof font;
+export type keyOfColor = keyof typeof color;
