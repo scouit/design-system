@@ -27,7 +27,7 @@ export const Input = ({
   rightIconType,
   isError = false,
 }: PropsType) => {
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <_Wrapper isError={isError}>
