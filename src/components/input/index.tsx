@@ -4,6 +4,7 @@ import { Block, EyeClose, EyeOpen, SearchIcon } from '../../assets/svg';
 import { Text } from '../text';
 
 interface PropsType {
+  width?: string;
   label: string;
   name: string;
   hint?: string;
@@ -18,6 +19,7 @@ interface PropsType {
 }
 
 export const Input = ({
+  width = '240px',
   label,
   name,
   hint,
@@ -51,7 +53,7 @@ export const Input = ({
   };
 
   return (
-    <_Wrapper isError={isError}>
+    <_Wrapper width={width} isError={isError}>
       <_Label size="title3" color="gray400">
         {label}
       </_Label>
@@ -93,9 +95,9 @@ const _Hint = styled(Text)<{ isError?: boolean }>`
   bottom: -18px;
 `;
 
-const _Wrapper = styled.div<{ isError: boolean }>`
+const _Wrapper = styled.div<{ isError: boolean; width: string }>`
   position: relative;
-  width: 240px;
+  width: ${({ width }) => width};
   height: 44px;
   padding: 0 10px;
   border-radius: 4px;
