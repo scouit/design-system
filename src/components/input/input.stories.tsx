@@ -31,7 +31,7 @@ contain2.args = {
 export const contain3 = Template.bind({});
 
 contain3.args = {
-  label: 'label',
+  label: 'title',
   value: 'whtkdgus qudtls',
   onSearchIconClick: undefined,
   hint: 'supporting text',
@@ -40,7 +40,7 @@ contain3.args = {
 export const contain4 = Template.bind({});
 
 contain4.args = {
-  label: 'label',
+  label: 'title',
   value: 'whtkdgus qudtls',
   hint: 'supporting text',
   onSearchIconClick: undefined,
@@ -51,7 +51,7 @@ contain4.args = {
 export const contain5 = Template.bind({});
 
 contain5.args = {
-  label: 'label',
+  label: 'title',
   value: 'whtkdgus qudtls',
   hint: 'supporting text',
   onSearchIconClick: undefined,
@@ -61,7 +61,7 @@ contain5.args = {
 export const contain6 = Template.bind({});
 
 contain6.args = {
-  label: 'label',
+  label: 'title',
   value: 'whtkdgus qudtls',
   onSearchIconClick: undefined,
   hint: 'supporting text',
@@ -71,7 +71,7 @@ contain6.args = {
 export const contain7 = Template.bind({});
 
 contain7.args = {
-  label: 'label',
+  label: 'title',
   value: 'whtkdgus qudtls',
   onSearchIconClick: undefined,
   onRemoveIconClick: () => {},
@@ -83,7 +83,7 @@ contain7.args = {
 export const contain8 = Template.bind({});
 
 contain8.args = {
-  label: 'label',
+  label: 'title',
   value: 'whtkdgus qudtls',
   onSearchIconClick: undefined,
   rightIconType: 'password',
