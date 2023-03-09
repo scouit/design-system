@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/scouit/design-system/compare/v1.1.1...v1.1.2) (2023-03-09)
+
+
+### Bug Fixes
+
+* dist 삭제 및 tsconfig 빌드이름 build 폴더로 ([f4f6641](https://github.com/scouit/design-system/commit/f4f6641beb7109efd7acad0e8fbaeeb34cb8f44a))
+
 ## [1.1.1](https://github.com/scouit/design-system/compare/v1.1.0...v1.1.1) (2023-03-09)
 
 
