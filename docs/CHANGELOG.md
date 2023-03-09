@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/scouit/design-system/compare/v1.1.3...v1.1.4) (2023-03-09)
+
+
+### Bug Fixes
+
+* main에서는 ci안돌게 ([faea1ec](https://github.com/scouit/design-system/commit/faea1ec6ddd0b28531402b5e907fa3a7ae01066e))
+
 ## [1.1.3](https://github.com/scouit/design-system/compare/v1.1.2...v1.1.3) (2023-03-09)
 
 
