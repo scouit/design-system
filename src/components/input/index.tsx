@@ -1,57 +1,62 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Block, EyeClose, EyeOpen, SearchIcon } from '../../assets/svg';
-import { keyOfColor } from '../../styles/theme';
 
 interface PropsType {
-  label: string;
-  hint: string;
-  value: string;
-  onChange: () => void;
+  label?: string;
+  name?: string;
+  hint?: string;
+  value?: string;
+  onChange?: () => void;
   placeholder?: string;
   onSearchIconClick?: () => void;
   onRemoveIconClick?: () => void;
   rightIconType?: 'remove' | 'password';
-  isError: boolean;
+  isError?: boolean;
 }
 
 export const Input = ({
-  label = '',
-  hint = '',
-  value = '',
+  label,
+  name,
+  hint,
+  value,
   onChange,
-  placeholder = '',
-  onSearchIconClick = undefined,
-  onRemoveIconClick = undefined,
-  rightIconType = undefined,
+  placeholder,
+  onSearchIconClick,
+  onRemoveIconClick,
+  rightIconType,
   isError = false,
 }: PropsType) => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(true);
 
   return (
     <_Wrapper isError={isError}>
       <_TextOnBorder isError={isError}>{label}</_TextOnBorder>
-      <_Content>
-        {onSearchIconClick && (
-          <SearchIcon color="gray400" onClick={onSearchIconClick} />
-        )}
-        <_ChangeInput
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          type={open ? rightIconType : 'text'}
-        />
-        {
+      {onSearchIconClick && (
+        <SearchIcon color="gray400" onClick={onSearchIconClick} />
+      )}
+      <_ChangeInput
+        value={value}
+        name={name}
+        onChange={onChange}
+        placeholder={placeholder}
+        type={open ? 'text' : rightIconType}
+      />
+      <div
+        onClick={
           {
-            remove: <Block onClick={onRemoveIconClick} />,
-            password: (
-              <div onClick={() => setOpen(!open)}>
-                {open ? <EyeOpen /> : <EyeClose />}
-              </div>
-            ),
+            remove: onRemoveIconClick,
+            password: () => setOpen(!open),
           }[rightIconType]
         }
-      </_Content>
+      >
+        {
+          {
+            remove: <Block />,
+            password: open ? <EyeOpen /> : <EyeClose />,
+          }[rightIconType]
+        }
+      </div>
       <_TextOnBorder isError={isError} isOutSide>
         {hint}
       </_TextOnBorder>
@@ -63,17 +68,11 @@ const _Wrapper = styled.div<{ isError: boolean }>`
   position: relative;
   width: 240px;
   height: 42px;
-  gap: 5px;
   padding: 0 10px;
   border-radius: 4px;
   border: 1px solid
     ${({ theme, isError }) => theme.color[isError ? 'error600' : 'gray400']};
   background-color: ${({ theme }) => theme.color.gray25};
-  display: flex;
-  align-items: center;
-`;
-
-const _Content = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
@@ -82,7 +81,7 @@ const _Content = styled.div`
 const _TextOnBorder = styled.div<{ isError?: boolean; isOutSide?: boolean }>`
   position: absolute;
   color: ${({ theme, isError }) =>
-    theme.color[isError ? 'error600' : 'gray400']};
+    theme.color[isError ? 'error600' : 'gray300']};
   padding: 0 4px;
   background-color: ${({ theme }) => theme.color.gray25};
   left: 15px;
@@ -99,9 +98,7 @@ const _TextOnBorder = styled.div<{ isError?: boolean; isOutSide?: boolean }>`
 `;
 
 const _ChangeInput = styled.input`
-  min-width: 0;
   width: 100%;
-  border: 0;
   flex: 1;
   ${({ theme }) => theme.font.body1};
   background-color: transparent;
