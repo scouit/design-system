@@ -13,7 +13,8 @@ export const contain1 = Template.bind({});
 
 contain1.args = {
   onSearchIconClick: () => {},
-  placeholder: 'Search',
+  preViewIconType: 'search',
+  label: 'Search',
 };
 
 export const contain2 = Template.bind({});
@@ -23,6 +24,7 @@ contain2.args = {
   value: 'whtkdgus qudtls',
   onSearchIconClick: () => {},
   onRemoveIconClick: () => {},
+  preViewIconType: 'search',
   rightIconType: 'remove',
 };
 
@@ -74,6 +76,7 @@ contain7.args = {
   onSearchIconClick: undefined,
   onRemoveIconClick: () => {},
   rightIconType: 'remove',
+  hint: 'supporting text',
   isError: true,
 };
 
@@ -84,5 +87,6 @@ contain8.args = {
   value: 'whtkdgus qudtls',
   onSearchIconClick: undefined,
   rightIconType: 'password',
+  hint: 'supporting text',
   isError: true,
 };
