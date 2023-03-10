@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Select } from './index';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
@@ -7,11 +7,14 @@ export default {
   component: Select,
 } as ComponentMeta<typeof Select>;
 
-const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
-
-export const contain1 = Template.bind({});
-
-contain1.args = {
-  value: 'Select Component',
-  list: ['Select Component', 'Select Component', 'Select Component'],
+export const Template: ComponentStory<typeof Select> = () => {
+  const [value, setValue] = useState<string>('');
+  return (
+    <Select
+      placeholder="placeholder"
+      value={value}
+      onOptionClick={setValue}
+      options={['Select Component1', 'Select Component2', 'Select Component3']}
+    />
+  );
 };
