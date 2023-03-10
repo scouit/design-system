@@ -7,8 +7,8 @@ interface PropsType {
   as?: keyof JSX.IntrinsicElements;
   height?: string;
   align?: 'start' | 'center' | 'end';
-  size?: keyOfFont;
-  color?: keyOfColor;
+  size: keyOfFont;
+  color: keyOfColor;
   children: ReactNode;
 }
 export const Text = ({
