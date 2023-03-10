@@ -1,47 +1,61 @@
-import { useState } from 'react';
+import { HTMLInputTypeAttribute, ChangeEvent } from 'react';
 import styled, { css } from 'styled-components';
 import { Block, EyeClose, EyeOpen } from '../../assets/svg';
+import { useInversion } from '../../hooks/useInversion';
 import { Text } from '../text';
+
+interface InputonChangeType {
+  value: string;
+  name: string;
+}
 
 interface PropsType {
   width?: string;
   label: string;
+  type?: HTMLInputTypeAttribute;
   name: string;
   hint?: string;
   value: string;
-  onChange: () => void;
+  onChange: ({ value, name }: InputonChangeType) => void;
   placeholder: string;
-  onRemoveIconClick?: () => void;
   PreviewIcon?: JSX.Element;
-  rightIconType?: 'remove' | 'password';
+  rightIconType?: 'remove' | 'eye';
   isError?: boolean;
 }
 
 export const Input = ({
   width = '100%',
   label,
+  type = 'text',
   name,
   hint,
   value,
   onChange,
   placeholder,
-  onRemoveIconClick,
   PreviewIcon,
   rightIconType,
   isError = false,
 }: PropsType) => {
-  const [open, setOpen] = useState<boolean>(false);
+  const { state: isHide, invertState: invertEye } = useInversion(true);
 
-  const RightIcon = {
+  const Icon = {
     remove: {
-      svg: <Block />,
-      onClick: onRemoveIconClick,
+      icon: <Block />,
+      onClick: () => {
+        onChange({ name, value: '' });
+      },
     },
-    password: {
-      svg: open ? <EyeOpen /> : <EyeClose />,
-      onClick: () => setOpen(!open),
+    eye: {
+      icon: isHide ? <EyeClose /> : <EyeOpen />,
+      onClick: invertEye,
     },
   };
+
+  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange({ value: e.target.value, name: e.target.name });
+  };
+
+  const isHideInput = () => isHide && rightIconType === 'eye';
 
   return (
     <_Wrapper width={width} isError={isError}>
@@ -49,16 +63,16 @@ export const Input = ({
         {label}
       </_Label>
       {PreviewIcon}
-      <_ChangeInput
+      <_Input
         value={value}
         name={name}
-        onChange={onChange}
+        onChange={onChangeInput}
         placeholder={placeholder}
-        type={open ? 'text' : rightIconType}
+        type={isHideInput() ? 'password' : type}
       />
       {rightIconType && (
-        <div onClick={RightIcon[rightIconType].onClick}>
-          {RightIcon[rightIconType].svg}
+        <div onClick={Icon[rightIconType].onClick}>
+          {Icon[rightIconType].icon}
         </div>
       )}
       <_Hint size="body4" color="gray300">
@@ -76,7 +90,7 @@ const _Label = styled(Text)`
   top: -9px;
 `;
 
-const _Hint = styled(Text)<{ isError?: boolean }>`
+const _Hint = styled(Text)`
   position: absolute;
   left: 15px;
   bottom: -18px;
@@ -106,8 +120,8 @@ const _Wrapper = styled.div<{ isError: boolean; width: string }>`
   }
 `;
 
-const _ChangeInput = styled.input`
+const _Input = styled.input`
   width: 100%;
-  flex: 1;
+  background-color: transparent;
   ${({ theme }) => theme.font.body1};
 `;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { keyOfColor } from '../../styles/theme';
 
 interface PropsType {
-  color: keyOfColor;
+  color?: keyOfColor;
   onClick?: () => void;
 }
 
