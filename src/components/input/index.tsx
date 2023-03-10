@@ -11,9 +11,8 @@ interface PropsType {
   value: string;
   onChange: () => void;
   placeholder: string;
-  onPreViewIconClick?: () => void;
   onRemoveIconClick?: () => void;
-  PreViewIcon?: () => JSX.Element;
+  PreviewIcon?: JSX.Element;
   rightIconType?: 'remove' | 'password';
   isError?: boolean;
 }
@@ -26,9 +25,8 @@ export const Input = ({
   value,
   onChange,
   placeholder,
-  onPreViewIconClick,
   onRemoveIconClick,
-  PreViewIcon,
+  PreviewIcon,
   rightIconType,
   isError = false,
 }: PropsType) => {
@@ -50,11 +48,7 @@ export const Input = ({
       <_Label size="title3" color="gray400">
         {label}
       </_Label>
-      {PreViewIcon && (
-        <div onClick={onPreViewIconClick}>
-          <PreViewIcon />
-        </div>
-      )}
+      {PreviewIcon}
       <_ChangeInput
         value={value}
         name={name}

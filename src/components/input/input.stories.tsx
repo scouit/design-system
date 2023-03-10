@@ -14,7 +14,7 @@ export const contain1 = Template.bind({});
 
 contain1.args = {
   onSearchIconClick: () => {},
-  PreViewIcon: SearchIcon,
+  PreviewIcon: <SearchIcon color="gray400" onClick={() => {}} />,
   label: 'Search',
 };
 
@@ -23,9 +23,8 @@ export const contain2 = Template.bind({});
 contain2.args = {
   label: 'Search',
   value: 'whtkdgus qudtls',
-  onSearchIconClick: () => {},
   onRemoveIconClick: () => {},
-  PreViewIcon: SearchIcon,
+  PreviewIcon: <SearchIcon color="gray400" onClick={() => {}} />,
   rightIconType: 'remove',
 };
 
