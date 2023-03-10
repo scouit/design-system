@@ -3,28 +3,32 @@ import styled from 'styled-components';
 import { Arrow } from '../../assets/svg/Arrow';
 import OutSideClick from 'react-outside-click-handler';
 import { Text } from '../text';
+import { useInversion } from '../../hooks/useInversion';
 
 interface PropsType {
   placeholder: string;
   onOptionClick: (value: string) => void;
   value?: string;
-  options: string[];
+  optionList: string[];
 }
 
 export const Select = ({
   value,
   onOptionClick,
   placeholder,
-  options,
+  optionList,
 }: PropsType) => {
-  const [dropdown, setDropdown] = useState<boolean>(false);
+  const { state: dropdown, invertState, incorrectState } = useInversion();
+
+  const onClickOption = (optionValue: string) => {
+    onOptionClick(optionValue);
+    incorrectState();
+  };
+
   return (
-    <OutSideClick
-      display="inline-block"
-      onOutsideClick={() => setDropdown(false)}
-    >
+    <OutSideClick display="inline-block" onOutsideClick={incorrectState}>
       <_Wrapper>
-        <_SelectWrapper onClick={() => setDropdown(!dropdown)}>
+        <_SelectWrapper onClick={invertState}>
           <Text size="heading3" color={value ? 'gray700' : 'gray400'}>
             {value || placeholder}
           </Text>
@@ -33,16 +37,13 @@ export const Select = ({
 
         {dropdown && (
           <_OptionWrapper>
-            {options.map((optionValue) => (
+            {optionList.map((optionValue) => (
               <_Option
-                onClick={() => {
-                  onOptionClick(optionValue);
-                  setDropdown(false);
-                }}
+                size="heading3"
+                color="gray700"
+                onClick={() => onClickOption(optionValue)}
               >
-                <Text size="heading3" color="gray700">
-                  {optionValue}
-                </Text>
+                {optionValue}
               </_Option>
             ))}
           </_OptionWrapper>
@@ -75,15 +76,19 @@ const _OptionWrapper = styled.div`
   width: 100%;
   border-radius: ${({ theme }) => theme.borderRadius.small};
   border: 1px solid ${({ theme }) => theme.color.gray400};
+  overflow: scroll;
+  height: 185px;
 `;
 
-const _Option = styled(_SelectWrapper)`
+const _Option = styled(Text)`
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
   height: 37px;
+  cursor: pointer;
   :hover {
     background-color: ${({ theme }) => theme.color.primary600};
-    > div {
-      color: ${({ theme }) => theme.color.gray25};
-    }
+    color: ${({ theme }) => theme.color.gray25};
   }
   :not(:first-child) {
     border-top: 1px solid ${({ theme }) => theme.color.gray400};
