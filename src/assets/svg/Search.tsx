@@ -6,7 +6,7 @@ interface PropsType {
   onClick?: () => void;
 }
 
-export const SearchIcon = ({ color, onClick }: PropsType) => (
+export const SearchIcon = ({ color = 'gray400', onClick }: PropsType) => (
   <_Svg
     width="24"
     height="24"

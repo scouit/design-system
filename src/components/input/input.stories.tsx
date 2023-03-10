@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input } from './index';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { SearchIcon } from '../../assets/svg';
 
 export default {
   title: 'component/input',
@@ -13,7 +14,7 @@ export const contain1 = Template.bind({});
 
 contain1.args = {
   onSearchIconClick: () => {},
-  preViewIconType: 'search',
+  PreViewIcon: SearchIcon,
   label: 'Search',
 };
 
@@ -24,7 +25,7 @@ contain2.args = {
   value: 'whtkdgus qudtls',
   onSearchIconClick: () => {},
   onRemoveIconClick: () => {},
-  preViewIconType: 'search',
+  PreViewIcon: SearchIcon,
   rightIconType: 'remove',
 };
 

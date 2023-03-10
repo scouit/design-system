@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { Block, EyeClose, EyeOpen, SearchIcon } from '../../assets/svg';
+import { Block, EyeClose, EyeOpen } from '../../assets/svg';
 import { Text } from '../text';
 
 interface PropsType {
@@ -11,24 +11,24 @@ interface PropsType {
   value: string;
   onChange: () => void;
   placeholder: string;
-  onSearchIconClick?: () => void;
+  onPreViewIconClick?: () => void;
   onRemoveIconClick?: () => void;
-  preViewIconType?: 'search';
+  PreViewIcon?: () => JSX.Element;
   rightIconType?: 'remove' | 'password';
   isError?: boolean;
 }
 
 export const Input = ({
-  width = '240px',
+  width = '100%',
   label,
   name,
   hint,
   value,
   onChange,
   placeholder,
-  onSearchIconClick,
+  onPreViewIconClick,
   onRemoveIconClick,
-  preViewIconType,
+  PreViewIcon,
   rightIconType,
   isError = false,
 }: PropsType) => {
@@ -45,21 +45,14 @@ export const Input = ({
     },
   };
 
-  const PreViewIcon = {
-    search: {
-      svg: <SearchIcon color="gray400" />,
-      onClick: onSearchIconClick,
-    },
-  };
-
   return (
     <_Wrapper width={width} isError={isError}>
       <_Label size="title3" color="gray400">
         {label}
       </_Label>
-      {preViewIconType && (
-        <div onClick={PreViewIcon[preViewIconType].onClick}>
-          {PreViewIcon[preViewIconType].svg}
+      {PreViewIcon && (
+        <div onClick={onPreViewIconClick}>
+          <PreViewIcon />
         </div>
       )}
       <_ChangeInput
