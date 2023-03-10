@@ -3,7 +3,6 @@ name: node.js CI
 on:
   push:
     branches:
-      - 'main'
       - 'feat/**'
   pull_request:
     branches:
