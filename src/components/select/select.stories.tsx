@@ -16,7 +16,7 @@ export const Template: ComponentStory<typeof Select> = () => {
 
   return (
     <Select
-      placeholder="기술 스택을 선택해 주세요"
+      placeholder="기술 스택을 입력해 주세요"
       name="name"
       type="input"
       value={state.name}
@@ -35,7 +35,7 @@ export const Template2: ComponentStory<typeof Select> = () => {
 
   return (
     <Select
-      placeholder="기술 스택을 입력해 주세요"
+      placeholder="기술 스택을 선택해 주세요"
       name="name"
       type="select"
       value={state.name}
