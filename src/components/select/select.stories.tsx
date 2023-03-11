@@ -10,7 +10,7 @@ export default {
 export const Template: ComponentStory<typeof Select> = () => {
   const [state, setState] = useState({ name: '' });
 
-  const onOptionClick = ({ value, name }) => {
+  const onClickOrChange = ({ value, name }) => {
     setState({ ...state, [name]: value });
   };
 
@@ -20,7 +20,7 @@ export const Template: ComponentStory<typeof Select> = () => {
       name="name"
       type="input"
       value={state.name}
-      onOptionClick={onOptionClick}
+      onClickOrChange={onClickOrChange}
       optionList={['react', 'typescript', 'javascript', 'html', 'css']}
     />
   );
@@ -29,7 +29,7 @@ export const Template: ComponentStory<typeof Select> = () => {
 export const Template2: ComponentStory<typeof Select> = () => {
   const [state, setState] = useState({ name: '' });
 
-  const onOptionClick = ({ value, name }) => {
+  const onClickOrChange = ({ value, name }) => {
     setState({ ...state, [name]: value });
   };
 
@@ -39,7 +39,7 @@ export const Template2: ComponentStory<typeof Select> = () => {
       name="name"
       type="select"
       value={state.name}
-      onOptionClick={onOptionClick}
+      onClickOrChange={onClickOrChange}
       optionList={['react', 'typescript', 'javascript', 'html', 'css']}
     />
   );

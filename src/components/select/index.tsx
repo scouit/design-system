@@ -14,7 +14,7 @@ interface PropsType {
   placeholder: string;
   name: string;
   type: 'select' | 'input';
-  onOptionClick: ({ value, name }: InputonChangeType) => void;
+  onClickOrChange: ({ value, name }: InputonChangeType) => void;
   value?: string;
   optionList: string[];
 }
@@ -23,7 +23,7 @@ export const Select = ({
   value,
   name,
   type,
-  onOptionClick,
+  onClickOrChange,
   placeholder,
   optionList,
 }: PropsType) => {
@@ -35,15 +35,15 @@ export const Select = ({
   } = useInversion();
 
   const onClickOption = (value: string) => {
-    onOptionClick({ value, name });
+    onClickOrChange({ value, name });
     incorrectState();
   };
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    onOptionClick(e.target);
+    onClickOrChange(e.target);
   };
 
-  const onClickBubble = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+  const stopBubble = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     e.stopPropagation();
   };
 
@@ -59,7 +59,7 @@ export const Select = ({
         name={name}
         placeholder={placeholder}
         onChange={onChangeInput}
-        onClick={onClickBubble}
+        onClick={stopBubble}
         onFocus={correctState}
       />
     ),
