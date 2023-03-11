@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Arrow } from '../../assets/svg/Arrow';
 import OutSideClick from 'react-outside-click-handler';
 import { Text } from '../text';
-import { useInversion } from '../hooks/useInversion';
+import { useInversion } from '../../hooks/useInversion';
 import { ChangeEvent } from 'react';
 
 interface InputonChangeType {
