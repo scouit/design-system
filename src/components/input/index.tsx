@@ -4,11 +4,6 @@ import { Block, EyeClose, EyeOpen } from '../../assets/svg';
 import { useInversion } from '../../hooks/useInversion';
 import { Text } from '../text';
 
-interface InputonChangeType {
-  value: string;
-  name: string;
-}
-
 interface PropsType {
   width?: string;
   label: string;
@@ -50,9 +45,9 @@ export const Input = ({
       icon: isHide ? <EyeClose /> : <EyeOpen />,
       onClick: invertEye,
     },
-  }[rightIconType.type];
+  };
 
-  const isHideInput = isHide && rightIconType.type === 'eye';
+  const isHideText = isHide && rightIconType.type === 'eye';
 
   return (
     <_Wrapper width={width} isError={isError}>
@@ -65,9 +60,13 @@ export const Input = ({
         name={name}
         onChange={onChange}
         placeholder={placeholder}
-        type={isHideInput ? 'password' : type}
+        type={isHideText ? 'password' : type}
       />
-      {rightIconType && <div onClick={Icon.onClick}>{Icon.icon}</div>}
+      {rightIconType &&
+        (() => {
+          const { onClick, icon } = Icon[rightIconType.type];
+          return <div onClick={onClick}>{icon}</div>;
+        })()}
       <_Hint size="body4" color="gray300">
         {hint}
       </_Hint>
