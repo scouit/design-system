@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/scouit/design-system/compare/v1.1.4...v1.1.5) (2023-03-09)
+
+
+### Bug Fixes
+
+* as optional chaining ([f2ee15c](https://github.com/scouit/design-system/commit/f2ee15c3db6eb1c94c932ae3c7124ec21e987d40))
+
 ## [1.1.4](https://github.com/scouit/design-system/compare/v1.1.3...v1.1.4) (2023-03-09)
 
 

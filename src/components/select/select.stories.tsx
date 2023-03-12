@@ -15,10 +15,25 @@ export default {
 
 type DefaultProps = ObjectExclude<
   Parameter<typeof Select>,
-  'type' | 'placeholder'
+  'name' | 'value' | 'onClickOrChange' | 'optionList'
 >;
 
-const Template: ComponentStoryType<DefaultProps> = ({ type, placeholder }) => {
+const optionList = [
+  'react',
+  'typescript',
+  'javascript',
+  'html',
+  'css',
+  'next',
+  'redux',
+  'react-query',
+  'redux-saga',
+  'redux-thunk',
+  'mobX',
+  'XXX',
+];
+
+const Template: ComponentStoryType<DefaultProps> = (args) => {
   const [state, setState] = useState({ name: '' });
 
   const onClickOrChange = ({ value, name }) => {
@@ -27,18 +42,23 @@ const Template: ComponentStoryType<DefaultProps> = ({ type, placeholder }) => {
 
   return (
     <Select
-      placeholder={placeholder}
+      {...args}
       name="name"
-      type={type}
       value={state.name}
       onClickOrChange={onClickOrChange}
-      optionList={['react', 'typescript', 'javascript', 'html', 'css']}
+      optionList={optionList}
     />
   );
 };
 
 const templateBind = templateBindRequireAllArgs(Template);
 
-export const select = templateBind({ type: 'select', placeholder: '기술 스택을 선택해 주세요' });
+export const select = templateBind({
+  isInput: false,
+  placeholder: '기술 스택을 선택해 주세요',
+});
 
-export const input = templateBind({ type: 'input', placeholder: '기술 스택을 입력해 주세요' });
+export const input = templateBind({
+  isInput: true,
+  placeholder: '기술 스택을 입력해 주세요',
+});

@@ -1,81 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input } from './index';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
+import { SearchIcon } from '../../assets/svg';
+import {
+  ComponentStoryType,
+  ObjectExclude,
+  Parameter,
+  templateBindRequireAllArgs,
+} from '../../types/story';
 
 export default {
   title: 'component/input',
   component: Input,
+  args: {
+    placeholder: '무언가를 입력해주세요.',
+    name: 'email',
+  },
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+type DefaultProps = ObjectExclude<
+  Parameter<typeof Input>,
+  'value' | 'name' | 'onChange' | 'placeholder'
+>;
 
-export const contain1 = Template.bind({});
+const Template: ComponentStoryType<DefaultProps> = (args) => {
+  const [state, setState] = useState({ email: '', name: '' });
 
-contain1.args = {
-  onSearchIconClick: () => {},
-  placeholder: 'Search',
+  const onChange = ({ value, name }) => {
+    setState({ ...state, [name]: value });
+  };
+
+  return (
+    //@ts-ignore
+    <Input {...args} onChange={onChange} value={state.email} />
+  );
 };
 
-export const contain2 = Template.bind({});
+const templateBind = templateBindRequireAllArgs(Template);
 
-contain2.args = {
-  label: 'Search',
-  onSearchIconClick: () => {},
-  onRemoveIconClick: () => {},
+export const primary = templateBind({ label: '기본값' });
+
+export const password = templateBind({
+  label: '비밀번호 테스트',
+  rightIconType: 'eye',
+});
+
+export const remove = templateBind({
+  label: '삭제 테스트',
   rightIconType: 'remove',
-};
+});
 
-export const contain3 = Template.bind({});
-
-contain3.args = {
-  label: 'label',
-  onSearchIconClick: undefined,
-  hint: 'supporting text',
-};
-
-export const contain4 = Template.bind({});
-
-contain4.args = {
-  label: 'label',
-  hint: 'supporting text',
-  onSearchIconClick: undefined,
-  onRemoveIconClick: () => {},
-  rightIconType: 'remove',
-};
-
-export const contain5 = Template.bind({});
-
-contain5.args = {
-  label: 'label',
-  hint: 'supporting text',
-  onSearchIconClick: undefined,
-  rightIconType: 'password',
-};
-
-export const contain6 = Template.bind({});
-
-contain6.args = {
-  label: 'label',
-  onSearchIconClick: undefined,
-  hint: 'supporting text',
-  isError: true,
-};
-
-export const contain7 = Template.bind({});
-
-contain7.args = {
-  label: 'label',
-  onSearchIconClick: undefined,
-  onRemoveIconClick: () => {},
-  rightIconType: 'remove',
-  isError: true,
-};
-
-export const contain8 = Template.bind({});
-
-contain8.args = {
-  label: 'label',
-  onSearchIconClick: undefined,
-  rightIconType: 'password',
-  isError: true,
-};
+export const previewIcon = templateBind({
+  label: 'preview Icon 테스트',
+  PreviewIcon: <SearchIcon />,
+});

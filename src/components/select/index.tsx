@@ -13,7 +13,7 @@ interface InputonChangeType {
 interface PropsType {
   placeholder: string;
   name: string;
-  type: 'select' | 'input';
+  isInput?: boolean;
   onClickOrChange: ({ value, name }: InputonChangeType) => void;
   value?: string;
   optionList: string[];
@@ -22,7 +22,7 @@ interface PropsType {
 export const Select = ({
   value,
   name,
-  type,
+  isInput = false,
   onClickOrChange,
   placeholder,
   optionList,
@@ -47,44 +47,41 @@ export const Select = ({
     e.stopPropagation();
   };
 
-  const Element = {
-    select: (
-      <Text size="heading3" color={value ? 'gray700' : 'gray400'}>
-        {value || placeholder}
-      </Text>
-    ),
-    input: (
-      <_SelectInput
-        value={value}
-        name={name}
-        placeholder={placeholder}
-        onChange={onChangeInput}
-        onClick={stopBubble}
-        onFocus={correctState}
-      />
-    ),
-  }[type];
-
   const isDownAndExist = dropdown && !!optionList.length;
 
   return (
     <OutSideClick display="inline-block" onOutsideClick={incorrectState}>
       <_Wrapper>
         <_SelectWrapper onClick={invertState}>
-          {Element}
+          {isInput ? (
+            <_SelectInput
+              value={value}
+              name={name}
+              placeholder={placeholder}
+              onChange={onChangeInput}
+              onClick={stopBubble}
+              onFocus={correctState}
+            />
+          ) : (
+            <Text size="heading3" color={value ? 'gray700' : 'gray400'}>
+              {value || placeholder}
+            </Text>
+          )}
           <Arrow dropdown={dropdown} />
         </_SelectWrapper>
         {isDownAndExist && (
           <_OptionWrapper>
-            {optionList.map((optionValue) => (
-              <_Option
-                size="heading3"
-                color="gray700"
-                onClick={() => onClickOption(optionValue)}
-              >
-                {optionValue}
-              </_Option>
-            ))}
+            {optionList
+              .filter((optionValue) => optionValue.includes(value))
+              .map((optionValue) => (
+                <_Option
+                  size="heading3"
+                  color="gray700"
+                  onClick={() => onClickOption(optionValue)}
+                >
+                  {optionValue}
+                </_Option>
+              ))}
           </_OptionWrapper>
         )}
       </_Wrapper>
