@@ -49,13 +49,13 @@ export const Input = ({
       icon: isHide ? <EyeClose /> : <EyeOpen />,
       onClick: invertEye,
     },
-  };
+  }[rightIconType];
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     onChange({ value: e.target.value, name: e.target.name });
   };
 
-  const isHideInput = () => isHide && rightIconType === 'eye';
+  const isHideInput = isHide && rightIconType === 'eye';
 
   return (
     <_Wrapper width={width} isError={isError}>
@@ -68,13 +68,9 @@ export const Input = ({
         name={name}
         onChange={onChangeInput}
         placeholder={placeholder}
-        type={isHideInput() ? 'password' : type}
+        type={isHideInput ? 'password' : type}
       />
-      {rightIconType && (
-        <div onClick={Icon[rightIconType].onClick}>
-          {Icon[rightIconType].icon}
-        </div>
-      )}
+      {rightIconType && <div onClick={Icon.onClick}>{Icon.icon}</div>}
       <_Hint size="body4" color="gray300">
         {hint}
       </_Hint>
