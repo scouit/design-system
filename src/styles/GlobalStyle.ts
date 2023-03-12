@@ -49,8 +49,10 @@ export const GlobalStyle = createGlobalStyle`
     border: 0;
   }
   input {
+    border: 0;
     padding: 0;
     outline: 0;
+    box-sizing:border-box;
   }
   a{color:black;text-decoration:none;}
   textarea{

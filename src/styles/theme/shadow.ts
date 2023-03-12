@@ -6,4 +6,5 @@ export const shadow = {
   xl: '0px 20px 24px -4px rgba(16, 24, 40, 0.1), 0px 8px 8px -4px rgba(16, 24, 40, 0.04)',
   xl2: '0px 24px 48px -12px rgba(16, 24, 40, 0.25)',
   xl3: ' 0px 32px 64px -12px rgba(16, 24, 40, 0.2)',
+  primary: '0px 0px 0px 2px rgba(158, 119, 237, 0.3);',
 } as const;

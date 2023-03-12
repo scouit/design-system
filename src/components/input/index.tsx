@@ -1,108 +1,127 @@
-import { useState } from 'react';
+import { HTMLInputTypeAttribute, ChangeEvent } from 'react';
 import styled, { css } from 'styled-components';
-import { Block, EyeClose, EyeOpen, SearchIcon } from '../../assets/svg';
-import { keyOfColor } from '../../styles/theme';
+import { Block, EyeClose, EyeOpen } from '../../assets/svg';
+import { useInversion } from '../../hooks/useInversion';
+import { Text } from '../text';
+
+interface InputonChangeType {
+  value: string;
+  name: string;
+}
 
 interface PropsType {
+  width?: string;
   label: string;
-  hint: string;
+  type?: HTMLInputTypeAttribute;
+  name: string;
+  hint?: string;
   value: string;
-  onChange: () => void;
-  placeholder?: string;
-  onSearchIconClick?: () => void;
-  onRemoveIconClick?: () => void;
-  rightIconType?: 'remove' | 'password';
-  isError: boolean;
+  onChange: ({ value, name }: InputonChangeType) => void;
+  placeholder: string;
+  PreviewIcon?: JSX.Element;
+  rightIconType?: 'remove' | 'eye';
+  isError?: boolean;
 }
 
 export const Input = ({
-  label = '',
-  hint = '',
-  value = '',
+  width = '100%',
+  label,
+  type = 'text',
+  name,
+  hint,
+  value,
   onChange,
-  placeholder = '',
-  onSearchIconClick = undefined,
-  onRemoveIconClick = undefined,
-  rightIconType = undefined,
+  placeholder,
+  PreviewIcon,
+  rightIconType,
   isError = false,
 }: PropsType) => {
-  const [open, setOpen] = useState<boolean>(false);
+  const { state: isHide, invertState: invertEye } = useInversion(true);
+
+  const Icon = {
+    remove: {
+      icon: <Block />,
+      onClick: () => {
+        onChange({ name, value: '' });
+      },
+    },
+    eye: {
+      icon: isHide ? <EyeClose /> : <EyeOpen />,
+      onClick: invertEye,
+    },
+  };
+
+  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange({ value: e.target.value, name: e.target.name });
+  };
+
+  const isHideInput = () => isHide && rightIconType === 'eye';
 
   return (
-    <_Wrapper isError={isError}>
-      <_TextOnBorder isError={isError}>{label}</_TextOnBorder>
-      <_Content>
-        {onSearchIconClick && (
-          <SearchIcon color="gray400" onClick={onSearchIconClick} />
-        )}
-        <_ChangeInput
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          type={open ? rightIconType : 'text'}
-        />
-        {
-          {
-            remove: <Block onClick={onRemoveIconClick} />,
-            password: (
-              <div onClick={() => setOpen(!open)}>
-                {open ? <EyeOpen /> : <EyeClose />}
-              </div>
-            ),
-          }[rightIconType]
-        }
-      </_Content>
-      <_TextOnBorder isError={isError} isOutSide>
+    <_Wrapper width={width} isError={isError}>
+      <_Label size="title3" color="gray400">
+        {label}
+      </_Label>
+      {PreviewIcon}
+      <_Input
+        value={value}
+        name={name}
+        onChange={onChangeInput}
+        placeholder={placeholder}
+        type={isHideInput() ? 'password' : type}
+      />
+      {rightIconType && (
+        <div onClick={Icon[rightIconType].onClick}>
+          {Icon[rightIconType].icon}
+        </div>
+      )}
+      <_Hint size="body4" color="gray300">
         {hint}
-      </_TextOnBorder>
+      </_Hint>
     </_Wrapper>
   );
 };
 
-const _Wrapper = styled.div<{ isError: boolean }>`
-  position: relative;
-  width: 240px;
-  height: 42px;
-  gap: 5px;
-  padding: 0 10px;
-  border-radius: 4px;
-  border: 1px solid
-    ${({ theme, isError }) => theme.color[isError ? 'error600' : 'gray400']};
-  background-color: ${({ theme }) => theme.color.gray25};
-  display: flex;
-  align-items: center;
-`;
-
-const _Content = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-`;
-
-const _TextOnBorder = styled.div<{ isError?: boolean; isOutSide?: boolean }>`
+const _Label = styled(Text)`
   position: absolute;
-  color: ${({ theme, isError }) =>
-    theme.color[isError ? 'error600' : 'gray400']};
   padding: 0 4px;
   background-color: ${({ theme }) => theme.color.gray25};
-  left: 15px;
-  ${({ theme, isOutSide }) =>
-    isOutSide
-      ? css`
-          ${theme.font.heading4};
-          bottom: -18px;
-        `
-      : css`
-          ${theme.font.body4};
-          top: -7px;
-        `}
+  left: 25px;
+  top: -9px;
 `;
 
-const _ChangeInput = styled.input`
-  min-width: 0;
+const _Hint = styled(Text)`
+  position: absolute;
+  left: 15px;
+  bottom: -18px;
+`;
+
+const _Wrapper = styled.div<{ isError: boolean; width: string }>`
+  position: relative;
+  width: ${({ width }) => width};
+  height: 44px;
+  padding: 0 10px;
+  border-radius: ${({ theme }) => theme.borderRadius.small};
+  background-color: ${({ theme }) => theme.color.gray25};
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  ${({ theme, isError }) => {
+    const currentColor = theme.color[isError ? 'error600' : 'gray400'];
+    return css`
+      border: 1px solid ${currentColor};
+      ${_Label}, ${_Hint} {
+        color: ${currentColor};
+      }
+    `;
+  }}
+  :focus-within {
+    box-shadow: ${({ theme }) => theme.shadow.primary};
+  }
+`;
+
+const _Input = styled.input`
   width: 100%;
-  border: 0;
-  flex: 1;
-  ${({ theme }) => theme.font.body1};
   background-color: transparent;
+  ${({ theme }) => theme.font.body1};
 `;
