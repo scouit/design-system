@@ -5,11 +5,6 @@ import { Text } from '../text';
 import { useInversion } from '../../hooks/useInversion';
 import { ChangeEvent } from 'react';
 
-export interface SelectClickType {
-  value: string;
-  name: string;
-}
-
 interface PropsType {
   placeholder: string;
   name: string;
