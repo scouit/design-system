@@ -2,6 +2,9 @@ import React from 'react';
 import { Text } from './index';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import styled from 'styled-components';
+import { font } from '../../styles/theme/font';
+
+const fontList = Object.keys(font).map((k) => font[k]);
 
 export default {
   title: 'component/text',
@@ -11,42 +14,11 @@ export default {
 export const Size: ComponentStory<typeof Text> = () => {
   return (
     <_Wrapper>
-      <Text size="heading1" color="gray700">
-        안녕하세요 여러분들 반갑습니다.
-      </Text>
-      <Text size="heading2" color="gray700">
-        안녕하세요 여러분들 반갑습니다.
-      </Text>
-      <Text size="heading3" color="gray700">
-        안녕하세요 여러분들 반갑습니다.
-      </Text>
-      <Text size="heading4" color="gray700">
-        안녕하세요 여러분들 반갑습니다.
-      </Text>
-      <Text size="title1" color="gray700">
-        안녕하세요 여러분들 반갑습니다.
-      </Text>
-      <Text size="title2" color="gray700">
-        안녕하세요 여러분들 반갑습니다.
-      </Text>
-      <Text size="title3" color="gray700">
-        안녕하세요 여러분들 반갑습니다.
-      </Text>
-      <Text size="title4" color="gray700">
-        안녕하세요 여러분들 반갑습니다.
-      </Text>
-      <Text size="body1" color="gray700">
-        안녕하세요 여러분들 반갑습니다.
-      </Text>
-      <Text size="body2" color="gray700">
-        안녕하세요 여러분들 반갑습니다.
-      </Text>
-      <Text size="body3" color="gray700">
-        안녕하세요 여러분들 반갑습니다.
-      </Text>
-      <Text size="body4" color="gray700">
-        안녕하세요 여러분들 반갑습니다.
-      </Text>
+      {fontList.map((font) => (
+        <Text size={font} key={font} color="gray700">
+          안녕하세요 여러분들 반갑습니다.
+        </Text>
+      ))}
     </_Wrapper>
   );
 };
