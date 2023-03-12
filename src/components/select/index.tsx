@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { Arrow } from '../../assets/svg/Arrow';
-import OutSideClick from 'react-outside-click-handler';
+import OutsideClick from 'react-outside-click-handler';
 import { Text } from '../text';
 import { useInversion } from '../../hooks/useInversion';
 import { ChangeEvent } from 'react';
 
-interface InputonChangeType {
+export interface SelectClickType {
   value: string;
   name: string;
 }
@@ -13,8 +13,10 @@ interface InputonChangeType {
 interface PropsType {
   placeholder: string;
   name: string;
+  label: string;
   isInput?: boolean;
-  onClickOrChange: ({ value, name }: InputonChangeType) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onOptionClick: ({ value, name }: SelectClickType) => void;
   value?: string;
   optionList: string[];
 }
@@ -22,8 +24,10 @@ interface PropsType {
 export const Select = ({
   value,
   name,
+  label,
   isInput = false,
-  onClickOrChange,
+  onChange,
+  onOptionClick,
   placeholder,
   optionList,
 }: PropsType) => {
@@ -34,35 +38,41 @@ export const Select = ({
     correctState,
   } = useInversion();
 
+  const setValue = (value: string) => onOptionClick({ name, value });
+
   const onClickOption = (value: string) => {
-    onClickOrChange({ value, name });
+    setValue(value);
     incorrectState();
   };
 
-  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    onClickOrChange(e.target);
+  const clearValue = () => {
+    if (!optionList.includes(value)) {
+      setValue('');
+    }
+    incorrectState();
   };
 
   const stopBubble = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     e.stopPropagation();
   };
 
-  const isDownAndExist = dropdown && !!optionList.length;
-
   const filterOrNotList = isInput
     ? optionList.filter((data) => data.includes(value))
     : optionList;
 
+  const isDownAndExist = dropdown && !!filterOrNotList.length;
+
   return (
-    <OutSideClick display="inline-block" onOutsideClick={incorrectState}>
+    <OutsideClick display="inline-block" onOutsideClick={clearValue}>
       <_Wrapper>
+        <_Label size="body3">{label}</_Label>
         <_SelectWrapper onClick={invertState}>
           {isInput ? (
             <_SelectInput
               value={value}
               name={name}
               placeholder={placeholder}
-              onChange={onChangeInput}
+              onChange={onChange}
               onClick={stopBubble}
               onFocus={correctState}
             />
@@ -87,7 +97,7 @@ export const Select = ({
           </_OptionWrapper>
         )}
       </_Wrapper>
-    </OutSideClick>
+    </OutsideClick>
   );
 };
 
@@ -142,4 +152,9 @@ const _SelectInput = styled.input`
   ::placeholder {
     color: ${({ theme }) => theme.color.gray400};
   }
+`;
+
+const _Label = styled(Text)`
+  position: absolute;
+  top: -20px;
 `;

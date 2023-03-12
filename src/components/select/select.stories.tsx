@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Select } from './index';
+import React, { ChangeEvent, useState } from 'react';
+import { Select, SelectClickType } from './index';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import {
   ComponentStoryType,
@@ -15,7 +15,7 @@ export default {
 
 type DefaultProps = ObjectExclude<
   Parameter<typeof Select>,
-  'name' | 'value' | 'onClickOrChange' | 'optionList'
+  'name' | 'value' | 'onChange' | 'optionList' | 'onOptionClick' | 'label'
 >;
 
 const optionList = [
@@ -34,18 +34,25 @@ const optionList = [
 ];
 
 const Template: ComponentStoryType<DefaultProps> = (args) => {
-  const [state, setState] = useState({ name: '' });
+  const [state, setState] = useState({ skill: '' });
 
-  const onClickOrChange = ({ value, name }) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setState({ ...state, [name]: value });
+  };
+
+  const onOptionClick = ({ name, value }: SelectClickType) => {
     setState({ ...state, [name]: value });
   };
 
   return (
     <Select
       {...args}
-      name="name"
-      value={state.name}
-      onClickOrChange={onClickOrChange}
+      name="skill"
+      label="기술 스택"
+      value={state.skill}
+      onChange={onChange}
+      onOptionClick={onOptionClick}
       optionList={optionList}
     />
   );
