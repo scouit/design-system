@@ -27,6 +27,7 @@ const _Svg = styled.svg<PropsType>`
   transform: ${({ direction }) =>
     css`rotate(${
       {
+        top: 0,
         right: 90,
         bottom: 180,
         left: 270,
