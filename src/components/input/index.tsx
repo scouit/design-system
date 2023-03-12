@@ -16,10 +16,13 @@ interface PropsType {
   name: string;
   hint?: string;
   value: string;
-  onChange: ({ value, name }: InputonChangeType) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   PreviewIcon?: JSX.Element;
-  rightIconType?: 'remove' | 'eye';
+  rightIconType?: {
+    type: 'remove' | 'eye';
+    onClick?: () => void;
+  };
   isError?: boolean;
 }
 
@@ -41,21 +44,15 @@ export const Input = ({
   const Icon = {
     remove: {
       icon: <Block />,
-      onClick: () => {
-        onChange({ name, value: '' });
-      },
+      onClick: rightIconType.onClick,
     },
     eye: {
       icon: isHide ? <EyeClose /> : <EyeOpen />,
       onClick: invertEye,
     },
-  };
+  }[rightIconType.type];
 
-  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange({ value: e.target.value, name: e.target.name });
-  };
-
-  const isHideInput = () => isHide && rightIconType === 'eye';
+  const isHideInput = isHide && rightIconType.type === 'eye';
 
   return (
     <_Wrapper width={width} isError={isError}>
@@ -66,15 +63,11 @@ export const Input = ({
       <_Input
         value={value}
         name={name}
-        onChange={onChangeInput}
+        onChange={onChange}
         placeholder={placeholder}
-        type={isHideInput() ? 'password' : type}
+        type={isHideInput ? 'password' : type}
       />
-      {rightIconType && (
-        <div onClick={Icon[rightIconType].onClick}>
-          {Icon[rightIconType].icon}
-        </div>
-      )}
+      {rightIconType && <div onClick={Icon.onClick}>{Icon.icon}</div>}
       <_Hint size="body4" color="gray300">
         {hint}
       </_Hint>

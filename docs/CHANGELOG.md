@@ -1,3 +1,12 @@
+## [1.1.7](https://github.com/scouit/design-system/compare/v1.1.6...v1.1.7) (2023-03-12)
+
+
+### Bug Fixes
+
+* onChange event타입 수정 및 noImplicitAny true ([978e21e](https://github.com/scouit/design-system/commit/978e21ede98667501f7b7e66a3a03568d48953f2))
+
+## [1.1.6](https://github.com/scouit/design-system/compare/v1.1.5...v1.1.6) (2023-03-12)
+
 ## [1.1.5](https://github.com/scouit/design-system/compare/v1.1.4...v1.1.5) (2023-03-09)
 
 
