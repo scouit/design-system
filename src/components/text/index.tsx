@@ -9,6 +9,5 @@ interface PropsType {
 export const Text = styled.div<PropsType>`
   text-align: ${({ align }) => align};
   ${({ theme, size = 'body1' }) => theme.font[size]};
-
   color: ${({ theme, color = 'gray900' }) => theme.color[color]};
 `;
