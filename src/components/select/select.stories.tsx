@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Select, SelectClickType } from './index';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Select } from './index';
+import { ComponentMeta } from '@storybook/react';
 import {
   ComponentStoryType,
   ObjectExclude,
