@@ -49,6 +49,10 @@ export const Select = ({
 
   const isDownAndExist = dropdown && !!optionList.length;
 
+  const filterOrNotList = isInput
+    ? optionList.filter((data) => data.includes(value))
+    : optionList;
+
   return (
     <OutSideClick display="inline-block" onOutsideClick={incorrectState}>
       <_Wrapper>
@@ -67,21 +71,19 @@ export const Select = ({
               {value || placeholder}
             </Text>
           )}
-          <Arrow dropdown={dropdown} />
+          <Arrow direction={dropdown ? 'bottom' : 'top'} />
         </_SelectWrapper>
         {isDownAndExist && (
           <_OptionWrapper>
-            {optionList
-              .filter((optionValue) => optionValue.includes(value))
-              .map((optionValue) => (
-                <_Option
-                  size="heading3"
-                  color="gray700"
-                  onClick={() => onClickOption(optionValue)}
-                >
-                  {optionValue}
-                </_Option>
-              ))}
+            {filterOrNotList.map((optionValue) => (
+              <_Option
+                size="heading3"
+                color="gray700"
+                onClick={() => onClickOption(optionValue)}
+              >
+                {optionValue}
+              </_Option>
+            ))}
           </_OptionWrapper>
         )}
       </_Wrapper>
