@@ -16,7 +16,7 @@ interface PropsType {
   label: string;
   isInput?: boolean;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onOptionClick: ({ value, name }: SelectClickType) => void;
+  onOptionClick: (value: string) => void;
   value?: string;
   optionList: string[];
 }
@@ -38,16 +38,14 @@ export const Select = ({
     correctState,
   } = useInversion();
 
-  const setValue = (value: string) => onOptionClick({ name, value });
-
   const onClickOption = (value: string) => {
-    setValue(value);
+    onOptionClick(value);
     incorrectState();
   };
 
   const clearValue = () => {
     if (!optionList.includes(value)) {
-      setValue('');
+      onOptionClick('');
     }
     incorrectState();
   };

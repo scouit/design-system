@@ -34,15 +34,15 @@ const optionList = [
 ];
 
 const Template: ComponentStoryType<DefaultProps> = (args) => {
-  const [state, setState] = useState({ skill: '' });
+  const [state, setState] = useState('');
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setState({ ...state, [name]: value });
+    const { value } = e.target;
+    setState(value);
   };
 
-  const onOptionClick = ({ name, value }: SelectClickType) => {
-    setState({ ...state, [name]: value });
+  const onOptionClick = (value: string) => {
+    setState(value);
   };
 
   return (
@@ -50,7 +50,7 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
       {...args}
       name="skill"
       label="기술 스택"
-      value={state.skill}
+      value={state}
       onChange={onChange}
       onOptionClick={onOptionClick}
       optionList={optionList}
