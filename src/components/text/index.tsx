@@ -3,8 +3,8 @@ import { keyOfColor, keyOfFont } from '../../styles/theme';
 
 interface PropsType {
   align?: 'start' | 'center' | 'end';
-  size: keyOfFont;
-  color: keyOfColor;
+  size?: keyOfFont;
+  color?: keyOfColor;
 }
 export const Text = styled.div<PropsType>`
   text-align: ${({ align }) => align};
