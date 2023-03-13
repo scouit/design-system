@@ -69,7 +69,7 @@ export const Input = ({
   };
   const filterList = filteringList(searchList, (data) => data.includes(value));
 
-  const isHideInput = () => isHide && rightIconType === 'eye';
+  const isHideInput = isHide && rightIconType === 'eye';
   const isShowDropdown = dropdown && !!searchList;
 
   return (
@@ -92,11 +92,11 @@ export const Input = ({
           type={isHideInput() ? 'password' : type}
           onFocus={openDropdown}
         />
-        {rightIconType && (
-          <div onClick={Icon[rightIconType].onClick}>
-            {Icon[rightIconType].icon}
-          </div>
-        )}
+        {rightIconType &&
+          (() => {
+            const { icon, onClick } = Icon[rightIconType];
+            return <div onClick={onClick}>{icon}</div>;
+          })()}
         <_Hint size="body4" color="gray300">
           {hint}
         </_Hint>
