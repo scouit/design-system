@@ -68,13 +68,15 @@ export const Input = ({
     closeDropdown();
   };
 
+  const filterList = searchList.filter((data) => data.includes(value));
+
   const isHideInput = () => isHide && rightIconType === 'eye';
   const isShowDropdown = dropdown && !!searchList;
 
   return (
     <InputDropdown
       dropdown={isShowDropdown}
-      list={searchList}
+      list={filterList}
       onOptionClick={onOptionClick}
       onOutsideClick={closeDropdown}
     >
