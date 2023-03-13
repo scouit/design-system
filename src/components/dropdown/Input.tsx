@@ -49,7 +49,7 @@ const _Wrapper = styled.div`
 const _DropWrapper = styled.div`
   position: absolute;
   width: 100%;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
   left: 0;
   top: calc(100% + 10px);
   border: 1px;
@@ -63,4 +63,7 @@ const _DropText = styled(Text)`
   height: 36px;
   padding: 6.5px 16px;
   background-color: initial;
+  :hover {
+    background-color: ${({ theme }) => theme.color.gray100};
+  }
 `;

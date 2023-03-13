@@ -122,11 +122,11 @@ const _SkillWrapper = styled(Text)<{ backColor: keyOfColor }>`
   border: 1px solid black;
   height: 28px;
   padding: 0 7px;
-  margin: 12px 0;
+  margin: 8px 0;
   display: flex;
   align-items: center;
   gap: 6px;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
   background-color: ${({ theme, backColor }) => theme.color[backColor]};
 `;
 
@@ -148,7 +148,7 @@ const _Wrapper = styled.div<{ width: string }>`
   position: relative;
   width: ${({ width }) => width};
   padding: 0 10px;
-  border-radius: ${({ theme }) => theme.borderRadius.small};
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
   background-color: ${({ theme }) => theme.color.gray25};
   display: flex;
   align-items: center;
@@ -170,7 +170,7 @@ const _Wrapper = styled.div<{ width: string }>`
 
 const _Input = styled.input`
   max-width: 100%;
-  height: 52px;
+  height: 44px;
   background-color: transparent;
   ${({ theme }) => theme.font.body1};
 `;
