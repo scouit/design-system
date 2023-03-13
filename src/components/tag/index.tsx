@@ -43,9 +43,9 @@ export const TagInput = ({
   const { state: dropdown, incorrectState, correctState } = useInversion();
   const [value, setValue] = useState('');
 
-  const filterList = optionList.filter(
-    (data) => data.includes(value) && !list.includes(data)
-  );
+  const filterList = optionList
+    .filter((data) => data.includes(value) && !list.includes(data))
+    .slice(0, 5);
 
   const addIncludeList = () => {
     if (filterList.includes(value)) {
