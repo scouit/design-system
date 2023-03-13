@@ -29,7 +29,7 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
   const onChange = ({ value, name }) => {
     setState({ ...state, [name]: value });
   };
-
+  
   return (
     //@ts-ignore
     <Input {...args} onChange={onChange} value={state.email} />
@@ -53,4 +53,9 @@ export const remove = templateBind({
 export const previewIcon = templateBind({
   label: 'preview Icon 테스트',
   PreviewIcon: <SearchIcon />,
+});
+
+export const dropdown = templateBind({
+  label: 'dropdown 테스트',
+  searchList: ['앙기모씨'],
 });

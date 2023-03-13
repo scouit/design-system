@@ -2,6 +2,7 @@ import { HTMLInputTypeAttribute, ChangeEvent } from 'react';
 import styled, { css } from 'styled-components';
 import { Block, EyeClose, EyeOpen } from '../../assets/svg';
 import { useInversion } from '../../hooks/useInversion';
+import { InputDropdown } from '../dropdown/Input';
 import { Text } from '../text';
 
 interface InputonChangeType {
@@ -21,6 +22,7 @@ interface PropsType {
   PreviewIcon?: JSX.Element;
   rightIconType?: 'remove' | 'eye';
   isError?: boolean;
+  searchList?: string[];
 }
 
 export const Input = ({
@@ -35,8 +37,14 @@ export const Input = ({
   PreviewIcon,
   rightIconType,
   isError = false,
+  searchList,
 }: PropsType) => {
   const { state: isHide, invertState: invertEye } = useInversion(true);
+  const {
+    state: dropdown,
+    correctState: openDropdown,
+    incorrectState: closeDropdown,
+  } = useInversion();
 
   const Icon = {
     remove: {
@@ -55,30 +63,44 @@ export const Input = ({
     onChange({ value: e.target.value, name: e.target.name });
   };
 
+  const onOptionClick = (text: string) => {
+    onChange({ name, value: text });
+    closeDropdown();
+  };
+
   const isHideInput = () => isHide && rightIconType === 'eye';
+  const isShowDropdown = dropdown && !!searchList;
 
   return (
-    <_Wrapper width={width} isError={isError}>
-      <_Label size="title3" color="gray400">
-        {label}
-      </_Label>
-      {PreviewIcon}
-      <_Input
-        value={value}
-        name={name}
-        onChange={onChangeInput}
-        placeholder={placeholder}
-        type={isHideInput() ? 'password' : type}
-      />
-      {rightIconType && (
-        <div onClick={Icon[rightIconType].onClick}>
-          {Icon[rightIconType].icon}
-        </div>
-      )}
-      <_Hint size="body4" color="gray300">
-        {hint}
-      </_Hint>
-    </_Wrapper>
+    <InputDropdown
+      dropdown={isShowDropdown}
+      list={searchList}
+      onOptionClick={onOptionClick}
+      onOutsideClick={closeDropdown}
+    >
+      <_Wrapper width={width} isError={isError}>
+        <_Label size="title3" color="gray400">
+          {label}
+        </_Label>
+        {PreviewIcon}
+        <_Input
+          value={value}
+          name={name}
+          onChange={onChangeInput}
+          placeholder={placeholder}
+          type={isHideInput() ? 'password' : type}
+          onFocus={openDropdown}
+        />
+        {rightIconType && (
+          <div onClick={Icon[rightIconType].onClick}>
+            {Icon[rightIconType].icon}
+          </div>
+        )}
+        <_Hint size="body4" color="gray300">
+          {hint}
+        </_Hint>
+      </_Wrapper>
+    </InputDropdown>
   );
 };
 

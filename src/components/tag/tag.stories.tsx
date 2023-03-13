@@ -24,7 +24,6 @@ export const Template: ComponentStory<typeof TagInput> = () => {
       width="800px"
       placeholder="홀더"
       name="name"
-      label="기술 스택"
       onChange={onChange}
       onTagClick={removeTag}
       list={state}
