@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from './index';
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { SearchIcon } from '../../assets/svg';
 import {
   ComponentStoryType,
@@ -8,11 +8,15 @@ import {
   Parameter,
   templateBindRequireAllArgs,
 } from '../../types/story';
-import { ChangeEvent } from 'react';
+import { optionList } from '../tag';
 
 export default {
   title: 'component/input',
   component: Input,
+  args: {
+    placeholder: '무언가를 입력해주세요.',
+    name: 'email',
+  },
 } as ComponentMeta<typeof Input>;
 
 type DefaultProps = ObjectExclude<
@@ -23,19 +27,13 @@ type DefaultProps = ObjectExclude<
 const Template: ComponentStoryType<DefaultProps> = (args) => {
   const [state, setState] = useState({ email: '', name: '' });
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  const onChange = ({ value, name }) => {
     setState({ ...state, [name]: value });
   };
 
   return (
-    <Input
-      {...args}
-      placeholder={'무언가를 입력해주세요.'}
-      onChange={onChange}
-      name={'email'}
-      value={state.email}
-    />
+    //@ts-ignore
+    <Input {...args} onChange={onChange} value={state.email} />
   );
 };
 
@@ -56,4 +54,9 @@ export const remove = templateBind({
 export const previewIcon = templateBind({
   label: 'preview Icon 테스트',
   PreviewIcon: <SearchIcon />,
+});
+
+export const dropdown = templateBind({
+  label: 'dropdown 테스트',
+  searchList: optionList,
 });

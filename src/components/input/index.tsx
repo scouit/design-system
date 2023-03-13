@@ -2,7 +2,13 @@ import { HTMLInputTypeAttribute, ChangeEvent } from 'react';
 import styled, { css } from 'styled-components';
 import { Block, EyeClose, EyeOpen } from '../../assets/svg';
 import { useInversion } from '../../hooks/useInversion';
+import { filteringList, InputDropdown } from '../dropdown/Input';
 import { Text } from '../text';
+
+interface InputonChangeType {
+  value: string;
+  name: string;
+}
 
 interface PropsType {
   width?: string;
@@ -11,14 +17,12 @@ interface PropsType {
   name: string;
   hint?: string;
   value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: ({ value, name }: InputonChangeType) => void;
   placeholder: string;
   PreviewIcon?: JSX.Element;
-  rightIconType?: {
-    type: 'remove' | 'eye';
-    onClick?: () => void;
-  };
+  rightIconType?: 'remove' | 'eye';
   isError?: boolean;
+  searchList?: string[];
 }
 
 export const Input = ({
@@ -33,13 +37,21 @@ export const Input = ({
   PreviewIcon,
   rightIconType,
   isError = false,
+  searchList = [],
 }: PropsType) => {
   const { state: isHide, invertState: invertEye } = useInversion(true);
+  const {
+    state: dropdown,
+    correctState: openDropdown,
+    incorrectState: closeDropdown,
+  } = useInversion();
 
   const Icon = {
     remove: {
       icon: <Block />,
-      onClick: rightIconType.onClick,
+      onClick: () => {
+        onChange({ name, value: '' });
+      },
     },
     eye: {
       icon: isHide ? <EyeClose /> : <EyeOpen />,
@@ -47,30 +59,49 @@ export const Input = ({
     },
   };
 
-  const isHideText = isHide && rightIconType.type === 'eye';
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange({ value: e.target.value, name: e.target.name });
+  };
+
+  const onOptionClick = (text: string) => {
+    onChange({ name, value: text });
+    closeDropdown();
+  };
+  const filterList = filteringList(searchList, (data) => data.includes(value));
+
+  const isHideInput = () => isHide && rightIconType === 'eye';
+  const isShowDropdown = dropdown && !!searchList;
 
   return (
-    <_Wrapper width={width} isError={isError}>
-      <_Label size="title3" color="gray400">
-        {label}
-      </_Label>
-      {PreviewIcon}
-      <_Input
-        value={value}
-        name={name}
-        onChange={onChange}
-        placeholder={placeholder}
-        type={isHideText ? 'password' : type}
-      />
-      {rightIconType &&
-        (() => {
-          const { onClick, icon } = Icon[rightIconType.type];
-          return <div onClick={onClick}>{icon}</div>;
-        })()}
-      <_Hint size="body4" color="gray300">
-        {hint}
-      </_Hint>
-    </_Wrapper>
+    <InputDropdown
+      dropdown={isShowDropdown}
+      list={filterList}
+      onOptionClick={onOptionClick}
+      onOutsideClick={closeDropdown}
+    >
+      <_Wrapper width={width} isError={isError}>
+        <_Label size="title3" color="gray400">
+          {label}
+        </_Label>
+        {PreviewIcon}
+        <_Input
+          value={value}
+          name={name}
+          onChange={onInputChange}
+          placeholder={placeholder}
+          type={isHideInput() ? 'password' : type}
+          onFocus={openDropdown}
+        />
+        {rightIconType && (
+          <div onClick={Icon[rightIconType].onClick}>
+            {Icon[rightIconType].icon}
+          </div>
+        )}
+        <_Hint size="body4" color="gray300">
+          {hint}
+        </_Hint>
+      </_Wrapper>
+    </InputDropdown>
   );
 };
 
