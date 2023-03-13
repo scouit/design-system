@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { Block, React, SearchIcon } from '../../assets/svg';
 import { useInversion } from '../../hooks/useInversion';
 import { keyOfColor } from '../../styles/theme';
-import { InputDropdown } from '../dropdown/Input';
+import { filteringList, InputDropdown } from '../dropdown/Input';
 import { Input } from '../input';
 import { Text } from '../text';
 
@@ -59,9 +59,10 @@ export const TagInput = ({
   } = useInversion();
   const [value, setValue] = useState('');
 
-  const filterList = optionList
-    .filter((data) => data.includes(value) && !list.includes(data))
-    .slice(0, 5);
+  const filterList = filteringList(
+    optionList,
+    (data) => data.includes(value) && !list.includes(data)
+  );
 
   const onOptionClick = (optionValue: string) => {
     onChange({ name, value: optionValue });

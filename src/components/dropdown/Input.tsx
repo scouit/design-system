@@ -11,6 +11,11 @@ interface PropsType {
   children: ReactNode;
 }
 
+export const filteringList = (
+  list: string[],
+  available: (data: string) => boolean
+) => list.filter(available).slice(0, 5);
+
 export const InputDropdown = ({
   onOutsideClick,
   dropdown,
@@ -18,8 +23,6 @@ export const InputDropdown = ({
   onOptionClick,
   children,
 }: PropsType) => {
-  console.log(dropdown);
-  console.log(list);
   return (
     <OutsideClickHandler display="inline-block" onOutsideClick={onOutsideClick}>
       <_Wrapper>

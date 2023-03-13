@@ -2,7 +2,7 @@ import { HTMLInputTypeAttribute, ChangeEvent } from 'react';
 import styled, { css } from 'styled-components';
 import { Block, EyeClose, EyeOpen } from '../../assets/svg';
 import { useInversion } from '../../hooks/useInversion';
-import { InputDropdown } from '../dropdown/Input';
+import { filteringList, InputDropdown } from '../dropdown/Input';
 import { Text } from '../text';
 
 interface InputonChangeType {
@@ -67,8 +67,7 @@ export const Input = ({
     onChange({ name, value: text });
     closeDropdown();
   };
-
-  const filterList = searchList.filter((data) => data.includes(value));
+  const filterList = filteringList(searchList, (data) => data.includes(value));
 
   const isHideInput = () => isHide && rightIconType === 'eye';
   const isShowDropdown = dropdown && !!searchList;
