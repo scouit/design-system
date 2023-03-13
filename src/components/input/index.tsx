@@ -4,6 +4,11 @@ import { Block, EyeClose, EyeOpen } from '../../assets/svg';
 import { useInversion } from '../../hooks/useInversion';
 import { Text } from '../text';
 
+interface InputonChangeType {
+  value: string;
+  name: string;
+}
+
 interface PropsType {
   width?: string;
   label: string;
@@ -11,13 +16,10 @@ interface PropsType {
   name: string;
   hint?: string;
   value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: ({ value, name }: InputonChangeType) => void;
   placeholder: string;
   PreviewIcon?: JSX.Element;
-  rightIconType?: {
-    type: 'remove' | 'eye';
-    onClick?: () => void;
-  };
+  rightIconType?: 'remove' | 'eye';
   isError?: boolean;
 }
 
@@ -39,7 +41,9 @@ export const Input = ({
   const Icon = {
     remove: {
       icon: <Block />,
-      onClick: rightIconType.onClick,
+      onClick: () => {
+        onChange({ name, value: '' });
+      },
     },
     eye: {
       icon: isHide ? <EyeClose /> : <EyeOpen />,
@@ -47,7 +51,11 @@ export const Input = ({
     },
   };
 
-  const isHideText = isHide && rightIconType.type === 'eye';
+  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange({ value: e.target.value, name: e.target.name });
+  };
+
+  const isHideInput = () => isHide && rightIconType === 'eye';
 
   return (
     <_Wrapper width={width} isError={isError}>
@@ -58,15 +66,15 @@ export const Input = ({
       <_Input
         value={value}
         name={name}
-        onChange={onChange}
+        onChange={onChangeInput}
         placeholder={placeholder}
-        type={isHideText ? 'password' : type}
+        type={isHideInput() ? 'password' : type}
       />
-      {rightIconType &&
-        (() => {
-          const { onClick, icon } = Icon[rightIconType.type];
-          return <div onClick={onClick}>{icon}</div>;
-        })()}
+      {rightIconType && (
+        <div onClick={Icon[rightIconType].onClick}>
+          {Icon[rightIconType].icon}
+        </div>
+      )}
       <_Hint size="body4" color="gray300">
         {hint}
       </_Hint>
