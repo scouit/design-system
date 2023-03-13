@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { TagInput } from './index';
+import { InputChangeType, TagClickType, TagInput } from './index';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
@@ -10,20 +10,27 @@ export default {
 export const Template: ComponentStory<typeof TagInput> = () => {
   const [state, setState] = useState<string[]>([]);
 
-  const onChange = (value: string) => {
-    setState([...state, value]);
+  const onChange = ({ value, name }: InputChangeType) => {
+    if (name) {
+      setState({ ...state, [name]: [...state[name], value] });
+    } else {
+      setState([...state, value]);
+    }
   };
 
-  const removeTag = (index: number) => {
+  const removeTag = ({ index, name }: TagClickType) => {
     const filter = state.filter((_, idx) => idx !== index);
-    setState(filter);
+    if (name) {
+      setState({ ...state, [name]: filter });
+    } else {
+      setState(filter);
+    }
   };
 
   return (
     <TagInput
       width="800px"
       placeholder="홀더"
-      name="name"
       onChange={onChange}
       onTagClick={removeTag}
       list={state}

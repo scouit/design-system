@@ -8,13 +8,23 @@ import { InputDropdown } from '../dropdown/Input';
 import { Input } from '../input';
 import { Text } from '../text';
 
+export interface InputChangeType {
+  value: string;
+  name?: string;
+}
+
+export interface TagClickType {
+  index: number;
+  name?: string;
+}
+
 interface PropsType {
   width?: string;
   placeholder: string;
-  name: string;
+  name?: string;
   label?: string;
-  onChange: (value: string) => void;
-  onTagClick: (index: number) => void;
+  onChange: ({ value, name }: InputChangeType) => void;
+  onTagClick: ({ index, name }: TagClickType) => void;
   list: string[];
 }
 
@@ -54,7 +64,7 @@ export const TagInput = ({
     .slice(0, 5);
 
   const onOptionClick = (optionValue: string) => {
-    onChange(optionValue);
+    onChange({ name, value: optionValue });
     setValue('');
     closeDropdown();
   };
@@ -66,7 +76,7 @@ export const TagInput = ({
 
   const onEnterInput = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.code === 'Enter' && filterList.includes(value)) {
-      onChange(value);
+      onChange({ name, value });
       setValue('');
     }
   };
@@ -82,12 +92,12 @@ export const TagInput = ({
         <_Label size="title3" color="gray400">
           {label}
         </_Label>
-        {list.map((skills, idx) => (
+        {list.map((skills, index) => (
           <_SkillWrapper
             backColor="gray900"
             color="gray25"
             size="body1"
-            onClick={() => onTagClick(idx)}
+            onClick={() => onTagClick({ name, index })}
           >
             <React />
             {skills}
