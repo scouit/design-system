@@ -70,12 +70,12 @@ export const TagInput = ({
     closeDropdown();
   };
 
-  const onValueChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setValue(value);
   };
 
-  const onEnterInput = (e: KeyboardEvent<HTMLInputElement>) => {
+  const onInputEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.code === 'Enter' && filterList.includes(value)) {
       onChange({ name, value });
       setValue('');
@@ -94,7 +94,7 @@ export const TagInput = ({
           {label}
         </_Label>
         {list.map((skills, index) => (
-          <_SkillWrapper
+          <_Skill
             backColor="gray900"
             color="gray25"
             size="body1"
@@ -102,23 +102,23 @@ export const TagInput = ({
           >
             <React />
             {skills}
-          </_SkillWrapper>
+          </_Skill>
         ))}
 
         <_Input
           value={value}
           name={name}
-          onChange={onValueChange}
+          onChange={onInputChange}
           placeholder={placeholder}
           onFocus={openDropdown}
-          onKeyDown={onEnterInput}
+          onKeyDown={onInputEnter}
         />
       </_Wrapper>
     </InputDropdown>
   );
 };
 
-const _SkillWrapper = styled(Text)<{ backColor: keyOfColor }>`
+const _Skill = styled(Text)<{ backColor: keyOfColor }>`
   cursor: pointer;
   border: 1px solid black;
   height: 28px;

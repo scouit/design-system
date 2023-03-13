@@ -59,7 +59,7 @@ export const Input = ({
     },
   };
 
-  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange({ value: e.target.value, name: e.target.name });
   };
 
@@ -87,7 +87,7 @@ export const Input = ({
         <_Input
           value={value}
           name={name}
-          onChange={onChangeInput}
+          onChange={onInputChange}
           placeholder={placeholder}
           type={isHideInput() ? 'password' : type}
           onFocus={openDropdown}
