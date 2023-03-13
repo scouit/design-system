@@ -8,6 +8,7 @@ import {
   Parameter,
   templateBindRequireAllArgs,
 } from '../../types/story';
+import { optionList } from '../tag';
 
 export default {
   title: 'component/input',
@@ -29,7 +30,7 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
   const onChange = ({ value, name }) => {
     setState({ ...state, [name]: value });
   };
-  
+
   return (
     //@ts-ignore
     <Input {...args} onChange={onChange} value={state.email} />
@@ -57,5 +58,5 @@ export const previewIcon = templateBind({
 
 export const dropdown = templateBind({
   label: 'dropdown 테스트',
-  searchList: ['앙기모씨'],
+  searchList: optionList,
 });

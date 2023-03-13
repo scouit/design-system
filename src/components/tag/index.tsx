@@ -28,7 +28,7 @@ interface PropsType {
   list: string[];
 }
 
-const optionList = [
+export const optionList = [
   'react',
   'typescript',
   'javascript',
