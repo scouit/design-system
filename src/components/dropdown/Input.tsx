@@ -27,7 +27,11 @@ export const InputDropdown = ({
         {dropdown && (
           <_DropWrapper>
             {list.map((text) => (
-              <_DropText size="body1" onClick={() => onOptionClick(text)}>
+              <_DropText
+                as="button"
+                size="body1"
+                onClick={() => onOptionClick(text)}
+              >
                 {text}
               </_DropText>
             ))}
@@ -53,6 +57,10 @@ const _DropWrapper = styled.div`
 `;
 
 const _DropText = styled(Text)`
+  cursor: pointer;
+  text-align: start;
+  width: 100%;
   height: 36px;
   padding: 6.5px 16px;
+  background-color: initial;
 `;
