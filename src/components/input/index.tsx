@@ -69,7 +69,7 @@ export const Input = ({
   };
   const filterList = filteringList(searchList, (data) => data.includes(value));
 
-  const isHideInput = () => isHide && rightIconType === 'eye';
+  const isHideInput = isHide && rightIconType === 'eye';
   const isShowDropdown = dropdown && !!searchList;
 
   return (
