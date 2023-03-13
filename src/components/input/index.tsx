@@ -37,7 +37,7 @@ export const Input = ({
   PreviewIcon,
   rightIconType,
   isError = false,
-  searchList,
+  searchList = [],
 }: PropsType) => {
   const { state: isHide, invertState: invertEye } = useInversion(true);
   const {

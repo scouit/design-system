@@ -118,6 +118,7 @@ export const TagInput = ({
 };
 
 const _SkillWrapper = styled(Text)<{ backColor: keyOfColor }>`
+  cursor: pointer;
   border: 1px solid black;
   height: 28px;
   padding: 0 7px;
