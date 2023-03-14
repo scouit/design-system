@@ -17,11 +17,14 @@ const dayArray = (year: number) => [
   30,
   31,
 ];
+const domsDayArray = (year: number) => {
+  const leapYear = returnLeapYear(year);
+  return [3 + leapYear, 7 + leapYear, 7, 4, 9, 6, 11, 8, 5, 10, 7, 12];
+};
 
 const returnStartDay = (year: number, month: number) => {
-  const leapYear = returnLeapYear(year);
   const anker = year >= 2000 ? 2 : 3;
-  const domsDay = [3 + leapYear, 7 + leapYear, 7, 4, 9, 6, 11, 8, 5, 10, 7, 12];
+  const domsDay = domsDayArray(year);
   const order = year % 100;
   const order2 = order % 12;
   const order3 = Math.floor(order / 12);
@@ -40,14 +43,14 @@ const initalValue = {
 
 export const useCalender = () => {
   const [date, setDate] = useState(initalValue);
-  const { year, month } = date;
 
   const dateArrayChange = (temp: typeof initalValue) => {
-    if (temp.year < 1900 || temp.year > 2099) return;
-    if (temp.month <= -1) {
+    const { year, month } = temp;
+    if (year < 1900 || year > 2099) return;
+    if (month <= -1) {
       temp.month = 11;
       temp.year--;
-    } else if (temp.month >= 12) {
+    } else if (month >= 12) {
       temp.month = 0;
       temp.year++;
     }
@@ -72,6 +75,7 @@ export const useCalender = () => {
     dateArrayChange(temp);
   };
 
+  const { year, month } = date;
   return {
     year,
     month,
