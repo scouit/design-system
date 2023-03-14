@@ -82,6 +82,7 @@ const _DateSelectWrapper = styled.div`
 
 const _DateWrapper = styled.div`
   display: flex;
+  height: 336px;
   flex-wrap: wrap;
   padding: 0 4px;
 `;
