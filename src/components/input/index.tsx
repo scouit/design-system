@@ -89,7 +89,7 @@ export const Input = ({
           name={name}
           onChange={onInputChange}
           placeholder={placeholder}
-          type={isHideInput ? 'password' : type}
+          type={isHideInput() ? 'password' : type}
           onFocus={openDropdown}
         />
         {rightIconType &&
