@@ -1,23 +1,32 @@
 import styled from 'styled-components';
 import { Arrow } from '../../assets/svg/Arrow';
-import { useCalender } from '../../hooks/useCalender';
+import { DateValueType, useCalender } from '../../hooks/useCalender';
 import { Text } from '../text';
 
 interface PropsType {
-  margin_left?: string;
+  value: DateValueType;
+  onDateClick: (value: DateValueType) => void;
 }
 
-export const DateInput = ({ margin_left }: PropsType) => {
+export const DateInput = ({ onDateClick, value }: PropsType) => {
   const {
     year,
     month,
     startDay,
     dayArray,
     weekArray,
-    changeDate,
     plusDate,
     minusDate,
   } = useCalender();
+
+  const setDate = (value: number) => onDateClick({ year, month, day: value });
+
+  const isClickedDay = (day: number) => {
+    if (value.year !== year) return false;
+    if (value.month !== month) return false;
+    if (value.day !== day) return false;
+    return true;
+  };
 
   return (
     <_Wrapper>
@@ -45,7 +54,12 @@ export const DateInput = ({ margin_left }: PropsType) => {
         {Array(dayArray)
           .fill(0)
           .map((_, idx) => (
-            <_DateText>{idx + 1}</_DateText>
+            <_DateText
+              isClickedDay={isClickedDay(idx + 1)}
+              onClick={() => setDate(idx + 1)}
+            >
+              {idx + 1}
+            </_DateText>
           ))}
       </_DateWrapper>
       <_ButtonWrapper>
@@ -60,7 +74,7 @@ export const DateInput = ({ margin_left }: PropsType) => {
   );
 };
 
-const _Wrapper = styled.div<PropsType>`
+const _Wrapper = styled.div`
   width: 345px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.color.primary50};
@@ -96,9 +110,11 @@ const _WeekText = styled(Text)`
   justify-content: center;
 `;
 
-const _DateText = styled(_WeekText)`
+const _DateText = styled(_WeekText)<{ isClickedDay: boolean }>`
   cursor: pointer;
   border-radius: ${({ theme }) => theme.borderRadius.circle};
+  background-color: ${({ theme, isClickedDay }) =>
+    isClickedDay && theme.color.primary400};
   :hover {
     background-color: ${({ theme }) => theme.color.primary400};
   }

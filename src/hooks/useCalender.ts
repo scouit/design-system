@@ -33,18 +33,28 @@ const returnStartDay = (year: number, month: number) => {
   return (7 - backCnt + ((order2 + order3 + order4 + anker) % 7)) % 7;
 };
 
+export interface DateValueType {
+  year: number;
+  month: number;
+  day?: number;
+}
+
 const getDate = new Date();
 
-const initalValue = {
-  year: getDate.getFullYear(),
-  month: getDate.getMonth(),
-  day: getDate.getDate(),
+export const dateInitiValue = (includeDay?: 'includeDay') => {
+  const initValue: DateValueType = {
+    year: getDate.getFullYear(),
+    month: getDate.getMonth(),
+  };
+  if (!includeDay) return initValue;
+  initValue.day = getDate.getDate();
+  return initValue;
 };
 
 export const useCalender = () => {
-  const [date, setDate] = useState(initalValue);
+  const [date, setDate] = useState(dateInitiValue());
 
-  const dateArrayChange = (temp: typeof initalValue) => {
+  const dateArrayChange = (temp: DateValueType) => {
     const { year, month } = temp;
     if (year < 1900 || year > 2099) return;
     if (month <= -1) {
@@ -55,12 +65,6 @@ export const useCalender = () => {
       temp.year++;
     }
     setDate(temp);
-  };
-
-  const changeDate = (type: keyof typeof date, value: number) => () => {
-    const temp = { ...date };
-    temp[type] = value;
-    dateArrayChange(temp);
   };
 
   const plusDate = (type: keyof typeof date) => () => {
@@ -82,7 +86,6 @@ export const useCalender = () => {
     startDay: returnStartDay(year, month),
     dayArray: dayArray(year)[month],
     weekArray,
-    changeDate,
     plusDate,
     minusDate,
   };

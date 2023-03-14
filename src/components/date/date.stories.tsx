@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import { DateInput } from './index';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { dateInitiValue, DateValueType } from '../../hooks/useCalender';
 
 export default {
   title: 'component/date',
@@ -8,11 +9,20 @@ export default {
 } as ComponentMeta<typeof DateInput>;
 
 export const Template: ComponentStory<typeof DateInput> = (arg) => {
-  const [state, setState] = useState<string[]>([]);
+  const [state, setState] = useState<DateValueType>(
+    dateInitiValue('includeDay')
+  );
 
-  return <DateInput {...arg} />;
-};
+  const onDateClick = (value: DateValueType) => {
+    setState(value);
+  };
 
-Template.args = {
-  margin_left: '0px',
+  return (
+    <>
+      <div>
+        {state.year}/{state.month + 1}/{state.day}
+      </div>
+      <DateInput onDateClick={onDateClick} value={state} />
+    </>
+  );
 };
