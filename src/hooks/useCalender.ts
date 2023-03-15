@@ -44,8 +44,7 @@ export const useCalender = (initial: DateValueType) => {
   const [checkDate, setCheck] = useState(initial);
 
   const dateArrayChange = (temp: DateValueType) => {
-    const { year, month } = temp;
-    if (year < 1900 || year > 2099) return;
+    const { month } = temp;
     if (month <= -1) {
       temp.month = 11;
       temp.year--;
@@ -53,6 +52,8 @@ export const useCalender = (initial: DateValueType) => {
       temp.month = 0;
       temp.year++;
     }
+    const { year } = temp;
+    if (year < 1900 || year > 2099) return;
     setDate(temp);
   };
 
