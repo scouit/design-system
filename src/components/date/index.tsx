@@ -8,11 +8,16 @@ import { DateDropdown } from '../dropdown/Date';
 import { Text } from '../text';
 
 interface PropsType {
-  value: DateValueType;
+  value: DateValueType | null;
+  placeholder: string;
   onOkButtonClick: (value: DateValueType) => void;
 }
 
-export const DateInput = ({ onOkButtonClick, value }: PropsType) => {
+export const DateInput = ({
+  onOkButtonClick,
+  value,
+  placeholder,
+}: PropsType) => {
   const {
     state: dropdown,
     correctState: openDropdown,
@@ -20,18 +25,19 @@ export const DateInput = ({ onOkButtonClick, value }: PropsType) => {
     invertState: switchDropdown,
   } = useInversion();
 
-  const stringDate = [value.year, value.month + 1, value.day].join('-');
+  const stringDate =
+    value && [value.year, value.month + 1, value.day].join('-');
   return (
     <OutsideClickHandler display="inline-block" onOutsideClick={closeDropdown}>
       <_Wrapper>
-        <_TextValue>{stringDate}</_TextValue>
+        <_TextValue color={stringDate ? 'gray900' : 'gray300'}>
+          {stringDate || placeholder}
+        </_TextValue>
         <_SvgWrapper>
           <Calender onClick={switchDropdown} />
         </_SvgWrapper>
 
-        {dropdown && (
-          <DateDropdown onOkButtonClick={onOkButtonClick} value={value} />
-        )}
+        {dropdown && <DateDropdown onOkButtonClick={onOkButtonClick} />}
       </_Wrapper>
     </OutsideClickHandler>
   );

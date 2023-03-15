@@ -30,7 +30,17 @@ const returnStartDay = (year: number, month: number) => {
   const order3 = Math.floor(order / 12);
   const order4 = Math.floor(order2 / 4);
   const backCnt = (domsDay[month] - 1) % 7;
-  return (7 - backCnt + ((order2 + order3 + order4 + anker) % 7)) % 7;
+  const weekAnker = (order2 + order3 + order4 + anker) % 7;
+  return (7 - backCnt + weekAnker) % 7;
+};
+
+export const getInitDate = () => {
+  const getDate = new Date();
+  return {
+    year: getDate.getFullYear(),
+    month: getDate.getMonth(),
+    day: getDate.getDate(),
+  };
 };
 
 export interface DateValueType {
@@ -39,54 +49,49 @@ export interface DateValueType {
   day: number;
 }
 
-export const useCalender = (initial: DateValueType) => {
+const dateArrayChange = (temp: DateValueType) => {
+  const { month } = temp;
+  if (month <= -1) {
+    temp.month = 11;
+    temp.year--;
+  } else if (month >= 12) {
+    temp.month = 0;
+    temp.year++;
+  }
+  const { year } = temp;
+  if (year < 1900 || year > 2099) return;
+  return temp;
+};
+
+export const useCalender = (initial = getInitDate()) => {
   const [date, setDate] = useState(initial);
   const [checkDate, setCheck] = useState(initial);
-
-  const dateArrayChange = (temp: DateValueType) => {
-    const { month } = temp;
-    if (month <= -1) {
-      temp.month = 11;
-      temp.year--;
-    } else if (month >= 12) {
-      temp.month = 0;
-      temp.year++;
-    }
-    const { year } = temp;
-    if (year < 1900 || year > 2099) return;
-    setDate(temp);
-  };
 
   const plusDate = (type: keyof typeof date) => () => {
     const temp = { ...date };
     temp[type]++;
-    dateArrayChange(temp);
+    setDate(dateArrayChange(temp));
   };
 
   const minusDate = (type: keyof typeof date) => () => {
     const temp = { ...date };
     temp[type]--;
-    dateArrayChange(temp);
+    setDate(dateArrayChange(temp));
   };
 
-  const onClickDay = (day: number) => {
+  const onSaveClickedDay = (day: number) => {
     setDate({ ...date, day: day });
     setCheck({ ...date });
   };
 
-  const isCurrentDay = (day: number) => {
-    const { year, month } = date;
-    if (checkDate.year !== year) return false;
-    if (checkDate.month !== month) return false;
-    if (date.day !== day) return false;
-    return true;
-  };
+  const isCurrentMonth =
+    checkDate.year === date.year && checkDate.month === date.month;
 
   const { year, month } = date;
   return {
     date,
-    onClickDay,
-    isCurrentDay,
+    onSaveClickedDay,
+    isCurrentMonth,
     startDay: returnStartDay(year, month),
     dayArray: dayArray(year)[month],
     weekArray,

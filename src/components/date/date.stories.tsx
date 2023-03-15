@@ -11,15 +11,17 @@ export default {
 const getDate = new Date();
 
 export const Template: ComponentStory<typeof DateInput> = (arg) => {
-  const [state, setState] = useState<DateValueType>({
-    year: getDate.getFullYear(),
-    month: getDate.getMonth(),
-    day: getDate.getDate(),
-  });
+  const [state, setState] = useState<DateValueType | null>(null);
 
   const onOkButtonClick = (value: DateValueType) => {
     setState(value);
   };
 
-  return <DateInput onOkButtonClick={onOkButtonClick} value={state} />;
+  return (
+    <DateInput
+      placeholder="YYYY-MM-DD"
+      onOkButtonClick={onOkButtonClick}
+      value={state}
+    />
+  );
 };

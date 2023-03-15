@@ -4,23 +4,24 @@ import { DateValueType, useCalender } from '../../hooks/useCalender';
 import { Text } from '../text';
 
 interface PropsType {
-  value: DateValueType;
   onOkButtonClick: (value: DateValueType) => void;
 }
 
-export const DateDropdown = ({ value, onOkButtonClick }: PropsType) => {
+export const DateDropdown = ({ onOkButtonClick }: PropsType) => {
   const {
     date,
-    onClickDay,
-    isCurrentDay,
+    onSaveClickedDay,
+    isCurrentMonth,
     startDay,
     dayArray,
     weekArray,
     plusDate,
     minusDate,
-  } = useCalender(value);
+  } = useCalender();
 
-  const setDate = () => onOkButtonClick(date);
+  const setDate = () => isCurrentMonth && onOkButtonClick(date);
+
+  const isCurrentDay = (day: number) => isCurrentMonth && date.day === day;
 
   return (
     <_Wrapper>
@@ -50,7 +51,7 @@ export const DateDropdown = ({ value, onOkButtonClick }: PropsType) => {
           .map((_, idx) => (
             <_DateText
               isClickedDay={isCurrentDay(idx + 1)}
-              onClick={() => onClickDay(idx + 1)}
+              onClick={() => onSaveClickedDay(idx + 1)}
             >
               {idx + 1}
             </_DateText>
