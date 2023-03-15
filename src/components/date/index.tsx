@@ -102,7 +102,7 @@ const _SvgWrapper = styled.div`
 const _CalenderWrapper = styled.div`
   width: 100%;
   border-radius: 16px;
-  background-color: ${({ theme }) => theme.color.primary50};
+  background-color: ${({ theme }) => theme.color.primary25};
   position: absolute;
   top: 91px;
   left: 0;

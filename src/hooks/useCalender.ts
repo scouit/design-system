@@ -87,14 +87,16 @@ export const useCalender = ({ initialValue = getInitDate() }: PropsType) => {
     setCheck({ ...date });
   };
 
-  const isCurrentMonth =
-    checkDate.year === date.year && checkDate.month === date.month;
+  const isCurrentDay = (day: number) =>
+    checkDate.year === date.year &&
+    checkDate.month === date.month &&
+    date.day === day;
 
   const { year, month } = date;
   return {
     date,
     onSaveClickedDay,
-    isCurrentMonth,
+    isCurrentDay,
     startDay: returnStartDay(year, month),
     dayArray: dayArray(year)[month],
     weekArray,

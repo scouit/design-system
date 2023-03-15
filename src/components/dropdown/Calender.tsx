@@ -17,15 +17,13 @@ export const CalenderDropdown = ({
   const {
     date,
     onSaveClickedDay,
-    isCurrentMonth,
+    isCurrentDay,
     startDay,
     dayArray,
     weekArray,
     plusDate,
     minusDate,
   } = useCalender({ initialValue });
-
-  const isCurrentDay = (day: number) => isCurrentMonth && date.day === day;
 
   const setChangeAtInput = () => {
     onOkButtonClick(date);

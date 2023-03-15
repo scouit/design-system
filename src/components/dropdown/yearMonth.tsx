@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { DateValueType, useCalender } from '../../hooks/useCalender';
+import { Okay } from '../../assets/svg/Okay';
+import {
+  DateValueType,
+  getInitDate,
+  useCalender,
+} from '../../hooks/useCalender';
 import { Text } from '../text';
 
 interface PropsType {
@@ -9,35 +14,51 @@ interface PropsType {
 }
 
 export const YearMonthDropdown = ({ value, onOkButtonClick }: PropsType) => {
-  const { date } = useCalender({});
+  const [date, setDate] = useState<DateValueType>(value || getInitDate());
 
   const [selectDate, setSelect] = useState<'year' | 'month'>('month');
+
   const setDateNoIncludeDay = (selectValue: number) => {
-    onOkButtonClick({ ...value, [selectDate]: selectValue });
+    const changeValue = { ...date, [selectDate]: selectValue };
+    setDate(changeValue);
+    onOkButtonClick(changeValue);
   };
 
   const selectDateToYear = () => setSelect('year');
   const selectDateToMonth = () => setSelect('month');
 
-  const isItemSelect = (idx: number) => date[selectDate] === idx;
+  const isYear = selectDate === 'year';
+
+  const isItemSelect = (idx: number) =>
+    date[selectDate] === idx + (isYear ? 1 : 0);
+
   return (
     <>
       <_MonthTitleWrapper>
-        <Text onClick={selectDateToMonth}>{date.month}월</Text>
-        <Text onClick={selectDateToYear}>{date.year}년</Text>
+        <_Title isYear={isYear} onClick={selectDateToMonth}>
+          {date.month + 1}월
+        </_Title>
+        <_Title isYear={!isYear} onClick={selectDateToYear}>
+          {date.year}년
+        </_Title>
       </_MonthTitleWrapper>
       <_YearListWrapper>
-        {Array(1000)
+        {Array(isYear ? 199 : 12)
           .fill(0)
-          .map((_, idx) => (
-            <_YearSelectItem
-              isItemSelect={isItemSelect(idx)}
-              onClick={() => setDateNoIncludeDay(idx)}
-            >
-              <_ListBox />
-              {idx}
-            </_YearSelectItem>
-          ))}
+          .map((_, idx) => {
+            const yearcnt = (isYear ? 1900 : 0) + idx;
+            return (
+              <_YearSelectItem
+                isItemSelect={isItemSelect(yearcnt)}
+                onClick={() => setDateNoIncludeDay(yearcnt)}
+              >
+                <_ListBox>
+                  <Okay />
+                </_ListBox>
+                {yearcnt + 1}
+              </_YearSelectItem>
+            );
+          })}
       </_YearListWrapper>
     </>
   );
@@ -53,52 +74,19 @@ const _TitleWrapper = styled(Text)`
 
 const _MonthTitleWrapper = styled(_TitleWrapper)`
   padding: 0 52px;
-  border-bottom: 1px solid ${({ theme }) => theme.color.gray300};
-`;
-
-const _DateSelectWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 18px;
-`;
-
-const _DateWrapper = styled.div`
-  display: flex;
-  height: 336px;
-  flex-wrap: wrap;
-  padding: 0 4px;
-`;
-
-const _WeekText = styled(Text)`
-  width: 40px;
-  height: 40px;
-  margin: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const _DateText = styled(_WeekText)<{ isClickedDay: boolean }>`
-  cursor: pointer;
-  border-radius: ${({ theme }) => theme.borderRadius.circle};
-  ${({ theme, isClickedDay }) =>
-    isClickedDay &&
-    css`
-      background-color: ${theme.color.primary600};
-      color: ${theme.color.gray25};
-    `};
-  :hover {
-    background-color: ${({ theme }) => theme.color.primary600};
-    color: ${({ theme }) => theme.color.gray25};
-  }
+  border-bottom: 1px solid ${({ theme }) => theme.color.primary400};
 `;
 
 const _YearListWrapper = styled.div`
   overflow-x: auto;
   height: 336px;
+  margin-top: 8px;
 `;
 
-const _Title = styled(Text)<{ isYear: boolean }>``;
+const _Title = styled(Text)<{ isYear: boolean }>`
+  cursor: pointer;
+  color: ${({ theme, isYear }) => theme.color[isYear ? 'gray300' : 'gray700']};
+`;
 
 const _ListBox = styled.div`
   width: 24px;
@@ -113,15 +101,15 @@ const _YearSelectItem = styled.div<{ isItemSelect: boolean }>`
   align-items: center;
   gap: 16px;
   padding: 0 16px;
-  background-color: ${({ theme, isItemSelect }) =>
+  ${({ theme, isItemSelect }) =>
     isItemSelect &&
     css`
-      background-color: ${theme.color.gray300};
+      background-color: ${theme.color.primary100};
       ${_ListBox} {
         visibility: visible;
       }
     `};
   :hover {
-    background-color: ${({ theme }) => theme.color.gray300};
+    background-color: ${({ theme }) => theme.color.primary100};
   }
 `;
