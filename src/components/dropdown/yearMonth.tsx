@@ -81,6 +81,19 @@ const _YearListWrapper = styled.div`
   overflow-x: auto;
   height: 336px;
   margin-top: 8px;
+  ::-webkit-scrollbar {
+    width: 15.5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.color.primary500};
+    background-clip: padding-box;
+    border: 3.5px solid transparent;
+    min-height: 50px;
+    border-radius: 8px;
+  }
 `;
 
 const _Title = styled(Text)<{ isYear: boolean }>`
