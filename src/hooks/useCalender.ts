@@ -41,6 +41,7 @@ export interface DateValueType {
 
 export const useCalender = (initial: DateValueType) => {
   const [date, setDate] = useState(initial);
+  const [checkDate, setCheck] = useState(initial);
 
   const dateArrayChange = (temp: DateValueType) => {
     const { year, month } = temp;
@@ -67,12 +68,24 @@ export const useCalender = (initial: DateValueType) => {
     dateArrayChange(temp);
   };
 
-  const onClickDay = (day: number) => setDate({ ...date, day: day });
+  const onClickDay = (day: number) => {
+    setDate({ ...date, day: day });
+    setCheck({ ...date });
+  };
+
+  const isCurrentDay = (day: number) => {
+    const { year, month } = date;
+    if (checkDate.year !== year) return false;
+    if (checkDate.month !== month) return false;
+    if (date.day !== day) return false;
+    return true;
+  };
 
   const { year, month } = date;
   return {
     date,
     onClickDay,
+    isCurrentDay,
     startDay: returnStartDay(year, month),
     dayArray: dayArray(year)[month],
     weekArray,

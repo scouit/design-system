@@ -17,16 +17,9 @@ export const Template: ComponentStory<typeof DateInput> = (arg) => {
     day: getDate.getDate(),
   });
 
-  const onDateClick = (value: DateValueType) => {
+  const onOkButtonClick = (value: DateValueType) => {
     setState(value);
   };
 
-  return (
-    <>
-      <div>
-        {state.year}/{state.month + 1}/{state.day}
-      </div>
-      <DateInput onDateClick={onDateClick} value={state} />
-    </>
-  );
+  return <DateInput onOkButtonClick={onOkButtonClick} value={state} />;
 };

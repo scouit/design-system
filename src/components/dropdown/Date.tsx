@@ -5,13 +5,14 @@ import { Text } from '../text';
 
 interface PropsType {
   value: DateValueType;
-  onDateClick: (value: DateValueType) => void;
+  onOkButtonClick: (value: DateValueType) => void;
 }
 
-export const DateDropdown = ({ value, onDateClick }: PropsType) => {
+export const DateDropdown = ({ value, onOkButtonClick }: PropsType) => {
   const {
     date,
     onClickDay,
+    isCurrentDay,
     startDay,
     dayArray,
     weekArray,
@@ -19,15 +20,7 @@ export const DateDropdown = ({ value, onDateClick }: PropsType) => {
     minusDate,
   } = useCalender(value);
 
-  const setDate = () => onDateClick(date);
-
-  const isClickedDay = (day: number) => {
-    const { year, month } = date;
-    if (date.year !== year) return false;
-    if (date.month !== month) return false;
-    if (date.day !== day) return false;
-    return true;
-  };
+  const setDate = () => onOkButtonClick(date);
 
   return (
     <_Wrapper>
@@ -56,7 +49,7 @@ export const DateDropdown = ({ value, onDateClick }: PropsType) => {
           .fill(0)
           .map((_, idx) => (
             <_DateText
-              isClickedDay={isClickedDay(idx + 1)}
+              isClickedDay={isCurrentDay(idx + 1)}
               onClick={() => onClickDay(idx + 1)}
             >
               {idx + 1}
@@ -79,6 +72,9 @@ const _Wrapper = styled.div`
   width: 345px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.color.primary50};
+  position: absolute;
+  top: 91px;
+  left: 0;
 `;
 
 const _TitleWrapper = styled(Text)`
