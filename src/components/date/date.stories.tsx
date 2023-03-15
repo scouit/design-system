@@ -8,10 +8,8 @@ export default {
   component: DateInput,
 } as ComponentMeta<typeof DateInput>;
 
-const getDate = new Date();
-
 export const Template: ComponentStory<typeof DateInput> = (arg) => {
-  const [state, setState] = useState<DateValueType | null>(null);
+  const [state, setState] = useState<DateValueType | undefined>(undefined);
 
   const onOkButtonClick = (value: DateValueType) => {
     setState(value);
@@ -19,6 +17,7 @@ export const Template: ComponentStory<typeof DateInput> = (arg) => {
 
   return (
     <DateInput
+      type="includeDay"
       placeholder="YYYY-MM-DD"
       onOkButtonClick={onOkButtonClick}
       value={state}

@@ -46,7 +46,7 @@ export const getInitDate = () => {
 export interface DateValueType {
   year: number;
   month: number;
-  day: number;
+  day?: number;
 }
 
 const dateArrayChange = (temp: DateValueType) => {
@@ -63,10 +63,14 @@ const dateArrayChange = (temp: DateValueType) => {
   return temp;
 };
 
-export const useCalender = (initial = getInitDate()) => {
-  const [date, setDate] = useState(initial);
-  const [checkDate, setCheck] = useState(initial);
+interface PropsType {
+  initialValue?: DateValueType;
+}
+export const useCalender = ({ initialValue = getInitDate() }: PropsType) => {
+  const [date, setDate] = useState<DateValueType>(initialValue);
+  const [checkDate, setCheck] = useState<DateValueType>(initialValue);
 
+  console.log(initialValue);
   const plusDate = (type: keyof typeof date) => () => {
     const temp = { ...date };
     temp[type]++;
