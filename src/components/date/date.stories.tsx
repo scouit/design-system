@@ -14,10 +14,12 @@ export const Template: ComponentStory<typeof DateInput> = (arg) => {
   const onOkButtonClick = (value: DateValueType) => {
     setState(value);
   };
+  const notInclude = 'notIncludeDay';
+  const Include = 'includeDay';
 
   return (
     <DateInput
-      type="includeDay"
+      type={Include}
       placeholder="YYYY-MM-DD"
       onOkButtonClick={onOkButtonClick}
       value={state}

@@ -7,11 +7,10 @@ import { DateValueType, useCalender } from '../../hooks/useCalender';
 import { useInversion } from '../../hooks/useInversion';
 import { CalenderDropdown } from '../dropdown/Calender';
 import { YearMonthDropdown } from '../dropdown/yearMonth';
-import { Text } from '../text';
 
 interface PropsType {
   type: 'includeDay' | 'notIncludeDay';
-  value: DateValueType | null;
+  value: DateValueType | undefined;
   placeholder: string;
   onOkButtonClick: (value: DateValueType) => void;
 }
@@ -34,17 +33,13 @@ export const DateInput = ({
 
   return (
     <OutsideClickHandler display="inline-block" onOutsideClick={closeDropdown}>
-      <_Wrapper>
-        <_TextValue
-          onClick={openDropdown}
-          color={valueDate ? 'gray900' : 'gray300'}
-        >
-          {valueDate || placeholder}
-        </_TextValue>
-        <_SvgWrapper onClick={openDropdown}>
-          <Calender />
-        </_SvgWrapper>
-
+      <DropdownRelative>
+        <_Wrapper onClick={openDropdown}>
+          <_TextValue value={valueDate} placeholder={placeholder} disabled />
+          <_SvgWrapper>
+            <Calender />
+          </_SvgWrapper>
+        </_Wrapper>
         {dropdown && (
           <_CalenderWrapper>
             {isDayCalender ? (
@@ -61,10 +56,14 @@ export const DateInput = ({
             )}
           </_CalenderWrapper>
         )}
-      </_Wrapper>
+      </DropdownRelative>
     </OutsideClickHandler>
   );
 };
+
+const DropdownRelative = styled.div`
+  position: relative;
+`;
 
 const _Wrapper = styled.div`
   position: relative;
@@ -75,17 +74,27 @@ const _Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 4px;
+  padding: 0 4px 0 12px;
 `;
 
-const _TextValue = styled(Text)`
-  padding: 0 12px;
+const _TextValue = styled.input`
+  background-color: transparent;
+  ${({ theme }) =>
+    css`
+      ${theme.font.body1};
+      ::placeholder {
+        color: ${theme.color.gray300};
+      }
+    `};
 `;
 
 const _SvgWrapper = styled.div`
   padding: 8px;
   border-radius: ${({ theme }) => theme.borderRadius.circle};
   :hover {
+    background-color: ${({ theme }) => theme.color.gray100};
+  }
+  :active {
     background-color: ${({ theme }) => theme.color.gray200};
   }
 `;

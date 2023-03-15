@@ -4,7 +4,7 @@ import { DateValueType, useCalender } from '../../hooks/useCalender';
 import { Text } from '../text';
 
 interface PropsType {
-  initialValue: DateValueType;
+  initialValue: DateValueType | undefined;
   closeDropdown: () => void;
   onOkButtonClick: (value: DateValueType) => void;
 }
@@ -27,7 +27,10 @@ export const CalenderDropdown = ({
 
   const isCurrentDay = (day: number) => isCurrentMonth && date.day === day;
 
-  const setDate = () => isCurrentMonth && onOkButtonClick(date);
+  const setChangeAtInput = () => {
+    onOkButtonClick(date);
+    closeDropdown();
+  };
 
   return (
     <>
@@ -64,7 +67,7 @@ export const CalenderDropdown = ({
           ))}
       </_DateWrapper>
       <_ButtonWrapper>
-        <_Button color="primary600" size="heading3" onClick={setDate}>
+        <_Button color="primary600" size="heading3" onClick={setChangeAtInput}>
           확인
         </_Button>
         <_Button color="primary600" size="heading3" onClick={closeDropdown}>
@@ -81,11 +84,6 @@ const _TitleWrapper = styled(Text)`
   align-items: center;
   padding: 0 16px;
   justify-content: space-between;
-`;
-
-const _MonthTitleWrapper = styled(_TitleWrapper)`
-  padding: 0 52px;
-  border-bottom: 1px solid ${({ theme }) => theme.color.gray300};
 `;
 
 const _DateSelectWrapper = styled.div`

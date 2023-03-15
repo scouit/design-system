@@ -70,7 +70,6 @@ export const useCalender = ({ initialValue = getInitDate() }: PropsType) => {
   const [date, setDate] = useState<DateValueType>(initialValue);
   const [checkDate, setCheck] = useState<DateValueType>(initialValue);
 
-  console.log(initialValue);
   const plusDate = (type: keyof typeof date) => () => {
     const temp = { ...date };
     temp[type]++;
