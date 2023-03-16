@@ -34,9 +34,11 @@ const templateBind = templateBindRequireAllArgs(Template);
 export const DayCalender = templateBind({
   placeholder: 'YYYY-MM-DD',
   isDayInclude: true,
+  label: '시작일',
 });
 
 export const MonthCalender = templateBind({
   placeholder: 'YYYY-MM-DD',
   isDayInclude: false,
+  label: '종료일',
 });

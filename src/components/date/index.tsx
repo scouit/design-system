@@ -5,9 +5,11 @@ import { DateValueType } from '../../hooks/useCalender';
 import { useInversion } from '../../hooks/useInversion';
 import { DayCalender } from '../dropdown/DayCalender';
 import { MonthCalender } from '../dropdown/MonthCalender';
+import { Text } from '../text';
 
 interface PropsType {
   isDayInclude: boolean;
+  label: string;
   value: DateValueType | undefined;
   placeholder: string;
   onSubmitAtInput: (value: DateValueType) => void;
@@ -15,6 +17,7 @@ interface PropsType {
 
 export const DateInput = ({
   isDayInclude,
+  label,
   onSubmitAtInput,
   value,
   placeholder,
@@ -37,6 +40,9 @@ export const DateInput = ({
   return (
     <OutsideClickHandler display="inline-block" onOutsideClick={closeDropdown}>
       <DropdownRelative>
+        <_Label size="title2" color="gray900">
+          {label}
+        </_Label>
         <_Wrapper onClick={openDropdown}>
           <_TextValue
             value={CalenderDateValue()}
@@ -112,4 +118,9 @@ const _CalenderWrapper = styled.div`
   position: absolute;
   top: 91px;
   left: 0;
+`;
+
+const _Label = styled(Text)`
+  position: absolute;
+  top: -27px;
 `;
