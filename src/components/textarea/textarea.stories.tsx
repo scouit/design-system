@@ -12,10 +12,6 @@ import styled from 'styled-components';
 export default {
   title: 'component/textarea',
   component: Textarea,
-  args: {
-    placeholder: '무언가를 입력해주세요.',
-    name: 'email',
-  },
 } as ComponentMeta<typeof Textarea>;
 
 type DefaultProps = ObjectExclude<
