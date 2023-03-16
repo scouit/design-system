@@ -1,30 +1,42 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { DateInput } from './index';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentMeta } from '@storybook/react';
 import { DateValueType } from '../../hooks/useCalender';
+import {
+  ComponentStoryType,
+  ObjectExclude,
+  Parameter,
+  templateBindRequireAllArgs,
+} from '../../types/story';
 
 export default {
   title: 'component/date',
   component: DateInput,
 } as ComponentMeta<typeof DateInput>;
 
-export const Template: ComponentStory<typeof DateInput> = (arg) => {
+type DefaultProps = ObjectExclude<
+  Parameter<typeof DateInput>,
+  'onSubmitAtInput' | 'value'
+>;
+
+const Template: ComponentStoryType<DefaultProps> = (arg) => {
   const [state, setState] = useState<DateValueType | undefined>(undefined);
 
   const onSubmitAtInput = (value: DateValueType) => {
     setState(value);
   };
 
-  return (
-    <DateInput
-      {...arg}
-      placeholder="YYYY-MM-DD"
-      onSubmitAtInput={onSubmitAtInput}
-      value={state}
-    />
-  );
+  return <DateInput {...arg} onSubmitAtInput={onSubmitAtInput} value={state} />;
 };
 
-Template.args = {
+const templateBind = templateBindRequireAllArgs(Template);
+
+export const DayCalender = templateBind({
+  placeholder: 'YYYY-MM-DD',
   isDayInclude: true,
-};
+});
+
+export const MonthCalender = templateBind({
+  placeholder: 'YYYY-MM-DD',
+  isDayInclude: false,
+});
