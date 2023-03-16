@@ -14,7 +14,7 @@ export const YearMonthDropdown = ({ value, onOkButtonClick }: PropsType) => {
   const [selectDate, setSelect] = useState<'year' | 'month'>('month');
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const setDateNoIncludeDay = (selectValue: number) => {
+  const onChangeYearOrMonth = (selectValue: number) => {
     const changeValue = { ...date, [selectDate]: selectValue };
     setDate(changeValue);
     onOkButtonClick(changeValue);
@@ -25,14 +25,15 @@ export const YearMonthDropdown = ({ value, onOkButtonClick }: PropsType) => {
 
   const isYear = selectDate === 'year';
 
-  const isItemSelect = (idx: number) => date[selectDate] === idx;
+  const isSelectedItem = (idx: number) => date[selectDate] === idx;
 
   const itemListCount = isYear ? 199 : 12;
-  const yearAdd1900 = isYear ? 1900 : 0;
+  const yearStart1900 = isYear ? 1900 : 0;
+  const monthPlusOne = isYear ? 0 : 1;
 
   useEffect(() => {
-    const scrollValue = (date[isYear ? 'year' : 'month'] - yearAdd1900) * 48;
-    ref.current.scrollTo(0, scrollValue);
+    const saveItemScroll = (date[isYear ? 'year' : 'month'] - yearStart1900) * 48;
+    ref.current.scrollTo(0, saveItemScroll);
   }, [selectDate]);
 
   return (
@@ -49,16 +50,16 @@ export const YearMonthDropdown = ({ value, onOkButtonClick }: PropsType) => {
         {Array(itemListCount)
           .fill(0)
           .map((_, idx) => {
-            const yearcnt = yearAdd1900 + idx;
+            const yearcnt = yearStart1900 + idx;
             return (
               <_YearSelectItem
-                isItemSelect={isItemSelect(yearcnt)}
-                onClick={() => setDateNoIncludeDay(yearcnt)}
+                isSelectedItem={isSelectedItem(yearcnt)}
+                onClick={() => onChangeYearOrMonth(yearcnt)}
               >
                 <_ListBox>
                   <Okay />
                 </_ListBox>
-                {yearcnt + (isYear ? 0 : 1)}
+                {yearcnt + monthPlusOne}
               </_YearSelectItem>
             );
           })}
@@ -110,15 +111,15 @@ const _ListBox = styled.div`
   visibility: hidden;
 `;
 
-const _YearSelectItem = styled.div<{ isItemSelect: boolean }>`
+const _YearSelectItem = styled.div<{ isSelectedItem: boolean }>`
   width: 100%;
   height: 48px;
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 0 16px;
-  ${({ theme, isItemSelect }) =>
-    isItemSelect &&
+  ${({ theme, isSelectedItem }) =>
+    isSelectedItem &&
     css`
       background-color: ${theme.color.primary100};
       ${_ListBox} {

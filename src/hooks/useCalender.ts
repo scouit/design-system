@@ -3,7 +3,7 @@ import { useState } from 'react';
 const returnLeapYear = (year: number) => (year % 4 === 0 ? 1 : 0);
 
 const weekArray = ['일', '월', '화', '수', '목', '금', '토'];
-const dayArray = (year: number) => [
+const returnDayArray = (year: number) => [
   31,
   28 + returnLeapYear(year),
   31,
@@ -17,14 +17,14 @@ const dayArray = (year: number) => [
   30,
   31,
 ];
-const domsDayArray = (year: number) => {
+const returnDomsDayArray = (year: number) => {
   const leapYear = returnLeapYear(year);
   return [3 + leapYear, 7 + leapYear, 7, 4, 9, 6, 11, 8, 5, 10, 7, 12];
 };
 
 const returnStartDay = (year: number, month: number) => {
   const anker = year >= 2000 ? 2 : 3;
-  const domsDay = domsDayArray(year);
+  const domsDay = returnDomsDayArray(year);
   const order = year % 100;
   const order2 = order % 12;
   const order3 = Math.floor(order / 12);
@@ -100,7 +100,7 @@ export const useCalender = ({ initialValue = getInitDate() }: PropsType) => {
     onSaveClickedDay,
     isCurrentDay,
     startDay: returnStartDay(year, month),
-    dayArray: dayArray(year)[month],
+    dayArray: returnDayArray(year)[month],
     weekArray,
     plusDate,
     minusDate,

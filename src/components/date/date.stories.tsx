@@ -19,10 +19,14 @@ export const Template: ComponentStory<typeof DateInput> = (arg) => {
 
   return (
     <DateInput
-      type={notInclude}
+      {...arg}
       placeholder="YYYY-MM-DD"
       onOkButtonClick={onOkButtonClick}
       value={state}
     />
   );
+};
+
+Template.args = {
+  type: 'notIncludeDay',
 };

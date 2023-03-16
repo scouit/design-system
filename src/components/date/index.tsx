@@ -27,7 +27,14 @@ export const DateInput = ({
     incorrectState: closeDropdown,
   } = useInversion(true);
 
-  const valueDate = value && [value.year, value.month + 1, value.day].join('-');
+  const CalenderDate = () => {
+    if (value) {
+      const { year, month, day } = value;
+      const date = [year, month];
+      if (type === 'includeDay') date.push(day);
+      return date.join('-');
+    }
+  };
 
   const isDayCalender = type === 'includeDay';
 
@@ -35,7 +42,11 @@ export const DateInput = ({
     <OutsideClickHandler display="inline-block" onOutsideClick={closeDropdown}>
       <DropdownRelative>
         <_Wrapper onClick={openDropdown}>
-          <_TextValue value={valueDate} placeholder={placeholder} disabled />
+          <_TextValue
+            value={CalenderDate()}
+            placeholder={placeholder}
+            disabled
+          />
           <_SvgWrapper>
             <Calender />
           </_SvgWrapper>
