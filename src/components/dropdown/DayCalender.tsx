@@ -6,13 +6,13 @@ import { Text } from '../text';
 interface PropsType {
   initialValue: DateValueType | undefined;
   closeDropdown: () => void;
-  onOkButtonClick: (value: DateValueType) => void;
+  onSubmitAtInput: (value: DateValueType) => void;
 }
 
-export const CalenderDropdown = ({
+export const DayCalender = ({
   initialValue,
   closeDropdown,
-  onOkButtonClick,
+  onSubmitAtInput,
 }: PropsType) => {
   const {
     date,
@@ -26,7 +26,7 @@ export const CalenderDropdown = ({
   } = useCalender({ initialValue });
 
   const setChangeAtInput = () => {
-    onOkButtonClick(date);
+    onSubmitAtInput(date);
     closeDropdown();
   };
 

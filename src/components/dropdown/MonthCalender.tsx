@@ -6,10 +6,10 @@ import { Text } from '../text';
 
 interface PropsType {
   value: DateValueType;
-  onOkButtonClick: (value: DateValueType) => void;
+  onSubmitAtInput: (value: DateValueType) => void;
 }
 
-export const YearMonthDropdown = ({ value, onOkButtonClick }: PropsType) => {
+export const MonthCalender = ({ value, onSubmitAtInput }: PropsType) => {
   const [date, setDate] = useState<DateValueType>(value || getInitDate(true));
   const [selectDate, setSelect] = useState<'year' | 'month'>('month');
   const ref = useRef<HTMLDivElement | null>(null);
@@ -17,7 +17,7 @@ export const YearMonthDropdown = ({ value, onOkButtonClick }: PropsType) => {
   const onChangeYearOrMonth = (selectValue: number) => {
     const changeValue = { ...date, [selectDate]: selectValue };
     setDate(changeValue);
-    onOkButtonClick(changeValue);
+    onSubmitAtInput(changeValue);
   };
 
   const selectDateToYear = () => setSelect('year');
@@ -32,7 +32,8 @@ export const YearMonthDropdown = ({ value, onOkButtonClick }: PropsType) => {
   const monthPlusOne = isYear ? 0 : 1;
 
   useEffect(() => {
-    const saveItemScroll = (date[isYear ? 'year' : 'month'] - yearStart1900) * 48;
+    const saveItemScroll =
+      (date[isYear ? 'year' : 'month'] - yearStart1900) * 48;
     ref.current.scrollTo(0, saveItemScroll);
   }, [selectDate]);
 

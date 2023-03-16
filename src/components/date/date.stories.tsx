@@ -11,7 +11,7 @@ export default {
 export const Template: ComponentStory<typeof DateInput> = (arg) => {
   const [state, setState] = useState<DateValueType | undefined>(undefined);
 
-  const onOkButtonClick = (value: DateValueType) => {
+  const onSubmitAtInput = (value: DateValueType) => {
     setState(value);
   };
   const notInclude = 'notIncludeDay';
@@ -21,7 +21,7 @@ export const Template: ComponentStory<typeof DateInput> = (arg) => {
     <DateInput
       {...arg}
       placeholder="YYYY-MM-DD"
-      onOkButtonClick={onOkButtonClick}
+      onSubmitAtInput={onSubmitAtInput}
       value={state}
     />
   );

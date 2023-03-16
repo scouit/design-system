@@ -1,23 +1,21 @@
-import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import styled, { css } from 'styled-components';
-import { Arrow } from '../../assets/svg/Arrow';
 import { Calender } from '../../assets/svg/Calender';
-import { DateValueType, useCalender } from '../../hooks/useCalender';
+import { DateValueType } from '../../hooks/useCalender';
 import { useInversion } from '../../hooks/useInversion';
-import { CalenderDropdown } from '../dropdown/Calender';
-import { YearMonthDropdown } from '../dropdown/yearMonth';
+import { DayCalender } from '../dropdown/DayCalender';
+import { MonthCalender } from '../dropdown/MonthCalender';
 
 interface PropsType {
   type: 'includeDay' | 'notIncludeDay';
   value: DateValueType | undefined;
   placeholder: string;
-  onOkButtonClick: (value: DateValueType) => void;
+  onSubmitAtInput: (value: DateValueType) => void;
 }
 
 export const DateInput = ({
   type,
-  onOkButtonClick,
+  onSubmitAtInput,
   value,
   placeholder,
 }: PropsType) => {
@@ -54,16 +52,13 @@ export const DateInput = ({
         {dropdown && (
           <_CalenderWrapper>
             {isDayCalender ? (
-              <CalenderDropdown
+              <DayCalender
                 initialValue={value}
                 closeDropdown={closeDropdown}
-                onOkButtonClick={onOkButtonClick}
+                onSubmitAtInput={onSubmitAtInput}
               />
             ) : (
-              <YearMonthDropdown
-                value={value}
-                onOkButtonClick={onOkButtonClick}
-              />
+              <MonthCalender value={value} onSubmitAtInput={onSubmitAtInput} />
             )}
           </_CalenderWrapper>
         )}

@@ -25,13 +25,13 @@ const returnDomsDayArray = (year: number) => {
 const returnStartDay = (year: number, month: number) => {
   const anker = year >= 2000 ? 2 : 3;
   const domsDay = returnDomsDayArray(year);
-  const order = year % 100;
-  const order2 = order % 12;
-  const order3 = Math.floor(order / 12);
-  const order4 = Math.floor(order2 / 4);
-  const backCnt = (domsDay[month] - 1) % 7;
-  const weekAnker = (order2 + order3 + order4 + anker) % 7;
-  return (7 - backCnt + weekAnker) % 7;
+  const getYearIndex01 = year % 100;
+  const Index01Remain = getYearIndex01 % 12;
+  const Index01Result = Math.floor(getYearIndex01 / 12);
+  const divideRemain = Math.floor(Index01Remain / 4);
+  const backCount = (domsDay[month] - 1) % 7;
+  const weekAnker = (Index01Remain + Index01Result + divideRemain + anker) % 7;
+  return (7 - backCount + weekAnker) % 7;
 };
 
 export const getInitDate = (includeDay?: boolean) => {
@@ -45,13 +45,7 @@ export const getInitDate = (includeDay?: boolean) => {
   return todayDate;
 };
 
-export interface DateValueType {
-  year: number;
-  month: number;
-  day?: number;
-}
-
-const dateArrayChange = (temp: DateValueType) => {
+const onDateChange = (temp: DateValueType) => {
   const { month } = temp;
   if (month <= -1) {
     temp.month = 11;
@@ -65,24 +59,30 @@ const dateArrayChange = (temp: DateValueType) => {
   return temp;
 };
 
+export interface DateValueType {
+  year: number;
+  month: number;
+  day?: number;
+}
+
 interface PropsType {
   initialValue?: DateValueType;
 }
+
 export const useCalender = ({ initialValue = getInitDate() }: PropsType) => {
   const [date, setDate] = useState<DateValueType>(initialValue);
   const [checkDate, setCheck] = useState<DateValueType>(initialValue);
 
-  const plusDate = (type: keyof typeof date) => () => {
+  const plusMinus = (type: keyof DateValueType, act: 'plus' | 'minus') => {
     const temp = { ...date };
-    temp[type]++;
-    setDate(dateArrayChange(temp));
+    temp[type] += act === 'plus' ? 1 : -1;
+    setDate(onDateChange(temp));
   };
 
-  const minusDate = (type: keyof typeof date) => () => {
-    const temp = { ...date };
-    temp[type]--;
-    setDate(dateArrayChange(temp));
-  };
+  const plusDate = (type: keyof DateValueType) => () => plusMinus(type, 'plus');
+
+  const minusDate = (type: keyof DateValueType) => () =>
+    plusMinus(type, 'minus');
 
   const onSaveClickedDay = (day: number) => {
     setDate({ ...date, day: day });
