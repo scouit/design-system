@@ -65,6 +65,8 @@ export interface DateValueType {
   day?: number;
 }
 
+type DateKeyType = keyof DateValueType;
+
 interface PropsType {
   initialValue?: DateValueType;
 }
@@ -73,16 +75,15 @@ export const useCalender = ({ initialValue = getInitDate() }: PropsType) => {
   const [date, setDate] = useState<DateValueType>(initialValue);
   const [checkDate, setCheck] = useState<DateValueType>(initialValue);
 
-  const plusMinus = (type: keyof DateValueType, act: 'plus' | 'minus') => {
+  const plusMinus = (type: DateKeyType, act: 'plus' | 'minus') => {
     const temp = { ...date };
     temp[type] += act === 'plus' ? 1 : -1;
     setDate(onDateChange(temp));
   };
 
-  const plusDate = (type: keyof DateValueType) => () => plusMinus(type, 'plus');
+  const plusDate = (type: DateKeyType) => () => plusMinus(type, 'plus');
 
-  const minusDate = (type: keyof DateValueType) => () =>
-    plusMinus(type, 'minus');
+  const minusDate = (type: DateKeyType) => () => plusMinus(type, 'minus');
 
   const onSaveClickedDay = (day: number) => {
     setDate({ ...date, day: day });

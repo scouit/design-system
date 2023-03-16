@@ -12,7 +12,7 @@ interface PropsType {
 export const MonthCalender = ({ value, onSubmitAtInput }: PropsType) => {
   const [date, setDate] = useState<DateValueType>(value || getInitDate(true));
   const [selectDate, setSelect] = useState<'year' | 'month'>('month');
-  const ref = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const onChangeYearOrMonth = (selectValue: number) => {
     const changeValue = { ...date, [selectDate]: selectValue };
@@ -32,22 +32,21 @@ export const MonthCalender = ({ value, onSubmitAtInput }: PropsType) => {
   const monthPlusOne = isYear ? 0 : 1;
 
   useEffect(() => {
-    const saveItemScroll =
-      (date[isYear ? 'year' : 'month'] - yearStart1900) * 48;
-    ref.current.scrollTo(0, saveItemScroll);
+    const saveScroll = (date[selectDate] - yearStart1900) * 48;
+    scrollRef.current.scrollTo(0, saveScroll);
   }, [selectDate]);
 
   return (
     <>
-      <_MonthTitleWrapper>
+      <_TitleWrapper>
         <_Title isYear={isYear} onClick={selectDateToMonth}>
           {date.month + 1}월
         </_Title>
         <_Title isYear={!isYear} onClick={selectDateToYear}>
           {date.year}년
         </_Title>
-      </_MonthTitleWrapper>
-      <_YearListWrapper ref={ref}>
+      </_TitleWrapper>
+      <_YearListWrapper ref={scrollRef}>
         {Array(itemListCount)
           .fill(0)
           .map((_, idx) => {
@@ -72,13 +71,6 @@ export const MonthCalender = ({ value, onSubmitAtInput }: PropsType) => {
 const _TitleWrapper = styled(Text)`
   height: 64px;
   display: flex;
-  align-items: center;
-  padding: 0 16px;
-  justify-content: space-between;
-`;
-
-const _MonthTitleWrapper = styled(_TitleWrapper)`
-  padding: 0 52px;
   border-bottom: 1px solid ${({ theme }) => theme.color.primary400};
 `;
 
@@ -103,6 +95,11 @@ const _YearListWrapper = styled.div`
 
 const _Title = styled(Text)<{ isYear: boolean }>`
   cursor: pointer;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: ${({ theme, isYear }) => theme.color[isYear ? 'gray300' : 'gray700']};
 `;
 
@@ -113,6 +110,7 @@ const _ListBox = styled.div`
 `;
 
 const _YearSelectItem = styled.div<{ isSelectedItem: boolean }>`
+  cursor: pointer;
   width: 100%;
   height: 48px;
   display: flex;

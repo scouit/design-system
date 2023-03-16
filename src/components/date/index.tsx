@@ -28,7 +28,7 @@ export const DateInput = ({
   const CalenderDate = () => {
     if (value) {
       const { year, month, day } = value;
-      const date = [year, month];
+      const date = [year, month + 1];
       if (type === 'includeDay') date.push(day);
       return date.join('-');
     }
@@ -72,6 +72,7 @@ const DropdownRelative = styled.div`
 `;
 
 const _Wrapper = styled.div`
+  cursor: pointer;
   position: relative;
   border: 1px solid ${({ theme }) => theme.color.gray500};
   border-radius: ${({ theme }) => theme.borderRadius.small};
@@ -84,6 +85,7 @@ const _Wrapper = styled.div`
 `;
 
 const _TextValue = styled.input`
+  cursor: pointer;
   background-color: transparent;
   ${({ theme }) =>
     css`
