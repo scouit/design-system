@@ -38,7 +38,7 @@ export const getInitDate = (includeDay?: boolean) => {
   const getDate = new Date();
   const todayDate: DateValueType = {
     year: getDate.getFullYear(),
-    month: getDate.getMonth(),
+    month: getDate.getMonth() + 1,
   };
   if (!includeDay) return todayDate;
   todayDate.day = getDate.getDate();
@@ -47,11 +47,11 @@ export const getInitDate = (includeDay?: boolean) => {
 
 const onDateChange = (temp: DateValueType) => {
   const { month } = temp;
-  if (month <= -1) {
-    temp.month = 11;
+  if (month <= 0) {
+    temp.month = 12;
     temp.year--;
-  } else if (month >= 12) {
-    temp.month = 0;
+  } else if (month > 12) {
+    temp.month = 1;
     temp.year++;
   }
   const { year } = temp;
@@ -100,8 +100,8 @@ export const useCalender = ({ initialValue = getInitDate() }: PropsType) => {
     date,
     onSaveClickedDay,
     isCurrentDay,
-    startDay: returnStartDay(year, month),
-    dayArray: returnDayArray(year)[month],
+    startDay: returnStartDay(year, month - 1),
+    dayArray: returnDayArray(year)[month - 1],
     weekArray,
     plusDate,
     minusDate,

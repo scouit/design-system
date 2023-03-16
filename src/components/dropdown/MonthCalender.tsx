@@ -15,7 +15,7 @@ export const MonthCalender = ({ value, onSubmitAtInput }: PropsType) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const onChangeYearOrMonth = (selectValue: number) => {
-    const changeValue = { ...date, [selectDate]: selectValue };
+    const changeValue = { ...date, [selectDate]: selectValue + monthPlusOne };
     setDate(changeValue);
     onSubmitAtInput(changeValue);
   };
@@ -25,7 +25,8 @@ export const MonthCalender = ({ value, onSubmitAtInput }: PropsType) => {
 
   const isYear = selectDate === 'year';
 
-  const isSelectedItem = (idx: number) => date[selectDate] === idx;
+  const isSelectedItem = (idx: number) =>
+    date[selectDate] - monthPlusOne === idx;
 
   const itemListCount = isYear ? 199 : 12;
   const yearStart1900 = isYear ? 1900 : 0;
@@ -40,7 +41,7 @@ export const MonthCalender = ({ value, onSubmitAtInput }: PropsType) => {
     <>
       <_TitleWrapper>
         <_Title isYear={isYear} onClick={selectDateToMonth}>
-          {date.month + 1}월
+          {date.month}월
         </_Title>
         <_Title isYear={!isYear} onClick={selectDateToYear}>
           {date.year}년

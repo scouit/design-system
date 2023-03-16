@@ -35,7 +35,7 @@ export const DayCalender = ({
       <_TitleWrapper color="gray700">
         <_DateSelectWrapper>
           <Arrow direction="right" onClick={minusDate('month')} />
-          {date.month + 1}월
+          {date.month}월
           <Arrow direction="left" onClick={plusDate('month')} />
         </_DateSelectWrapper>
         <_DateSelectWrapper>

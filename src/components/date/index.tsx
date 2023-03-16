@@ -28,7 +28,7 @@ export const DateInput = ({
   const CalenderDate = () => {
     if (value) {
       const { year, month, day } = value;
-      const date = [year, month + 1];
+      const date = [year, month];
       if (type === 'includeDay') date.push(day);
       return date.join('-');
     }
