@@ -34,13 +34,15 @@ const returnStartDay = (year: number, month: number) => {
   return (7 - backCnt + weekAnker) % 7;
 };
 
-export const getInitDate = () => {
+export const getInitDate = (includeDay?: boolean) => {
   const getDate = new Date();
-  return {
+  const todayDate: DateValueType = {
     year: getDate.getFullYear(),
     month: getDate.getMonth(),
-    day: getDate.getDate(),
   };
+  if (!includeDay) return todayDate;
+  todayDate.day = getDate.getDate();
+  return todayDate;
 };
 
 export interface DateValueType {

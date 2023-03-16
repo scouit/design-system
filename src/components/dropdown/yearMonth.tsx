@@ -1,11 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Okay } from '../../assets/svg/Okay';
-import {
-  DateValueType,
-  getInitDate,
-  useCalender,
-} from '../../hooks/useCalender';
+import { DateValueType, getInitDate } from '../../hooks/useCalender';
 import { Text } from '../text';
 
 interface PropsType {
@@ -14,9 +10,9 @@ interface PropsType {
 }
 
 export const YearMonthDropdown = ({ value, onOkButtonClick }: PropsType) => {
-  const [date, setDate] = useState<DateValueType>(value || getInitDate());
-
+  const [date, setDate] = useState<DateValueType>(value || getInitDate(true));
   const [selectDate, setSelect] = useState<'year' | 'month'>('month');
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const setDateNoIncludeDay = (selectValue: number) => {
     const changeValue = { ...date, [selectDate]: selectValue };
@@ -29,8 +25,15 @@ export const YearMonthDropdown = ({ value, onOkButtonClick }: PropsType) => {
 
   const isYear = selectDate === 'year';
 
-  const isItemSelect = (idx: number) =>
-    date[selectDate] === idx + (isYear ? 1 : 0);
+  const isItemSelect = (idx: number) => date[selectDate] === idx;
+
+  const itemListCount = isYear ? 199 : 12;
+  const yearAdd1900 = isYear ? 1900 : 0;
+
+  useEffect(() => {
+    const scrollValue = (date[isYear ? 'year' : 'month'] - yearAdd1900) * 48;
+    ref.current.scrollTo(0, scrollValue);
+  }, [selectDate]);
 
   return (
     <>
@@ -42,11 +45,11 @@ export const YearMonthDropdown = ({ value, onOkButtonClick }: PropsType) => {
           {date.year}년
         </_Title>
       </_MonthTitleWrapper>
-      <_YearListWrapper>
-        {Array(isYear ? 199 : 12)
+      <_YearListWrapper ref={ref}>
+        {Array(itemListCount)
           .fill(0)
           .map((_, idx) => {
-            const yearcnt = (isYear ? 1900 : 0) + idx;
+            const yearcnt = yearAdd1900 + idx;
             return (
               <_YearSelectItem
                 isItemSelect={isItemSelect(yearcnt)}
@@ -55,7 +58,7 @@ export const YearMonthDropdown = ({ value, onOkButtonClick }: PropsType) => {
                 <_ListBox>
                   <Okay />
                 </_ListBox>
-                {yearcnt + 1}
+                {yearcnt + (isYear ? 0 : 1)}
               </_YearSelectItem>
             );
           })}
