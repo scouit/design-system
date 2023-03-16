@@ -7,14 +7,14 @@ import { DayCalender } from '../dropdown/DayCalender';
 import { MonthCalender } from '../dropdown/MonthCalender';
 
 interface PropsType {
-  type: 'includeDay' | 'notIncludeDay';
+  isDayInclude: boolean;
   value: DateValueType | undefined;
   placeholder: string;
   onSubmitAtInput: (value: DateValueType) => void;
 }
 
 export const DateInput = ({
-  type,
+  isDayInclude,
   onSubmitAtInput,
   value,
   placeholder,
@@ -25,23 +25,21 @@ export const DateInput = ({
     incorrectState: closeDropdown,
   } = useInversion(true);
 
-  const CalenderDate = () => {
+  const CalenderDateValue = () => {
     if (value) {
       const { year, month, day } = value;
       const date = [year, month];
-      if (type === 'includeDay') date.push(day);
+      if (isDayInclude) date.push(day);
       return date.join('-');
     }
   };
-
-  const isDayCalender = type === 'includeDay';
 
   return (
     <OutsideClickHandler display="inline-block" onOutsideClick={closeDropdown}>
       <DropdownRelative>
         <_Wrapper onClick={openDropdown}>
           <_TextValue
-            value={CalenderDate()}
+            value={CalenderDateValue()}
             placeholder={placeholder}
             disabled
           />
@@ -51,7 +49,7 @@ export const DateInput = ({
         </_Wrapper>
         {dropdown && (
           <_CalenderWrapper>
-            {isDayCalender ? (
+            {isDayInclude ? (
               <DayCalender
                 initialValue={value}
                 closeDropdown={closeDropdown}

@@ -14,8 +14,6 @@ export const Template: ComponentStory<typeof DateInput> = (arg) => {
   const onSubmitAtInput = (value: DateValueType) => {
     setState(value);
   };
-  const notInclude = 'notIncludeDay';
-  const include = 'includeDay';
 
   return (
     <DateInput
@@ -28,5 +26,5 @@ export const Template: ComponentStory<typeof DateInput> = (arg) => {
 };
 
 Template.args = {
-  type: 'notIncludeDay',
+  isDayInclude: true,
 };
