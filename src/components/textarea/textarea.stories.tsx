@@ -33,7 +33,7 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
 
   return (
     <_Wrapper>
-      <Textarea {...args} value={state.content} onChange={onChange} />;
+      <Textarea {...args} value={state.content} onChange={onChange} />
     </_Wrapper>
   );
 };
