@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button } from './index';
 import { ComponentMeta } from '@storybook/react';
 import { SearchIcon } from '../../assets/svg';
@@ -9,6 +9,8 @@ import {
   templateBindRequireAllArgs,
 } from '../../types/story';
 import { optionList } from '../tag';
+import styled from 'styled-components';
+import { React } from '../../assets/svg';
 
 export default {
   title: 'component/button',
@@ -32,11 +34,18 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
         disabled
         onClick={() => console.log(1)}
       >
+        <Icon />
         프로필 저장
       </Button>
     </>
   );
 };
+
+const Icon = styled(React)`
+  > path {
+    color: blue;
+  }
+`;
 
 const templateBind = templateBindRequireAllArgs(Template);
 

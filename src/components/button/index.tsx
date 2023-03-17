@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { keyOfRadius } from '../../styles/theme';
+import { keyOfRadius, keyOfColor } from '../../styles/theme';
 
 const colorType = {
   text: {
@@ -13,7 +13,7 @@ const colorType = {
     standard: 'primary500',
     hover: 'primary600',
     active: 'primary700',
-    color: 'gray25',
+    font: 'gray25',
   },
   outline: {
     disable: 'gray400',
@@ -26,7 +26,6 @@ const colorType = {
     standard: 'gray25',
     hover: 'gray100',
     active: 'gray200',
-    color: 'gray900',
     border: 'gray600',
   },
 } as const;
@@ -40,11 +39,12 @@ const heightSize = {
 };
 
 type ColorType = keyof typeof colorType;
-type typeColor = typeof colorType.tonal;
+type typeColor = typeof colorType.tonal & typeof colorType.fill;
 
 interface PropsType {
   kind?: ColorType;
   radius?: keyOfRadius;
+  color?: keyOfColor;
   height?: keyof typeof heightSize;
   direction?: 'start' | 'center' | 'end' | 'space-between';
 }
@@ -58,9 +58,9 @@ export const Button = styled.button<PropsType>`
   border-radius: ${({ theme, radius }) => theme.borderRadius[radius]};
   justify-content: ${({ direction = 'center' }) => direction};
   ${({ theme }) => theme.font.heading3};
-  ${({ theme, kind = 'text' }) => {
+  ${({ theme, kind = 'text', color }) => {
     const themeColor = theme.color;
-    const { disable, standard, hover, active, color, border } = colorType[
+    const { disable, standard, hover, active, font, border } = colorType[
       kind
     ] as typeColor;
 
@@ -72,11 +72,11 @@ export const Button = styled.button<PropsType>`
       :active {
         background-color: ${themeColor[active]};
       }
-      color: ${themeColor[color]};
-      border: ${border && `1px solid ${themeColor[border]}`};
+      color: ${themeColor[color || font]};
+      border: ${border && `1px solid ${themeColor[color || border]}`};
       cursor: pointer;
       :disabled {
-        background-color: ${themeColor[disable]};
+        background-color: ${themeColor[color || disable]};
         :hover {
           background-color: none;
         }
