@@ -31,28 +31,34 @@ const colorType = {
   },
 } as const;
 
+const heightSize = {
+  tag: '28',
+  select: '36',
+  list: '37',
+  smallButton: '40',
+  LargeButton: '45',
+};
+
 type ColorType = keyof typeof colorType;
 type typeColor = typeof colorType.tonal;
 
 interface PropsType {
-  align?: 'start' | 'center' | 'end';
   kind?: ColorType;
   radius?: keyOfRadius;
-  width?: 'auto' | '100%';
-  height?: '45' | '40' | '38' | '37' | '36';
-  disabled?: boolean;
+  height?: keyof typeof heightSize;
+  direction?: 'start' | 'center' | 'end' | 'space-between';
 }
 
 export const Button = styled.button<PropsType>`
   display: flex;
   align-items: center;
   padding: 0 16px;
-  height: ${({ height = '45' }) => height}px;
-  width: ${({ width = '100%' }) => width};
+  height: ${({ height }) => heightSize[height]}px;
+  width: 100%;
   border-radius: ${({ theme, radius }) => theme.borderRadius[radius]};
-  justify-content: ${({ align }) => align};
+  justify-content: ${({ direction = 'center' }) => direction};
   ${({ theme }) => theme.font.heading3};
-  ${({ theme, kind }) => {
+  ${({ theme, kind = 'text' }) => {
     const themeColor = theme.color;
     const { disable, standard, hover, active, color, border } = colorType[
       kind

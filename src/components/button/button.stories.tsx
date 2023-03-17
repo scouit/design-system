@@ -26,7 +26,12 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
       <Button {...args} onClick={() => console.log(1)}>
         프로필 저장
       </Button>
-      <Button {...args} disabled onClick={() => console.log(1)}>
+      <Button
+        {...args}
+        direction="start"
+        disabled
+        onClick={() => console.log(1)}
+      >
         프로필 저장
       </Button>
     </>
@@ -38,31 +43,23 @@ const templateBind = templateBindRequireAllArgs(Template);
 export const text = templateBind({
   kind: 'text',
   radius: 'small',
-  align: 'center',
-  height: '45',
-  width: '100%',
+  height: 'smallButton',
 });
 
 export const fill = templateBind({
   kind: 'fill',
   radius: 'circle',
-  align: 'center',
-  height: '45',
-  width: '100%',
+  height: 'smallButton',
 });
 
 export const outline = templateBind({
   kind: 'outline',
   radius: 'small',
-  align: 'center',
-  height: '45',
-  width: '100%',
+  height: 'smallButton',
 });
 
 export const tonal = templateBind({
   kind: 'tonal',
   radius: 'medium',
-  align: 'center',
-  height: '45',
-  width: '100%',
+  height: 'smallButton',
 });
