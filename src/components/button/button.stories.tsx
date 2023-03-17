@@ -22,9 +22,14 @@ type DefaultProps = ObjectExclude<
 
 const Template: ComponentStoryType<DefaultProps> = (args) => {
   return (
-    <Button {...args} disabled={true} onClick={() => console.log(1)}>
-      프로필 저장
-    </Button>
+    <>
+      <Button {...args} onClick={() => console.log(1)}>
+        프로필 저장
+      </Button>
+      <Button {...args} disabled onClick={() => console.log(1)}>
+        프로필 저장
+      </Button>
+    </>
   );
 };
 
@@ -40,7 +45,7 @@ export const text = templateBind({
 
 export const fill = templateBind({
   kind: 'fill',
-  radius: 'small',
+  radius: 'circle',
   align: 'center',
   height: '45',
   width: '100%',
@@ -56,7 +61,7 @@ export const outline = templateBind({
 
 export const tonal = templateBind({
   kind: 'tonal',
-  radius: 'small',
+  radius: 'medium',
   align: 'center',
   height: '45',
   width: '100%',
