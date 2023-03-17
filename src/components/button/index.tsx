@@ -54,7 +54,6 @@ export const Button = styled.button<PropsType>`
   ${({ theme }) => theme.font.heading3};
   ${({ theme, kind }) => {
     const themeColor = theme.color;
-    console.log(colorType[kind]);
     const { disable, standard, hover, active, color, border } = colorType[
       kind
     ] as typeColor;
