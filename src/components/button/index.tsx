@@ -1,23 +1,46 @@
-import { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { keyOfRadius } from '../../styles/theme';
 
 const colorType = {
-  text: ['gray25', 'gray25', 'gray100', 'gray200'],
-  fill: ['gray400', 'primary500', 'primary600', 'primary700', 'gray25'],
-  outline: ['gray400', 'primary200', 'primary300', 'primary400'],
-  tonal: ['gray25', 'gray25', 'gray100', 'gray200', 'gray900', 'gray600'],
+  text: {
+    disable: 'gray25',
+    standard: 'gray25',
+    hover: 'gray100',
+    active: 'gray200',
+  },
+  fill: {
+    disable: 'gray400',
+    standard: 'primary500',
+    hover: 'primary600',
+    active: 'primary700',
+    color: 'gray25',
+  },
+  outline: {
+    disable: 'gray400',
+    standard: 'primary200',
+    hover: 'primary300',
+    active: 'primary400',
+  },
+  tonal: {
+    disable: 'gray25',
+    standard: 'gray25',
+    hover: 'gray100',
+    active: 'gray200',
+    color: 'gray900',
+    border: 'gray600',
+  },
 } as const;
 
 type ColorType = keyof typeof colorType;
+type typeColor = typeof colorType.tonal;
 
 interface PropsType {
   align?: 'start' | 'center' | 'end';
-  type?: ColorType;
+  kind?: ColorType;
   radius?: keyOfRadius;
   width?: 'auto' | '100%';
   height?: '45' | '40' | '38' | '37' | '36';
-  disable?: boolean;
+  disabled?: boolean;
 }
 
 export const Button = styled.button<PropsType>`
@@ -29,23 +52,36 @@ export const Button = styled.button<PropsType>`
   border-radius: ${({ theme, radius }) => theme.borderRadius[radius]};
   justify-content: ${({ align }) => align};
   ${({ theme }) => theme.font.heading3};
-  ${({ theme, type, disable }) => {
+  ${({ theme, kind }) => {
     const themeColor = theme.color;
-    const [disableColor, standard, hover, active, paint, border] =
-      colorType[type as ColorType];
-    console.log(disable);
+    console.log(colorType[kind]);
+    const { disable, standard, hover, active, color, border } = colorType[
+      kind
+    ] as typeColor;
+
     return css`
-      background-color: ${themeColor[disable ? disableColor : standard]};
+      background-color: ${themeColor[standard]};
       :hover {
-        background-color: ${!disable && themeColor[hover]};
+        background-color: ${themeColor[hover]};
       }
       :active {
-        background-color: ${!disable && themeColor[active]};
+        background-color: ${themeColor[active]};
       }
-      color: ${!disable && themeColor[paint]};
+      color: ${themeColor[color]};
       border: ${border && `1px solid ${themeColor[border]}`};
-      opacity: ${disable && '38%'};
-      cursor: ${disable ? 'not-allowed' : 'pointer'};
+      cursor: pointer;
+      :disabled {
+        background-color: ${themeColor[disable]};
+        :hover {
+          background-color: none;
+        }
+        :active {
+          background-color: none;
+        }
+        opacity: 38%;
+        color: ${themeColor.gray900};
+        cursor: not-allowed;
+      }
     `;
   }};
 `;
