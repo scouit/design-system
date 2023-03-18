@@ -20,7 +20,7 @@ type DefaultProps = ObjectExclude<
 >;
 
 const Template: ComponentStoryType<DefaultProps> = (arg) => {
-  const [state, setState] = useState<DateValueType | undefined>(undefined);
+  const [state, setState] = useState<DateValueType | undefined>();
 
   const onSubmitAtInput = (value: DateValueType) => {
     setState(value);
