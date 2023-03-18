@@ -7,7 +7,6 @@ import {
   Parameter,
   templateBindRequireAllArgs,
 } from '../../types/story';
-import styled from 'styled-components';
 
 export default {
   title: 'component/textarea',
