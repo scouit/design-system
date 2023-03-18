@@ -28,11 +28,13 @@ export const ImageInput = ({
   const fileRef = useRef<HTMLInputElement | null>(null);
   const [clickedImage, setImageIndex] = useState<number | null>(null);
 
-  const onLabelClick = (itemIdx?: number) => {
+  const onListItemClick = (itemIdx?: number) => {
     if (isLoading) return;
     if (itemIdx !== undefined) setImageIndex(itemIdx);
     fileRef.current.click();
   };
+
+  const onAddImgClick = () => onListItemClick();
 
   const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files[0];
@@ -77,7 +79,7 @@ export const ImageInput = ({
               <_ImageItemActive>
                 <_ImageItemActiveButton
                   kind="left"
-                  onClick={() => onLabelClick(itemIdx)}
+                  onClick={() => onListItemClick(itemIdx)}
                 >
                   <Exchange />
                 </_ImageItemActiveButton>
@@ -91,7 +93,7 @@ export const ImageInput = ({
             </_ImageItem>
           ))}
         </_ImageList>
-        <div onClick={() => onLabelClick()}>
+        <div onClick={onAddImgClick}>
           {imageList.length ? (
             <_AddImgWrapper>
               {isLoading ? (
