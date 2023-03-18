@@ -1,7 +1,23 @@
 import styled, { css } from 'styled-components';
 import { keyOfRadius, keyOfColor } from '../../styles/theme';
 
-const colorType = {
+type KindContentType = {
+  disable: keyOfColor;
+  standard: keyOfColor;
+  hover: keyOfColor;
+  active: keyOfColor;
+  font?: keyOfColor;
+  border?: keyOfColor;
+};
+
+interface KindType {
+  text: KindContentType;
+  fill: KindContentType;
+  outline: KindContentType;
+  tonal: KindContentType;
+}
+
+const colorType: KindType = {
   text: {
     disable: 'gray25',
     standard: 'gray25',
@@ -60,9 +76,7 @@ export const Button = styled.button<PropsType>`
   ${({ theme }) => theme.font.heading3};
   ${({ theme, kind = 'text', color }) => {
     const themeColor = theme.color;
-    const { disable, standard, hover, active, font, border } = colorType[
-      kind
-    ] as typeColor;
+    const { disable, standard, hover, active, font, border } = colorType[kind];
 
     return css`
       background-color: ${themeColor[standard]};
