@@ -30,7 +30,7 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
       </Button>
       <Button
         {...args}
-        direction="start"
+        justify="start"
         disabled
         onClick={() => {}}
       >
