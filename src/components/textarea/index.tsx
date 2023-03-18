@@ -9,7 +9,7 @@ interface PropsType {
   value: string;
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   width?: string;
-  textLimit?: number;
+  limit?: number;
   important?: boolean;
 }
 
@@ -20,12 +20,12 @@ export const Textarea = ({
   value,
   onChange,
   width = '100%',
-  textLimit = 2000,
+  limit = 2000,
   important = false,
 }: PropsType) => {
   const cutValueOverFlowLimit = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target;
-    e.target.value = value.slice(0, textLimit);
+    e.target.value = value.slice(0, limit);
     onChange(e);
   };
 
@@ -33,7 +33,7 @@ export const Textarea = ({
     <_Wrapper width={width}>
       <_Label size="title2">
         {label}
-        {important && <_ImportantStart>*</_ImportantStart>}
+        {important && <_Important>*</_Important>}
       </_Label>
       <_Textarea
         name={name}
@@ -42,7 +42,7 @@ export const Textarea = ({
         placeholder={placeholder}
       />
       <_TextLimit size="body4">
-        ({value.length}/{textLimit})
+        ({value.length}/{limit})
       </_TextLimit>
     </_Wrapper>
   );
@@ -58,7 +58,7 @@ const _Label = styled(Text)`
   top: -28px;
 `;
 
-const _ImportantStart = styled.span`
+const _Important = styled.span`
   color: ${({ theme }) => theme.color.error600};
 `;
 

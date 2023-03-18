@@ -43,7 +43,7 @@ const templateBind = templateBindRequireAllArgs(Template);
 export const stantard = templateBind({
   label: 'title',
   width: '490px',
-  textLimit: 2000,
+  limit: 2000,
   name: 'content',
   placeholder: '자기소개서를 입력해 주세요',
 });
@@ -51,7 +51,7 @@ export const stantard = templateBind({
 export const star = templateBind({
   label: 'title',
   width: '490px',
-  textLimit: 2000,
+  limit: 2000,
   name: 'content',
   placeholder: '자기소개서를 입력해 주세요',
   important: true,
