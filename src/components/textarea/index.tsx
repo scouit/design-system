@@ -23,14 +23,10 @@ export const Textarea = ({
   limit = 2000,
   important = false,
 }: PropsType) => {
-  const cutValueOverFlowLimit = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const { value } = e.target;
-    e.target.value = value.slice(0, limit);
-    onChange(e);
-  };
+  const isLimitOver = value.length > limit;
 
   return (
-    <_Wrapper width={width}>
+    <_Wrapper width={width} isLimitOver={isLimitOver}>
       <_Label size="title2">
         {label}
         {important && <_Important>*</_Important>}
@@ -38,7 +34,7 @@ export const Textarea = ({
       <_Textarea
         name={name}
         value={value}
-        onChange={cutValueOverFlowLimit}
+        onChange={onChange}
         placeholder={placeholder}
       />
       <_TextLimit size="body4">
@@ -47,11 +43,6 @@ export const Textarea = ({
     </_Wrapper>
   );
 };
-
-const _Wrapper = styled.div<{ width: string }>`
-  position: relative;
-  width: ${({ width }) => width};
-`;
 
 const _Label = styled(Text)`
   margin-bottom: 8px;
@@ -86,4 +77,23 @@ const _Textarea = styled.textarea`
 const _TextLimit = styled(Text)`
   text-align: end;
   margin-top: 8px;
+`;
+
+const _Wrapper = styled.div<{ width: string; isLimitOver: boolean }>`
+  position: relative;
+  width: ${({ width }) => width};
+  ${({ theme, isLimitOver }) => {
+    const errorColor = theme.color.error500;
+    return (
+      isLimitOver &&
+      css`
+        ${_Textarea} {
+          border: 1px solid ${errorColor};
+        }
+        ${_TextLimit} {
+          color: ${errorColor};
+        }
+      `
+    );
+  }}
 `;
