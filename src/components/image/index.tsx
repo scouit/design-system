@@ -26,11 +26,11 @@ export const ImageInput = ({
   onChagne,
 }: PropsType) => {
   const fileRef = useRef<HTMLInputElement | null>(null);
-  const [clickedIndex, saveIndex] = useState<number | null>(null);
+  const [clickedImage, setImageIndex] = useState<number | null>(null);
 
   const onLabelClick = (itemIdx?: number) => {
     if (isLoading) return;
-    if (itemIdx !== undefined) saveIndex(itemIdx);
+    if (itemIdx !== undefined) setImageIndex(itemIdx);
     fileRef.current.click();
   };
 
@@ -41,13 +41,13 @@ export const ImageInput = ({
     render.onloadend = async () => {
       const resultURL = await imgToUrl(file);
       onChagne(fileChangeOrAdd(resultURL));
-      saveIndex(null);
+      setImageIndex(null);
     };
   };
 
   const fileChangeOrAdd = (value: string) => {
-    if (clickedIndex !== null)
-      return imageList.map((e, idx) => (idx === clickedIndex ? value : e));
+    if (clickedImage !== null)
+      return imageList.map((e, idx) => (idx === clickedImage ? value : e));
     return imageList.concat(value);
   };
 
