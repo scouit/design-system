@@ -52,6 +52,11 @@ export const ImageInput = ({
     return data.concat(value);
   };
 
+  const fileRemove = (itemIdx: number) => {
+    const data = [...imageList].filter((_, idx) => itemIdx !== idx);
+    onChagne(data);
+  };
+
   return (
     <>
       <_Label size="title2" color="gray500">
@@ -76,7 +81,10 @@ export const ImageInput = ({
                 >
                   <Exchange />
                 </_ImageItemActiveButton>
-                <_ImageItemActiveButton kind="right">
+                <_ImageItemActiveButton
+                  kind="right"
+                  onClick={() => fileRemove(itemIdx)}
+                >
                   <Trash />
                 </_ImageItemActiveButton>
               </_ImageItemActive>
