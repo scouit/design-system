@@ -26,11 +26,13 @@ export const ImageInput = ({
   onChagne,
 }: PropsType) => {
   const fileRef = useRef<HTMLInputElement | null>(null);
-  const [index, setIndex] = useState<number | null>(null);
+  const [clickedIndex, saveIndex] = useState<number | null>(null);
+
+  const ListLength = imageList.length;
 
   const onLabelClick = (itemIdx?: number) => {
     if (isLoading) return;
-    if (itemIdx !== undefined) setIndex(itemIdx);
+    if (ListLength) saveIndex(itemIdx);
     fileRef.current.click();
   };
 
@@ -39,22 +41,22 @@ export const ImageInput = ({
     const render = new FileReader();
     render.readAsDataURL(file);
     render.onloadend = async () => {
-      const url = await imgToUrl(file);
-      onChagne(fileChangeOrAdd(url));
-      setIndex(null);
+      const resultURL = await imgToUrl(file);
+      onChagne(fileChangeOrAdd(resultURL));
+      saveIndex(null);
     };
   };
 
   const fileChangeOrAdd = (value: string) => {
-    const data = [...imageList];
-    if (index !== null)
-      return data.map((e, idx) => (idx === index ? value : e));
-    return data.concat(value);
+    const copied = [...imageList];
+    if (clickedIndex !== null)
+      return copied.map((e, idx) => (idx === clickedIndex ? value : e));
+    return copied.concat(value);
   };
 
   const fileRemove = (itemIdx: number) => {
-    const data = [...imageList].filter((_, idx) => itemIdx !== idx);
-    onChagne(data);
+    const filteredList = [...imageList].filter((_, idx) => itemIdx !== idx);
+    onChagne(filteredList);
   };
 
   return (
@@ -92,7 +94,7 @@ export const ImageInput = ({
           ))}
         </_ImageList>
         <div onClick={() => onLabelClick()}>
-          {imageList.length ? (
+          {ListLength ? (
             <_AddImgWrapper>
               {isLoading ? <_AddImgLeft src={Loading} /> : <Image />}
             </_AddImgWrapper>
