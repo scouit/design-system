@@ -55,14 +55,13 @@ const heightSize = {
 };
 
 type ColorType = keyof typeof colorType;
-type typeColor = typeof colorType.tonal & typeof colorType.fill;
 
 interface PropsType {
   kind?: ColorType;
   radius?: keyOfRadius;
   color?: keyOfColor;
   height?: keyof typeof heightSize;
-  direction?: 'start' | 'center' | 'end' | 'space-between';
+  justify?: 'start' | 'center' | 'end' | 'space-between';
 }
 
 export const Button = styled.button<PropsType>`
@@ -72,7 +71,7 @@ export const Button = styled.button<PropsType>`
   height: ${({ height }) => heightSize[height]}px;
   width: 100%;
   border-radius: ${({ theme, radius }) => theme.borderRadius[radius]};
-  justify-content: ${({ direction = 'center' }) => direction};
+  justify-content: ${({ justify = 'center' }) => justify};
   ${({ theme }) => theme.font.heading3};
   ${({ theme, kind = 'text', color }) => {
     const themeColor = theme.color;

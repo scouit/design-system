@@ -1,14 +1,11 @@
-import { useState } from 'react';
 import { Button } from './index';
 import { ComponentMeta } from '@storybook/react';
-import { SearchIcon } from '../../assets/svg';
 import {
   ComponentStoryType,
   ObjectExclude,
   Parameter,
   templateBindRequireAllArgs,
 } from '../../types/story';
-import { optionList } from '../tag';
 import styled from 'styled-components';
 import { React } from '../../assets/svg';
 
