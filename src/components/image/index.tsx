@@ -46,14 +46,13 @@ export const ImageInput = ({
   };
 
   const fileChangeOrAdd = (value: string) => {
-    const copied = [...imageList];
     if (clickedIndex !== null)
-      return copied.map((e, idx) => (idx === clickedIndex ? value : e));
-    return copied.concat(value);
+      return imageList.map((e, idx) => (idx === clickedIndex ? value : e));
+    return imageList.concat(value);
   };
 
   const fileRemove = (itemIdx: number) => {
-    const filteredList = [...imageList].filter((_, idx) => itemIdx !== idx);
+    const filteredList = imageList.filter((_, idx) => itemIdx !== idx);
     onChagne(filteredList);
   };
 
