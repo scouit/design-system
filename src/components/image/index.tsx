@@ -94,7 +94,11 @@ export const ImageInput = ({
         <div onClick={() => onLabelClick()}>
           {imageList.length ? (
             <_AddImgWrapper>
-              {isLoading ? <_AddImgLeft src={Loading} /> : <Image />}
+              {isLoading ? (
+                <img width={24} height={24} src={Loading} />
+              ) : (
+                <Image />
+              )}
             </_AddImgWrapper>
           ) : (
             <_AddImg src={ClickImg} />
@@ -112,7 +116,7 @@ const _Wrapper = styled.div`
 const _ImageList = styled.div`
   max-width: 100%;
   display: flex;
-  gap: 5px;
+  gap: 20px;
   overflow-x: auto;
   overflow-y: hidden;
   ::-webkit-scrollbar {
@@ -135,11 +139,6 @@ const _AddImg = styled.img`
   border-radius: ${({ theme }) => theme.borderRadius.small};
 `;
 
-const _AddImgLeft = styled.img`
-  width: 24px;
-  height: 24px;
-`;
-
 const _Img = styled(_AddImg)`
   cursor: move;
   border: 1px solid ${({ theme }) => theme.color.gray300};
@@ -152,13 +151,12 @@ const _ImageItemBackground = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.small};
   background-color: ${({ theme }) => theme.color.gray900};
   opacity: 30%;
-  z-index: 1;
   top: 0;
 `;
 
 const _ImageItemActive = styled.div`
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   top: 0;
   width: 100%;
   height: 100%;
