@@ -134,7 +134,7 @@ const _AddImg = styled.img`
   width: 250px;
   height: 125px;
   object-fit: cover;
-  margin: 10px 0;
+  margin-bottom: 10px;
   border-radius: ${({ theme }) => theme.borderRadius.small};
 `;
 
@@ -155,13 +155,13 @@ const _ImageItemBackground = styled.div`
   background-color: ${({ theme }) => theme.color.gray900};
   opacity: 30%;
   z-index: 1;
-  top: 10px;
+  top: 0;
 `;
 
 const _ImageItemActive = styled.div`
   position: absolute;
   z-index: 2;
-  top: 10px;
+  top: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -204,7 +204,7 @@ const _AddImgWrapper = styled.div`
   cursor: pointer;
   width: 30px;
   height: 125px;
-  margin: 10px 0 10px 20px;
+  margin-left: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
