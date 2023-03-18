@@ -68,6 +68,7 @@ export const ImageInput = ({
           type="file"
           onChange={onFileChange}
           ref={fileRef}
+          accept=".gif, .jpg, .png"
         />
         <_ImageList>
           {imageList.map((img, itemIdx) => (
