@@ -28,11 +28,9 @@ export const ImageInput = ({
   const fileRef = useRef<HTMLInputElement | null>(null);
   const [clickedIndex, saveIndex] = useState<number | null>(null);
 
-  const ListLength = imageList.length;
-
   const onLabelClick = (itemIdx?: number) => {
     if (isLoading) return;
-    if (ListLength) saveIndex(itemIdx);
+    if (itemIdx !== undefined) saveIndex(itemIdx);
     fileRef.current.click();
   };
 
@@ -94,7 +92,7 @@ export const ImageInput = ({
           ))}
         </_ImageList>
         <div onClick={() => onLabelClick()}>
-          {ListLength ? (
+          {imageList.length ? (
             <_AddImgWrapper>
               {isLoading ? <_AddImgLeft src={Loading} /> : <Image />}
             </_AddImgWrapper>
