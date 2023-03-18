@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components';
 import { Calender } from '../../assets/svg/Calender';
 import { DateValueType } from '../../hooks/useCalender';
 import { useInversion } from '../../hooks/useInversion';
-import { DayCalender } from '../dropdown/DayCalender';
-import { MonthCalender } from '../dropdown/MonthCalender';
+import { DayCalender } from './DayCalender';
+import { MonthCalender } from './MonthCalender';
 import { Text } from '../text';
 
 interface PropsType {
