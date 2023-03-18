@@ -54,8 +54,7 @@ const _Wrapper = styled.div<{ width: string }>`
 `;
 
 const _Label = styled(Text)`
-  position: absolute;
-  top: -28px;
+  margin-bottom: 8px;
 `;
 
 const _Important = styled.span`
