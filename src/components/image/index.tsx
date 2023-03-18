@@ -128,6 +128,7 @@ const _ImageList = styled.div`
 `;
 
 const _AddImg = styled.img`
+  cursor: pointer;
   width: 250px;
   height: 125px;
   object-fit: cover;
@@ -141,6 +142,7 @@ const _AddImgLeft = styled.img`
 `;
 
 const _Img = styled(_AddImg)`
+  cursor: move;
   border: 1px solid ${({ theme }) => theme.color.gray300};
 `;
 
@@ -166,6 +168,7 @@ const _ImageItemActive = styled.div`
 `;
 
 const _ImageItemActiveButton = styled.button<{ kind: 'left' | 'right' }>`
+  cursor: pointer;
   width: 40px;
   height: 40px;
   display: flex;
