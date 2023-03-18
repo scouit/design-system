@@ -18,28 +18,35 @@ export default {
 
 type DefaultProps = ObjectExclude<
   Parameter<typeof ImageInput>,
-  'label' | 'imageList' | 'imgToUrl' | 'onChagne'
+  'label' | 'imageList' | 'imgToUrl' | 'onChagne' | 'isLoading'
 >;
 
-const Template: ComponentStoryType<DefaultProps> = (arg) => {
+const testPromise = () => {
+  const [isLoading, setLoad] = useState<boolean>(false);
+  const imgToUrl = (value: File) =>
+    new Promise<string>((resolve, reject) => {
+      setLoad(true);
+      setTimeout(() => {
+        setLoad(false);
+        resolve(URL.createObjectURL(value));
+      }, 1000);
+    });
+  return { isLoading, imgToUrl };
+};
+
+export const Template: ComponentStoryType<DefaultProps> = (arg) => {
   const [state, setState] = useState<string[]>([
     'https://storage.surfit.io/career/portfolio/cover/wo9NR/22355437964143740239c1.jpg',
   ]);
+  const { isLoading, imgToUrl } = testPromise();
 
   const onChange = (value: string[]) => {
     setState(value);
   };
 
-  const imgToUrl = (value: File) => {
-    const form = new FormData();
-    form.set('img', value);
-    // api 작성해 주세요
-    return ClickImg as Promise<string>;
-  };
-
   return (
     <ImageInput
-      {...arg}
+      isLoading={isLoading}
       label="이미지 (최대 10개)"
       imageList={state}
       imgToUrl={imgToUrl}
@@ -50,6 +57,4 @@ const Template: ComponentStoryType<DefaultProps> = (arg) => {
 
 const templateBind = templateBindRequireAllArgs(Template);
 
-export const standard = templateBind({ isLoading: false });
-
-export const loading = templateBind({ isLoading: true });
+export const standard = templateBind({});
