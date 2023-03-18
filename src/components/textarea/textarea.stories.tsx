@@ -27,16 +27,8 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
     setState({ ...state, [name]: value });
   };
 
-  return (
-    <_Wrapper>
-      <Textarea {...args} value={state.content} onChange={onChange} />
-    </_Wrapper>
-  );
+  return <Textarea {...args} value={state.content} onChange={onChange} />;
 };
-
-const _Wrapper = styled.div`
-  margin-top: 100px;
-`;
 
 const templateBind = templateBindRequireAllArgs(Template);
 
