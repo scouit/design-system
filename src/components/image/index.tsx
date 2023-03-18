@@ -132,7 +132,6 @@ const _AddImg = styled.img`
   width: 250px;
   height: 125px;
   object-fit: cover;
-  margin-bottom: 10px;
   border-radius: ${({ theme }) => theme.borderRadius.small};
 `;
 
@@ -184,6 +183,7 @@ const _ImageItemActiveButton = styled.button<{ kind: 'left' | 'right' }>`
 const _ImageItem = styled.div`
   position: relative;
   height: 125px;
+  margin-bottom: 10px;
   ${_ImageItemBackground}, ${_ImageItemActive} {
     visibility: hidden;
   }
