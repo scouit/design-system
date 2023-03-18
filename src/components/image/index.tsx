@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useRef } from 'react';
 import styled from 'styled-components';
 import { ClickImg } from '../../assets/imgs';
 import { Exchange, Image, Trash } from '../../assets/svg';
@@ -12,12 +12,24 @@ const buttonRadius = {
 interface PropsType {
   label: string;
   imageList: string[];
+  onChagne: (value: string) => void;
 }
 
-export const ImageInput = ({ label, imageList }: PropsType) => {
+export const ImageInput = ({ label, imageList, onChagne }: PropsType) => {
+  const fileRef = useRef<HTMLInputElement | null>(null);
+
+  const onLabelClick = () => {
+    fileRef.current.click();
+  };
+
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files[0];
     const render = new FileReader();
-    render.readAsDataURL(e.target.files[0]);
+    render.readAsDataURL(file);
+    render.onloadend = () => {
+      const result = render.result;
+      if (result) onChagne(result as string);
+    };
   };
   return (
     <>
@@ -25,13 +37,19 @@ export const ImageInput = ({ label, imageList }: PropsType) => {
         {label}
       </_Label>
       <_Wrapper>
+        <_ImgInput
+          id="imgInput"
+          type="file"
+          onChange={onChange}
+          ref={fileRef}
+        />
         <_ImageList>
           {imageList.map((img) => (
             <_ImageItem>
               <_Img src={img} />
               <_ImageItemBackground />
               <_ImageItemActive>
-                <_ImageItemActiveButton kind="left">
+                <_ImageItemActiveButton kind="left" onClick={onLabelClick}>
                   <Exchange />
                 </_ImageItemActiveButton>
                 <_ImageItemActiveButton kind="right">
@@ -41,8 +59,7 @@ export const ImageInput = ({ label, imageList }: PropsType) => {
             </_ImageItem>
           ))}
         </_ImageList>
-        <_ImgInput id="imgInput" type="file" onChange={() => {}} />
-        <label htmlFor="imgInput">
+        <div onClick={onLabelClick}>
           {imageList.length ? (
             <_AddImgWrapper>
               <Image />
@@ -50,7 +67,7 @@ export const ImageInput = ({ label, imageList }: PropsType) => {
           ) : (
             <_AddImg src={ClickImg} />
           )}
-        </label>
+        </div>
       </_Wrapper>
     </>
   );
@@ -63,21 +80,18 @@ const _Wrapper = styled.div`
 const _ImageList = styled.div`
   max-width: 100%;
   display: flex;
-  align-items: center;
   gap: 5px;
-  padding-top: 10px;
+  padding: 10px 0;
   overflow-x: auto;
   overflow-y: hidden;
   ::-webkit-scrollbar {
-    height: 15px;
+    height: 5px;
   }
   ::-webkit-scrollbar-track {
     background-color: transparent;
   }
   ::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => theme.color.primary500};
-    background-clip: padding-box;
-    border: 5px solid transparent;
     border-radius: ${({ theme }) => theme.borderRadius.circle};
   }
 `;
@@ -129,6 +143,7 @@ const _ImageItemActiveButton = styled.button<{ kind: 'left' | 'right' }>`
 
 const _ImageItem = styled.div`
   position: relative;
+  height: 125px;
   ${_ImageItemBackground}, ${_ImageItemActive} {
     visibility: hidden;
   }
