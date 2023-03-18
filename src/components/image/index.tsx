@@ -1,5 +1,6 @@
-import { ChangeEvent, useRef } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { Loading } from '../../assets/gif';
 import { ClickImg } from '../../assets/imgs';
 import { Exchange, Image, Trash } from '../../assets/svg';
 import { Text } from '../text';
@@ -11,26 +12,46 @@ const buttonRadius = {
 
 interface PropsType {
   label: string;
+  isLoading: boolean;
   imageList: string[];
-  onChagne: (value: string) => void;
+  imgToUrl: (value: File) => Promise<string>;
+  onChagne: (value: string[]) => void;
 }
 
-export const ImageInput = ({ label, imageList, onChagne }: PropsType) => {
+export const ImageInput = ({
+  label,
+  imageList,
+  isLoading,
+  imgToUrl,
+  onChagne,
+}: PropsType) => {
   const fileRef = useRef<HTMLInputElement | null>(null);
+  const [index, setIndex] = useState<number | null>(null);
 
-  const onLabelClick = () => {
+  const onLabelClick = (itemIdx?: number) => {
+    if (isLoading) return;
+    if (itemIdx !== undefined) setIndex(itemIdx);
     fileRef.current.click();
   };
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files[0];
     const render = new FileReader();
     render.readAsDataURL(file);
-    render.onloadend = () => {
-      const result = render.result;
-      if (result) onChagne(result as string);
+    render.onloadend = async () => {
+      const url = await imgToUrl(file);
+      onChagne(fileChangeOrAdd(url));
+      setIndex(null);
     };
   };
+
+  const fileChangeOrAdd = (value: string) => {
+    const data = [...imageList];
+    if (index !== null)
+      return data.map((e, idx) => (idx === index ? value : e));
+    return data.concat(value);
+  };
+
   return (
     <>
       <_Label size="title2" color="gray500">
@@ -40,16 +61,19 @@ export const ImageInput = ({ label, imageList, onChagne }: PropsType) => {
         <_ImgInput
           id="imgInput"
           type="file"
-          onChange={onChange}
+          onChange={onFileChange}
           ref={fileRef}
         />
         <_ImageList>
-          {imageList.map((img) => (
+          {imageList.map((img, itemIdx) => (
             <_ImageItem>
               <_Img src={img} />
               <_ImageItemBackground />
               <_ImageItemActive>
-                <_ImageItemActiveButton kind="left" onClick={onLabelClick}>
+                <_ImageItemActiveButton
+                  kind="left"
+                  onClick={() => onLabelClick(itemIdx)}
+                >
                   <Exchange />
                 </_ImageItemActiveButton>
                 <_ImageItemActiveButton kind="right">
@@ -59,10 +83,10 @@ export const ImageInput = ({ label, imageList, onChagne }: PropsType) => {
             </_ImageItem>
           ))}
         </_ImageList>
-        <div onClick={onLabelClick}>
+        <div onClick={() => onLabelClick()}>
           {imageList.length ? (
             <_AddImgWrapper>
-              <Image />
+              {isLoading ? <_AddImgLeft src={Loading} /> : <Image />}
             </_AddImgWrapper>
           ) : (
             <_AddImg src={ClickImg} />
@@ -81,7 +105,6 @@ const _ImageList = styled.div`
   max-width: 100%;
   display: flex;
   gap: 5px;
-  padding: 10px 0;
   overflow-x: auto;
   overflow-y: hidden;
   ::-webkit-scrollbar {
@@ -100,7 +123,13 @@ const _AddImg = styled.img`
   width: 250px;
   height: 125px;
   object-fit: cover;
+  margin: 10px 0;
   border-radius: ${({ theme }) => theme.borderRadius.small};
+`;
+
+const _AddImgLeft = styled.img`
+  width: 24px;
+  height: 24px;
 `;
 
 const _Img = styled(_AddImg)`
@@ -114,13 +143,13 @@ const _ImageItemBackground = styled.div`
   background-color: ${({ theme }) => theme.color.gray900};
   opacity: 30%;
   z-index: 1;
-  top: 0;
+  top: 10px;
 `;
 
 const _ImageItemActive = styled.div`
   position: absolute;
   z-index: 2;
-  top: 0;
+  top: 10px;
   width: 100%;
   height: 100%;
   display: flex;
