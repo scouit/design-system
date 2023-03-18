@@ -25,14 +25,14 @@ type DefaultProps = ObjectExclude<
 const Template: ComponentStoryType<DefaultProps> = (args) => {
   return (
     <>
-      <Button {...args} onClick={() => console.log(1)}>
+      <Button {...args} onClick={() => {}}>
         프로필 저장
       </Button>
       <Button
         {...args}
         direction="start"
         disabled
-        onClick={() => console.log(1)}
+        onClick={() => {}}
       >
         <Icon />
         프로필 저장
