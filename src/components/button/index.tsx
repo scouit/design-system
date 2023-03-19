@@ -61,7 +61,6 @@ interface PropsType {
   radius?: keyOfRadius;
   color?: keyOfColor;
   height?: keyof typeof heightSize;
-  justify?: 'start' | 'center' | 'end' | 'space-between';
 }
 
 export const Button = styled.button<PropsType>`
@@ -71,7 +70,7 @@ export const Button = styled.button<PropsType>`
   height: ${({ height }) => heightSize[height]}px;
   width: 100%;
   border-radius: ${({ theme, radius }) => theme.borderRadius[radius]};
-  justify-content: ${({ justify = 'center' }) => justify};
+  justify-content: center;
   ${({ theme }) => theme.font.heading3};
   ${({ theme, kind = 'text', color }) => {
     const themeColor = theme.color;
