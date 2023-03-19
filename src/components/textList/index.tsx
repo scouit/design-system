@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
+import { Plus, TrashCan } from '../../assets/svg';
 
 interface PropsType {
   textList: string[];
@@ -15,7 +16,6 @@ export const TextList = ({ textList, onChange }: PropsType) => {
   };
   const AddItem = () => {
     onChange(textList.concat(''));
-    console.log([1, 2, 3, 4, 5, 6, 7, 8, 9, 10].slice(5, 6));
   };
   const RemoveItem = (index: number) => {
     const temp = [...textList];
@@ -27,10 +27,14 @@ export const TextList = ({ textList, onChange }: PropsType) => {
       {textList.map((text, index) => (
         <_TextItem>
           <_Input value={text} name={String(index)} onChange={onItemChange} />
-          <_Remove onClick={() => RemoveItem(index)}>ICON</_Remove>
+          <_Remove onClick={() => RemoveItem(index)}>
+            <TrashCan />
+          </_Remove>
         </_TextItem>
       ))}
-      <_Add onClick={AddItem}>+</_Add>
+      <_Add onClick={AddItem}>
+        <Plus />
+      </_Add>
     </_Wrapper>
   );
 };
@@ -51,6 +55,7 @@ const _Input = styled.input`
   width: 100%;
   flex: 1;
   border: 1px solid ${({ theme }) => theme.color.gray500};
+  color:  ${({ theme }) => theme.color.gray500};
   padding: 0 16px;
   border-radius: ${({ theme }) => theme.borderRadius.small};
   ${({ theme }) => theme.font.heading3};
