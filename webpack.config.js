@@ -13,12 +13,14 @@ module.exports = {
         use: ['babel-loader', 'ts-loader'],
         exclude: /node_modules/,
       },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        loader: 'file-loader',
+      },
     ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-  ],
+  plugins: [new CleanWebpackPlugin()],
 };

@@ -5,3 +5,6 @@ export * from './Block';
 export * from './React';
 export * from './Plus';
 export * from './TrashCan';
+export * from './Image';
+export * from './Exchange';
+export * from './Trash';

@@ -12,3 +12,5 @@ export const theme = {
 
 export type keyOfFont = keyof typeof font;
 export type keyOfColor = keyof typeof color;
+export type keyOfRadius = keyof typeof borderRadius;
+export type keyofShadow = keyof typeof shadow;
