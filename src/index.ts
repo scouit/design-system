@@ -7,3 +7,6 @@ export * from './components/input/index';
 export * from './components/select/index';
 export * from './components/tag/index';
 export * from './components/image';
+export * from './components/textarea/index';
+export * from './components/button/index';
+export * from './components/date';
