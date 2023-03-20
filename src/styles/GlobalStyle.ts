@@ -48,16 +48,13 @@ export const GlobalStyle = createGlobalStyle`
   button {
     border: 0;
   }
-  input {
+  input, textarea {
     border: 0;
     padding: 0;
     outline: 0;
     box-sizing:border-box;
   }
   a{color:black;text-decoration:none;}
-  textarea{
-    border:none;
-  }
   *{
     box-sizing: border-box;
   }
