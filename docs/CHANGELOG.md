@@ -1,3 +1,10 @@
+## [1.1.10](https://github.com/scouit/design-system/compare/v1.1.9...v1.1.10) (2023-03-14)
+
+
+### Bug Fixes
+
+* ci 해결 (함수 -> boolean 값) ([ef79159](https://github.com/scouit/design-system/commit/ef791596fa443d4c1738e04193af5a79e12d3b21))
+
 ## [1.1.9](https://github.com/scouit/design-system/compare/v1.1.8...v1.1.9) (2023-03-12)
 
 ## [1.1.8](https://github.com/scouit/design-system/compare/v1.1.7...v1.1.8) (2023-03-12)
