@@ -10,3 +10,4 @@ export * from './components/image';
 export * from './components/textarea/index';
 export * from './components/button/index';
 export * from './components/date';
+export * from './components/textList'
