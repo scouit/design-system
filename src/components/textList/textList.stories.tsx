@@ -17,17 +17,23 @@ export default {
 
 type DefaultProps = ObjectExclude<
   Parameter<typeof TextList>,
-  'textList' | 'onChange'
+  'textList' | 'onChange' | 'placeholder'
 >;
 
 const Template: ComponentStoryType<DefaultProps> = (args) => {
-  const [state, setState] = useState<string[]>(['안녕']);
+  const [state, setState] = useState<string[]>(['']);
 
   const onChange = (value: string[]) => {
     setState(value);
   };
 
-  return <TextList textList={state} onChange={onChange} />;
+  return (
+    <TextList
+      textList={state}
+      onChange={onChange}
+      placeholder="상세업무를 작성해 주세요"
+    />
+  );
 };
 
 const templateBind = templateBindRequireAllArgs(Template);
