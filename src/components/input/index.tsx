@@ -79,10 +79,10 @@ export const Input = ({
       onOptionClick={onOptionClick}
       onOutsideClick={closeDropdown}
     >
-      <_Label size="title2" color="gray900">
-        {label}
-      </_Label>
       <_Wrapper width={width} isError={isError}>
+        <_Label size="title3" color="gray400">
+          {label}
+        </_Label>
         {PreviewIcon}
         <_Input
           value={value}
@@ -106,7 +106,11 @@ export const Input = ({
 };
 
 const _Label = styled(Text)`
-  margin-bottom: 8px;
+  position: absolute;
+  padding: 0 4px;
+  background-color: ${({ theme }) => theme.color.gray25};
+  left: 25px;
+  top: -9px;
 `;
 
 const _Hint = styled(Text)`
@@ -118,8 +122,8 @@ const _Hint = styled(Text)`
 const _Wrapper = styled.div<{ isError: boolean; width: string }>`
   position: relative;
   width: ${({ width }) => width};
-  height: 48px;
-  padding: 10px 12px;
+  height: 44px;
+  padding: 0 10px;
   border-radius: ${({ theme }) => theme.borderRadius.small};
   background-color: ${({ theme }) => theme.color.gray25};
   display: flex;
