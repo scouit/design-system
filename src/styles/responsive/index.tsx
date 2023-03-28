@@ -1,11 +1,11 @@
 import MediaQuery from 'react-responsive';
-import { ReactNode } from 'react';
 
-interface ResponsivePropsType {
-  children?: ReactNode;
+type TemplatePropsType = typeof MediaQuery.defaultProps;
+interface TemplateType extends TemplatePropsType {
+  highToLow?: boolean;
 }
 
-type EachDeiceType = (props: ResponsivePropsType) => JSX.Element;
+type EachDeiceType = (props: TemplateType) => JSX.Element;
 
 interface DeviceType {
   Mobile?: EachDeiceType;
@@ -14,13 +14,6 @@ interface DeviceType {
   Pc?: EachDeiceType;
 }
 
-const Template =
-  (maxWidth: number) => (props: typeof MediaQuery.defaultProps) =>
-    (
-      <MediaQuery maxWidth={maxWidth} {...props}>
-        {props.children}
-      </MediaQuery>
-    );
 const device = {
   Mobile: 360,
   Tablet: 720,
@@ -28,12 +21,25 @@ const device = {
   Pc: 1512,
 };
 
+const Template = (width: number) => (props: TemplateType) => {
+  const { highToLow } = props;
+  const addDefault = highToLow || highToLow === undefined;
+  const maxOrMin = {
+    [addDefault ? 'maxWidth' : 'minWidth']: width,
+  };
+  return (
+    <MediaQuery {...maxOrMin} {...props}>
+      {props.children}
+    </MediaQuery>
+  );
+};
+
 const newObject: DeviceType = {};
 
 export const { Mobile, Tablet, Labtop, Pc }: DeviceType = Object.keys(
   device
 ).reduce((newObject, key: keyof DeviceType) => {
-  const maxWidth = device[key];
-  newObject[key] = Template(maxWidth);
+  const width = device[key];
+  newObject[key] = Template(width);
   return newObject;
 }, newObject);
