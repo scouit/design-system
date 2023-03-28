@@ -2,6 +2,7 @@ export * from './styles';
 export * from './styles/animation';
 export * from './styles/theme';
 export * from './styles/media';
+export * from './styles/responsive';
 export * from './components/text/index';
 export * from './components/input/index';
 export * from './components/select/index';
@@ -10,4 +11,4 @@ export * from './components/image';
 export * from './components/textarea/index';
 export * from './components/button/index';
 export * from './components/date';
-export * from './components/textList'
+export * from './components/textList';
