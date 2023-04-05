@@ -1,3 +1,18 @@
+# [1.2.0](https://github.com/scouit/design-system/compare/v1.1.10...v1.2.0) (2023-04-05)
+
+
+### Bug Fixes
+
+* yarn시 설치 중 오류, storybook 실행 오류 해결 ([15cdc7e](https://github.com/scouit/design-system/commit/15cdc7ef3382537dea1cfd8a26f09c6303d464d0))
+* 버전 업 ([735557c](https://github.com/scouit/design-system/commit/735557c7ecbde0a89b815b61998500180ad75de9))
+* 버전 업데이트 ([353c83b](https://github.com/scouit/design-system/commit/353c83b8f9800e35d32e6056bd029c3c2fe8ea36))
+
+
+### Features
+
+* border-radius 20px 추가 ([c00f7a0](https://github.com/scouit/design-system/commit/c00f7a0198c937dc397e2f3748da71d0bb6f6165))
+* input 요소 disable 추가 ([#43](https://github.com/scouit/design-system/issues/43)) ([d369c35](https://github.com/scouit/design-system/commit/d369c35137c5e6d5836d679d34052b24076b5c04)), closes [#32](https://github.com/scouit/design-system/issues/32) [#31](https://github.com/scouit/design-system/issues/31) [#32](https://github.com/scouit/design-system/issues/32)
+
 ## [1.1.10](https://github.com/scouit/design-system/compare/v1.1.9...v1.1.10) (2023-03-14)
 
 
