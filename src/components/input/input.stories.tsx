@@ -33,7 +33,12 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
 
   return (
     //@ts-ignore
-    <Input {...args} onChange={onChange} value={state.email} />
+    <Input
+      {...args}
+      onChange={onChange}
+      value={state.email}
+      hint="support msg"
+    />
   );
 };
 
