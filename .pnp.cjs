@@ -54,7 +54,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["clean-webpack-plugin", "virtual:9074f957212d3efbd25ffdcddb2c41156a117fe370eeaeecfa48568e720291094631d00f2c45d4989422b7f619924c42444eb1e3d231d886d9be7ccd991d0050#npm:4.0.0"],\
             ["file-loader", "virtual:9074f957212d3efbd25ffdcddb2c41156a117fe370eeaeecfa48568e720291094631d00f2c45d4989422b7f619924c42444eb1e3d231d886d9be7ccd991d0050#npm:6.2.0"],\
             ["husky", "npm:8.0.3"],\
-            ["lint-staged", "npm:13.1.0"],\
+            ["lint-staged", "npm:13.2.0"],\
             ["prettier", "npm:2.8.7"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:9074f957212d3efbd25ffdcddb2c41156a117fe370eeaeecfa48568e720291094631d00f2c45d4989422b7f619924c42444eb1e3d231d886d9be7ccd991d0050#npm:18.2.0"],\
@@ -5494,7 +5494,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["clean-webpack-plugin", "virtual:9074f957212d3efbd25ffdcddb2c41156a117fe370eeaeecfa48568e720291094631d00f2c45d4989422b7f619924c42444eb1e3d231d886d9be7ccd991d0050#npm:4.0.0"],\
             ["file-loader", "virtual:9074f957212d3efbd25ffdcddb2c41156a117fe370eeaeecfa48568e720291094631d00f2c45d4989422b7f619924c42444eb1e3d231d886d9be7ccd991d0050#npm:6.2.0"],\
             ["husky", "npm:8.0.3"],\
-            ["lint-staged", "npm:13.1.0"],\
+            ["lint-staged", "npm:13.2.0"],\
             ["prettier", "npm:2.8.7"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:9074f957212d3efbd25ffdcddb2c41156a117fe370eeaeecfa48568e720291094631d00f2c45d4989422b7f619924c42444eb1e3d231d886d9be7ccd991d0050#npm:18.2.0"],\
@@ -11187,6 +11187,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["commander", [\
+        ["npm:10.0.0", {\
+          "packageLocation": "./.yarn/cache/commander-npm-10.0.0-2e6f452447-9f6495651f.zip/node_modules/commander/",\
+          "packageDependencies": [\
+            ["commander", "npm:10.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["npm:2.20.3", {\
           "packageLocation": "./.yarn/cache/commander-npm-2.20.3-d8dcbaa39b-ab8c07884e.zip/node_modules/commander/",\
           "packageDependencies": [\
@@ -16352,10 +16359,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["lilconfig", [\
-        ["npm:2.0.6", {\
-          "packageLocation": "./.yarn/cache/lilconfig-npm-2.0.6-6231346eaf-40a3cd72f1.zip/node_modules/lilconfig/",\
+        ["npm:2.1.0", {\
+          "packageLocation": "./.yarn/cache/lilconfig-npm-2.1.0-a179261924-8549bb352b.zip/node_modules/lilconfig/",\
           "packageDependencies": [\
-            ["lilconfig", "npm:2.0.6"]\
+            ["lilconfig", "npm:2.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -16370,39 +16377,39 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["lint-staged", [\
-        ["npm:13.1.0", {\
-          "packageLocation": "./.yarn/cache/lint-staged-npm-13.1.0-a891054d1d-adf20c4ca9.zip/node_modules/lint-staged/",\
+        ["npm:13.2.0", {\
+          "packageLocation": "./.yarn/cache/lint-staged-npm-13.2.0-204330f6dc-dcaa8fbbde.zip/node_modules/lint-staged/",\
           "packageDependencies": [\
-            ["lint-staged", "npm:13.1.0"],\
+            ["lint-staged", "npm:13.2.0"],\
+            ["chalk", "npm:5.2.0"],\
             ["cli-truncate", "npm:3.1.0"],\
-            ["colorette", "npm:2.0.19"],\
-            ["commander", "npm:9.4.1"],\
+            ["commander", "npm:10.0.0"],\
             ["debug", "virtual:b3b3d9c94e7ae7d3eba2d5ff53422f589f5d063e6db1635105fcab59d2da838ae8f145215a995ae6bad679ca47509115a3c0de9b8c97848c16aff23a48c12db8#npm:4.3.4"],\
-            ["execa", "npm:6.1.0"],\
-            ["lilconfig", "npm:2.0.6"],\
-            ["listr2", "virtual:a891054d1de75d4dbd69c16885ad77a02e6e62bbb18ec4056006f93ab511280ad1c947c2b7c30e6a723dbaa3c3ad77e219f42410f9aa89c64fc89fc9c64b2b59#npm:5.0.6"],\
+            ["execa", "npm:7.0.0"],\
+            ["lilconfig", "npm:2.1.0"],\
+            ["listr2", "virtual:204330f6dc3d5ec489c9948d8996006dd25a31b13fd5a304781ba35ede320db06541222777ff27053cf0017a779a3081ba625ca30a782a744efce6e3a0a7cb51#npm:5.0.8"],\
             ["micromatch", "npm:4.0.5"],\
             ["normalize-path", "npm:3.0.0"],\
-            ["object-inspect", "npm:1.12.2"],\
+            ["object-inspect", "npm:1.12.3"],\
             ["pidtree", "npm:0.6.0"],\
             ["string-argv", "npm:0.3.1"],\
-            ["yaml", "npm:2.2.0"]\
+            ["yaml", "npm:2.2.1"]\
           ],\
           "linkType": "HARD"\
         }]\
       ]],\
       ["listr2", [\
-        ["npm:5.0.6", {\
-          "packageLocation": "./.yarn/cache/listr2-npm-5.0.6-afdb33c352-18975d6909.zip/node_modules/listr2/",\
+        ["npm:5.0.8", {\
+          "packageLocation": "./.yarn/cache/listr2-npm-5.0.8-0d5e5a061b-8be9f56326.zip/node_modules/listr2/",\
           "packageDependencies": [\
-            ["listr2", "npm:5.0.6"]\
+            ["listr2", "npm:5.0.8"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:a891054d1de75d4dbd69c16885ad77a02e6e62bbb18ec4056006f93ab511280ad1c947c2b7c30e6a723dbaa3c3ad77e219f42410f9aa89c64fc89fc9c64b2b59#npm:5.0.6", {\
-          "packageLocation": "./.yarn/__virtual__/listr2-virtual-338f80c94c/0/cache/listr2-npm-5.0.6-afdb33c352-18975d6909.zip/node_modules/listr2/",\
+        ["virtual:204330f6dc3d5ec489c9948d8996006dd25a31b13fd5a304781ba35ede320db06541222777ff27053cf0017a779a3081ba625ca30a782a744efce6e3a0a7cb51#npm:5.0.8", {\
+          "packageLocation": "./.yarn/__virtual__/listr2-virtual-3289e30afe/0/cache/listr2-npm-5.0.8-0d5e5a061b-8be9f56326.zip/node_modules/listr2/",\
           "packageDependencies": [\
-            ["listr2", "virtual:a891054d1de75d4dbd69c16885ad77a02e6e62bbb18ec4056006f93ab511280ad1c947c2b7c30e6a723dbaa3c3ad77e219f42410f9aa89c64fc89fc9c64b2b59#npm:5.0.6"],\
+            ["listr2", "virtual:204330f6dc3d5ec489c9948d8996006dd25a31b13fd5a304781ba35ede320db06541222777ff27053cf0017a779a3081ba625ca30a782a744efce6e3a0a7cb51#npm:5.0.8"],\
             ["@types/enquirer", null],\
             ["cli-truncate", "npm:2.1.0"],\
             ["colorette", "npm:2.0.19"],\
@@ -18102,6 +18109,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/object-inspect-npm-1.12.2-f125a822c0-a534fc1b85.zip/node_modules/object-inspect/",\
           "packageDependencies": [\
             ["object-inspect", "npm:1.12.2"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:1.12.3", {\
+          "packageLocation": "./.yarn/cache/object-inspect-npm-1.12.3-1e7d20f5ff-dabfd824d9.zip/node_modules/object-inspect/",\
+          "packageDependencies": [\
+            ["object-inspect", "npm:1.12.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -19942,7 +19956,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/__virtual__/react-responsive-virtual-9f862fea20/0/cache/react-responsive-npm-9.0.2-bca9a3ccf7-97c827db90.zip/node_modules/react-responsive/",\
           "packageDependencies": [\
             ["react-responsive", "virtual:9074f957212d3efbd25ffdcddb2c41156a117fe370eeaeecfa48568e720291094631d00f2c45d4989422b7f619924c42444eb1e3d231d886d9be7ccd991d0050#npm:9.0.2"],\
-            ["@types/react", "npm:18.0.26"],\
+            ["@types/react", "npm:18.0.29"],\
             ["hyphenate-style-name", "npm:1.0.4"],\
             ["matchmediaquery", "npm:0.3.1"],\
             ["prop-types", "npm:15.8.1"],\
@@ -23861,10 +23875,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:2.2.0", {\
-          "packageLocation": "./.yarn/cache/yaml-npm-2.2.0-98687baef3-6c89da40c3.zip/node_modules/yaml/",\
+        ["npm:2.2.1", {\
+          "packageLocation": "./.yarn/cache/yaml-npm-2.2.1-b7f7f5e84d-84f68cbe46.zip/node_modules/yaml/",\
           "packageDependencies": [\
-            ["yaml", "npm:2.2.0"]\
+            ["yaml", "npm:2.2.1"]\
           ],\
           "linkType": "HARD"\
         }]\
