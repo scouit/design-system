@@ -23,6 +23,7 @@ interface PropsType {
   rightIconType?: 'remove' | 'eye';
   isError?: boolean;
   searchList?: string[];
+  disable?: boolean;
 }
 
 export const Input = ({
@@ -38,6 +39,7 @@ export const Input = ({
   rightIconType,
   isError = false,
   searchList = [],
+  disable = false,
 }: PropsType) => {
   const { state: isHide, invertState: invertEye } = useInversion(true);
   const {
@@ -79,10 +81,10 @@ export const Input = ({
       onOptionClick={onOptionClick}
       onOutsideClick={closeDropdown}
     >
-      <_Wrapper width={width} isError={isError}>
-        <_Label size="title3" color="gray400">
-          {label}
-        </_Label>
+      <_Label size="title2" color="gray900">
+        {label}
+      </_Label>
+      <_Wrapper width={width} isError={isError} disable={disable}>
         {PreviewIcon}
         <_Input
           value={value}
@@ -91,11 +93,13 @@ export const Input = ({
           placeholder={placeholder}
           type={isHideInput ? 'password' : type}
           onFocus={openDropdown}
+          disabled={disable}
         />
         {rightIconType &&
           (() => {
             const { icon, onClick } = Icon[rightIconType];
-            return <div onClick={onClick}>{icon}</div>;
+            const disableClick = () => disable || onClick();
+            return <div onClick={disableClick}>{icon}</div>;
           })()}
         <_Hint size="body4" color="gray300">
           {hint}
@@ -106,11 +110,7 @@ export const Input = ({
 };
 
 const _Label = styled(Text)`
-  position: absolute;
-  padding: 0 4px;
-  background-color: ${({ theme }) => theme.color.gray25};
-  left: 25px;
-  top: -9px;
+  margin-bottom: 8px;
 `;
 
 const _Hint = styled(Text)`
@@ -119,11 +119,15 @@ const _Hint = styled(Text)`
   bottom: -18px;
 `;
 
-const _Wrapper = styled.div<{ isError: boolean; width: string }>`
+const _Wrapper = styled.div<{
+  isError: boolean;
+  width: string;
+  disable: boolean;
+}>`
   position: relative;
   width: ${({ width }) => width};
-  height: 44px;
-  padding: 0 10px;
+  height: 48px;
+  padding: 10px 12px;
   border-radius: ${({ theme }) => theme.borderRadius.small};
   background-color: ${({ theme }) => theme.color.gray25};
   display: flex;
@@ -137,6 +141,24 @@ const _Wrapper = styled.div<{ isError: boolean; width: string }>`
         color: ${currentColor};
       }
     `;
+  }}
+  ${({ theme, disable }) => {
+    const color = theme.color;
+    return (
+      disable &&
+      css`
+        background-color: ${color.gray200};
+        border: 1px solid ${color.gray400};
+        color: ${color.gray400};
+        svg {
+          cursor: default;
+          > path {
+            fill: ${color.gray400};
+            stroke: ${color.gray400};
+          }
+        }
+      `
+    );
   }}
   :focus-within {
     box-shadow: ${({ theme }) => theme.shadow.primary};
