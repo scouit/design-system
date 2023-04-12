@@ -6332,7 +6332,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-hoist-non-react-statics-npm-3.3.1-c0081332b2-2c0778570d.zip/node_modules/@types/hoist-non-react-statics/",\
           "packageDependencies": [\
             ["@types/hoist-non-react-statics", "npm:3.3.1"],\
-            ["@types/react", "npm:18.0.26"],\
+            ["@types/react", "npm:18.0.29"],\
             ["hoist-non-react-statics", "npm:3.3.2"]\
           ],\
           "linkType": "HARD"\
@@ -6526,16 +6526,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/react", [\
-        ["npm:18.0.26", {\
-          "packageLocation": "./.yarn/cache/@types-react-npm-18.0.26-d708995a34-b62f0ea3cd.zip/node_modules/@types/react/",\
-          "packageDependencies": [\
-            ["@types/react", "npm:18.0.26"],\
-            ["@types/prop-types", "npm:15.7.5"],\
-            ["@types/scheduler", "npm:0.16.2"],\
-            ["csstype", "npm:3.1.1"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:18.0.29", {\
           "packageLocation": "./.yarn/cache/@types-react-npm-18.0.29-9bbfe24701-75f56f81d8.zip/node_modules/@types/react/",\
           "packageDependencies": [\
@@ -6552,7 +6542,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-react-dom-npm-18.0.11-27f8db2995-579691e4d5.zip/node_modules/@types/react-dom/",\
           "packageDependencies": [\
             ["@types/react-dom", "npm:18.0.11"],\
-            ["@types/react", "npm:18.0.26"]\
+            ["@types/react", "npm:18.0.29"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -6562,7 +6552,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-react-outside-click-handler-npm-1.3.1-5937a0d834-514e5fe09a.zip/node_modules/@types/react-outside-click-handler/",\
           "packageDependencies": [\
             ["@types/react-outside-click-handler", "npm:1.3.1"],\
-            ["@types/react", "npm:18.0.26"]\
+            ["@types/react", "npm:18.0.29"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -6611,7 +6601,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@types/styled-components", "npm:5.1.26"],\
             ["@types/hoist-non-react-statics", "npm:3.3.1"],\
-            ["@types/react", "npm:18.0.26"],\
+            ["@types/react", "npm:18.0.29"],\
             ["csstype", "npm:3.1.1"]\
           ],\
           "linkType": "HARD"\
