@@ -1,3 +1,11 @@
+## [1.2.3](https://github.com/scouit/design-system/compare/v1.2.2...v1.2.3) (2023-04-12)
+
+
+### Bug Fixes
+
+* [@type-react](https://github.com/type-react) + -dom 파일 호환 에러 ([5f7da20](https://github.com/scouit/design-system/commit/5f7da20937201ee72e40de5f10a9d066d9a20af9))
+* webpack 이미지 파일 위치 수정 ([c8935de](https://github.com/scouit/design-system/commit/c8935defcdfb7aafcfc238ad676a4f21b6dafef6))
+
 ## [1.2.2](https://github.com/scouit/design-system/compare/v1.2.1...v1.2.2) (2023-04-12)
 
 
