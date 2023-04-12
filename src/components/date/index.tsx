@@ -8,19 +8,19 @@ import { MonthCalender } from './MonthCalender';
 import { Text } from '../text';
 
 interface PropsType {
-  isDayInclude: boolean;
-  label: string;
+  isDayInclude?: boolean;
+  label?: string;
   value: DateValueType | undefined;
-  placeholder: string;
+  placeholder?: string;
   onSubmitAtInput: (value: DateValueType) => void;
 }
 
 export const DateInput = ({
-  isDayInclude,
-  label,
+  isDayInclude = true,
+  label = '날짜',
   onSubmitAtInput,
   value,
-  placeholder,
+  placeholder = '날짜를 입력해 주세요',
 }: PropsType) => {
   const {
     state: dropdown,

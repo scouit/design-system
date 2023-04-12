@@ -5,7 +5,7 @@ import { DateValueType, getInitDate } from '../../hooks/useCalender';
 import { Text } from '../text';
 
 interface PropsType {
-  value: DateValueType;
+  value: DateValueType | undefined;
   onSubmitAtInput: (value: DateValueType) => void;
 }
 
