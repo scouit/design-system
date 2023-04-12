@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Loading } from '../../assets/gif';
-import { ClickImg } from '../../assets/imgs';
+import { ClickImg } from '../../assets/png';
 import { Exchange, Image, Trash } from '../../assets/svg';
 import { Text } from '../text';
 
