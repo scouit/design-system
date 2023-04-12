@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/scouit/design-system/compare/v1.2.3...v1.2.4) (2023-04-12)
+
+
+### Bug Fixes
+
+* gif parser error ([88820a8](https://github.com/scouit/design-system/commit/88820a8df4e9b224437a418395f7cfbc5a8f26d5))
+
 ## [1.2.3](https://github.com/scouit/design-system/compare/v1.2.2...v1.2.3) (2023-04-12)
 
 
