@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/scouit/design-system/compare/v1.2.1...v1.2.2) (2023-04-12)
+
+
+### Bug Fixes
+
+* 캘린터 props의 타입, 옵셔널 체이닝 변경 ([116fa55](https://github.com/scouit/design-system/commit/116fa550279cc291259be51a9c4c0aca4cb2c23b))
+
 ## [1.2.1](https://github.com/scouit/design-system/compare/v1.2.0...v1.2.1) (2023-04-10)
 
 # [1.2.0](https://github.com/scouit/design-system/compare/v1.1.10...v1.2.0) (2023-04-05)
