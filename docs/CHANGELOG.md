@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/scouit/design-system/compare/v1.2.4...v1.2.5) (2023-04-12)
+
+
+### Bug Fixes
+
+* loading file change ([d6cd572](https://github.com/scouit/design-system/commit/d6cd572dcb2d20de3f9db354c6cb11816e518f0e))
+
 ## [1.2.4](https://github.com/scouit/design-system/compare/v1.2.3...v1.2.4) (2023-04-12)
 
 
