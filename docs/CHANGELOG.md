@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/scouit/design-system/compare/v1.2.5...v1.2.6) (2023-04-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency core-js to v3.30.1 ([#58](https://github.com/scouit/design-system/issues/58)) ([dd27413](https://github.com/scouit/design-system/commit/dd2741394fc3e52ffec0e6e80eebb0ec75fb236b))
+
 ## [1.2.5](https://github.com/scouit/design-system/compare/v1.2.4...v1.2.5) (2023-04-12)
 
 
