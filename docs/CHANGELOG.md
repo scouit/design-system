@@ -1,3 +1,10 @@
+## [1.2.8](https://github.com/scouit/design-system/compare/v1.2.7...v1.2.8) (2023-04-20)
+
+
+### Bug Fixes
+
+* name추가 ,한 컴포넌트에 변경할 수 있는 함수 하나로 고정 ([01b275e](https://github.com/scouit/design-system/commit/01b275ed99edc95ff2aa207169409fdb83856d7c))
+
 ## [1.2.7](https://github.com/scouit/design-system/compare/v1.2.6...v1.2.7) (2023-04-19)
 
 
