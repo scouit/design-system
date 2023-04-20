@@ -10,8 +10,7 @@ interface PropsType {
   name: string;
   label: string;
   isInput?: boolean;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onOptionClick: (value: string) => void;
+  onChange?: (value: { value: string; name: string }) => void;
   value?: string;
   optionList: string[];
 }
@@ -22,7 +21,6 @@ export const Select = ({
   label,
   isInput = false,
   onChange,
-  onOptionClick,
   placeholder,
   optionList,
 }: PropsType) => {
@@ -33,14 +31,23 @@ export const Select = ({
     correctState,
   } = useInversion();
 
+  const onChangeIncludeName = (value: string) => {
+    onChange({ value, name });
+  };
+
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    onChangeIncludeName(value);
+  };
+
   const onClickOption = (value: string) => {
-    onOptionClick(value);
+    onChangeIncludeName(value);
     incorrectState();
   };
 
   const clearValue = () => {
     if (!optionList.includes(value)) {
-      onOptionClick('');
+      onChangeIncludeName('');
     }
     incorrectState();
   };
@@ -65,7 +72,7 @@ export const Select = ({
               value={value}
               name={name}
               placeholder={placeholder}
-              onChange={onChange}
+              onChange={onInputChange}
               onClick={stopBubble}
               onFocus={correctState}
             />

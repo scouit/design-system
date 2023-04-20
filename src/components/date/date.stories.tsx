@@ -22,7 +22,13 @@ type DefaultProps = ObjectExclude<
 const Template: ComponentStoryType<DefaultProps> = (arg) => {
   const [state, setState] = useState<DateValueType | undefined>();
 
-  const onSubmitAtInput = (value: DateValueType) => {
+  const onSubmitAtInput = ({
+    value,
+    name,
+  }: {
+    value: DateValueType;
+    name: string;
+  }) => {
     setState(value);
   };
 
@@ -35,10 +41,12 @@ export const DayCalender = templateBind({
   placeholder: 'YYYY-MM-DD',
   isDayInclude: true,
   label: '시작일',
+  name: 'start',
 });
 
 export const MonthCalender = templateBind({
   placeholder: 'YYYY-MM-DD',
   isDayInclude: false,
   label: '종료일',
+  name: 'end',
 });

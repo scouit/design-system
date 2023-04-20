@@ -15,7 +15,7 @@ export default {
 
 type DefaultProps = ObjectExclude<
   Parameter<typeof Select>,
-  'name' | 'value' | 'onChange' | 'optionList' | 'onOptionClick' | 'label'
+  'name' | 'value' | 'onChange' | 'optionList' | 'label'
 >;
 
 const optionList = [
@@ -33,15 +33,15 @@ const optionList = [
   'XXX',
 ];
 
+interface PropsType {
+  value: string;
+  name: string;
+}
+
 const Template: ComponentStoryType<DefaultProps> = (args) => {
   const [state, setState] = useState('');
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setState(value);
-  };
-
-  const onOptionClick = (value: string) => {
+  const onChange = ({ value, name }: PropsType) => {
     setState(value);
   };
 
@@ -52,7 +52,6 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
       label="기술 스택"
       value={state}
       onChange={onChange}
-      onOptionClick={onOptionClick}
       optionList={optionList}
     />
   );

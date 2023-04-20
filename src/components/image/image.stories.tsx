@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { ImageInput } from './index';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ChangeEvent } from 'react';
-import { Image } from '../../assets/svg';
-import { ClickImg } from '../../assets/imgs';
+import { ComponentMeta } from '@storybook/react';
 import {
   ComponentStoryType,
   ObjectExclude,
@@ -40,7 +37,7 @@ export const Template: ComponentStoryType<DefaultProps> = (arg) => {
   ]);
   const { isLoading, imgToUrl } = testPromise();
 
-  const onChange = (value: string[]) => {
+  const onChange = ({ value, name }: { value: string[]; name: string }) => {
     setState(value);
   };
 
@@ -51,10 +48,11 @@ export const Template: ComponentStoryType<DefaultProps> = (arg) => {
       imageList={state}
       imgToUrl={imgToUrl}
       onChagne={onChange}
+      name=""
     />
   );
 };
 
 const templateBind = templateBindRequireAllArgs(Template);
 
-export const standard = templateBind({});
+export const standard = templateBind({ name: '' });

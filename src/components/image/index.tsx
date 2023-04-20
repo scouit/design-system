@@ -14,19 +14,25 @@ interface PropsType {
   label: string;
   isLoading: boolean;
   imageList: string[];
+  name: string;
   imgToUrl: (value: File) => Promise<string>;
-  onChagne: (value: string[]) => void;
+  onChange: (value: { value: string[]; name: string }) => void;
 }
 
 export const ImageInput = ({
   label,
   imageList,
   isLoading,
+  name,
   imgToUrl,
-  onChagne,
+  onChange,
 }: PropsType) => {
   const fileRef = useRef<HTMLInputElement | null>(null);
   const [clickedImage, setImageIndex] = useState<number | null>(null);
+
+  const onChangeIncludeName = (value: string[]) => {
+    onChange({ value, name });
+  };
 
   const onListItemClick = (itemIdx?: number) => {
     if (isLoading) return;
@@ -42,7 +48,7 @@ export const ImageInput = ({
     render.readAsDataURL(file);
     render.onloadend = async () => {
       const resultURL = await imgToUrl(file);
-      onChagne(fileChangeOrAdd(resultURL));
+      onChangeIncludeName(fileChangeOrAdd(resultURL));
       setImageIndex(null);
     };
   };
@@ -55,7 +61,7 @@ export const ImageInput = ({
 
   const fileRemove = (itemIdx: number) => {
     const filteredList = imageList.filter((_, idx) => itemIdx !== idx);
-    onChagne(filteredList);
+    onChangeIncludeName(filteredList);
   };
 
   return (

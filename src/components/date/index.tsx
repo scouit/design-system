@@ -10,16 +10,18 @@ import { Text } from '../text';
 interface PropsType {
   isDayInclude?: boolean;
   label?: string;
+  name: string;
   value: DateValueType | undefined;
   placeholder?: string;
-  onSubmitAtInput: (value: DateValueType) => void;
+  onSubmitAtInput: (value: { value: DateValueType; name: string }) => void;
 }
 
 export const DateInput = ({
   isDayInclude = true,
-  label = '날짜',
+  label,
   onSubmitAtInput,
   value,
+  name,
   placeholder = '날짜를 입력해 주세요',
 }: PropsType) => {
   const {
@@ -35,6 +37,10 @@ export const DateInput = ({
       if (isDayInclude) date.push(day);
       return date.join('-');
     }
+  };
+
+  const onClickComplete = (value: DateValueType) => {
+    onSubmitAtInput({ value, name });
   };
 
   return (
@@ -59,10 +65,10 @@ export const DateInput = ({
               <DayCalender
                 initialValue={value}
                 closeDropdown={closeDropdown}
-                onSubmitAtInput={onSubmitAtInput}
+                onSubmitAtInput={onClickComplete}
               />
             ) : (
-              <MonthCalender value={value} onSubmitAtInput={onSubmitAtInput} />
+              <MonthCalender value={value} onSubmitAtInput={onClickComplete} />
             )}
           </_CalenderWrapper>
         )}

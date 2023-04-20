@@ -9,7 +9,7 @@ import { Input } from '../input';
 import { Text } from '../text';
 
 export interface InputChangeType {
-  value: string;
+  value: string[];
   name?: string;
 }
 
@@ -24,7 +24,6 @@ interface PropsType {
   name?: string;
   label?: string;
   onChange: ({ value, name }: InputChangeType) => void;
-  onTagClick: ({ index, name }: TagClickType) => void;
   list: string[];
 }
 
@@ -48,7 +47,6 @@ export const TagInput = ({
   name,
   label,
   onChange,
-  onTagClick,
   placeholder,
   list,
 }: PropsType) => {
@@ -59,15 +57,25 @@ export const TagInput = ({
   } = useInversion();
   const [value, setValue] = useState('');
 
+  const onChangeIncludeName = (value: string[]) => {
+    onChange({ name, value });
+  };
+
   const filterList = filteringList(
     optionList,
     (data) => data.includes(value) && !list.includes(data)
   );
 
   const onOptionClick = (optionValue: string) => {
-    onChange({ name, value: optionValue });
+    onChangeIncludeName(list.concat(optionValue));
     setValue('');
     closeDropdown();
+  };
+
+  const removeOption = (index: number) => {
+    const copy = [...list];
+    copy.splice(index, 1);
+    onChangeIncludeName(copy);
   };
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -77,7 +85,7 @@ export const TagInput = ({
 
   const onInputEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.code === 'Enter' && filterList.includes(value)) {
-      onChange({ name, value });
+      onChangeIncludeName(list.concat(value));
       setValue('');
     }
   };
@@ -98,7 +106,7 @@ export const TagInput = ({
             backColor="gray900"
             color="gray25"
             size="body1"
-            onClick={() => onTagClick({ name, index })}
+            onClick={() => removeOption(index)}
           >
             <React />
             {skills}

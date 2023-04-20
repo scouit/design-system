@@ -4,6 +4,7 @@ import { Plus, TrashCan } from '../../assets/svg';
 
 interface PropsType {
   textList: string[];
+  name: string;
   onChange: (value: string[]) => void;
   placeholder: string;
 }

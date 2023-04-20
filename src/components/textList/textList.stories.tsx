@@ -29,6 +29,7 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
 
   return (
     <TextList
+      name="asfa"
       textList={state}
       onChange={onChange}
       placeholder="상세업무를 작성해 주세요"
@@ -38,4 +39,4 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
 
 const templateBind = templateBindRequireAllArgs(Template);
 
-export const primary = templateBind({});
+export const primary = templateBind({ name: '' });
