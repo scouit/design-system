@@ -1,3 +1,10 @@
+## [1.2.9](https://github.com/scouit/design-system/compare/v1.2.8...v1.2.9) (2023-04-20)
+
+
+### Bug Fixes
+
+* theme color  F x 7 -> F x 6 ([c1aafc5](https://github.com/scouit/design-system/commit/c1aafc517f4bbb22e13f3b64cd1a90cb1edcad68))
+
 ## [1.2.8](https://github.com/scouit/design-system/compare/v1.2.7...v1.2.8) (2023-04-20)
 
 
