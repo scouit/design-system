@@ -1,3 +1,12 @@
+## [1.2.7](https://github.com/scouit/design-system/compare/v1.2.6...v1.2.7) (2023-04-19)
+
+
+### Bug Fixes
+
+* theme 속성 변경 ([3506b8e](https://github.com/scouit/design-system/commit/3506b8e290761d2083ec8c80ef2cf94107caf209))
+* yarn install ([c3dabe1](https://github.com/scouit/design-system/commit/c3dabe16f0fe4c3d09858f94304a77e55242d69e))
+* yarn version rollback ([0378196](https://github.com/scouit/design-system/commit/03781960da9f8eb44597147b388fc820a046975c))
+
 ## [1.2.6](https://github.com/scouit/design-system/compare/v1.2.5...v1.2.6) (2023-04-19)
 
 
