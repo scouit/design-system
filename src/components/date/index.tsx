@@ -44,7 +44,7 @@ export const DateInput = ({
   };
 
   return (
-    <OutsideClickHandler display="inline-block" onOutsideClick={closeDropdown}>
+    <OutsideClickHandler display="block" onOutsideClick={closeDropdown}>
       <DropdownRelative>
         <_Label size="title2" color="gray900">
           {label}
@@ -86,7 +86,7 @@ const _Wrapper = styled.div`
   position: relative;
   border: 1px solid ${({ theme }) => theme.color.gray500};
   border-radius: ${({ theme }) => theme.borderRadius.small};
-  width: 345px;
+  width: 100%;
   height: 58px;
   display: flex;
   align-items: center;
@@ -118,10 +118,11 @@ const _SvgWrapper = styled.div`
 `;
 
 const _CalenderWrapper = styled.div`
-  width: 100%;
+  width: 345px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.color.primary25};
   position: absolute;
+  z-index: 90;
   top: 91px;
   left: 0;
 `;

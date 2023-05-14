@@ -47,11 +47,11 @@ const colorType: KindType = {
 } as const;
 
 const heightSize = {
-  tag: '28',
-  select: '36',
-  list: '37',
-  smallButton: '40',
-  LargeButton: '45',
+  28: '28',
+  36: '36',
+  37: '37',
+  40: '40',
+  45: '45',
 };
 
 type ColorType = keyof typeof colorType;
@@ -60,15 +60,18 @@ interface PropsType {
   kind?: ColorType;
   radius?: keyOfRadius;
   color?: keyOfColor;
+  width?: string;
+  padding?: string;
   height?: keyof typeof heightSize;
 }
 
 export const Button = styled.button<PropsType>`
   display: flex;
   align-items: center;
-  padding: 0 16px;
+  padding: 12px 16px;
+  gap: 10px;
   height: ${({ height }) => heightSize[height]}px;
-  width: 100%;
+  width: ${({ width = 'fit-content' }) => width};
   border-radius: ${({ theme, radius }) => theme.borderRadius[radius]};
   justify-content: center;
   ${({ theme }) => theme.font.heading3};

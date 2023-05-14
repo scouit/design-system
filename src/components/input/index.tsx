@@ -80,6 +80,7 @@ export const Input = ({
       list={filterList}
       onOptionClick={onOptionClick}
       onOutsideClick={closeDropdown}
+      display={width === 'fit-content' ? 'inline-block' : 'block'}
     >
       <_Label size="title2" color="gray900">
         {label}
@@ -125,7 +126,7 @@ const _Wrapper = styled.div<{
   disable: boolean;
 }>`
   position: relative;
-  width: ${({ width }) => width};
+  width: ${({ width = '100%' }) => width};
   height: 48px;
   padding: 10px 12px;
   border-radius: ${({ theme }) => theme.borderRadius.small};

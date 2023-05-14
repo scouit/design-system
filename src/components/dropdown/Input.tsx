@@ -8,6 +8,7 @@ interface PropsType {
   dropdown: boolean;
   list: string[];
   onOptionClick: (value: string) => void;
+  display?: 'inline-block' | 'block';
   children: ReactNode;
 }
 
@@ -21,10 +22,11 @@ export const InputDropdown = ({
   dropdown,
   list,
   onOptionClick,
+  display = 'block',
   children,
 }: PropsType) => {
   return (
-    <OutsideClickHandler display="inline-block" onOutsideClick={onOutsideClick}>
+    <OutsideClickHandler display={display} onOutsideClick={onOutsideClick}>
       <_Wrapper>
         {children}
         {dropdown && (
