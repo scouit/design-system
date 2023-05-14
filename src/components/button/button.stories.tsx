@@ -27,7 +27,7 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
       </Button>
       <Button
         {...args}
-        justify="start"
+        height={45}
         disabled
         onClick={() => {}}
       >

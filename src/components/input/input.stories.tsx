@@ -9,6 +9,7 @@ import {
   templateBindRequireAllArgs,
 } from '../../types/story';
 import { optionList } from '../tag';
+import styled from 'styled-components';
 
 export default {
   title: 'component/input',
@@ -33,14 +34,20 @@ const Template: ComponentStoryType<DefaultProps> = (args) => {
 
   return (
     //@ts-ignore
+
     <Input
       {...args}
+      width="fit-content"
       onChange={onChange}
       value={state.email}
       hint="support msg"
     />
   );
 };
+
+const A = styled.div`
+  display: flex;
+`;
 
 const templateBind = templateBindRequireAllArgs(Template);
 

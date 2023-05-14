@@ -80,7 +80,7 @@ export const Input = ({
       list={filterList}
       onOptionClick={onOptionClick}
       onOutsideClick={closeDropdown}
-      display={width === 'fit-content' ? 'inline-block' : 'block'}
+      display={width}
     >
       <_Label size="title2" color="gray900">
         {label}

@@ -47,11 +47,11 @@ const colorType: KindType = {
 } as const;
 
 const heightSize = {
-  28: '28',
-  36: '36',
-  37: '37',
-  40: '40',
-  45: '45',
+  '28': '28',
+  '36': '36',
+  '37': '37',
+  '40': '40',
+  '45': '45',
 };
 
 type ColorType = keyof typeof colorType;

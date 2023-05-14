@@ -8,7 +8,7 @@ interface PropsType {
   dropdown: boolean;
   list: string[];
   onOptionClick: (value: string) => void;
-  display?: 'inline-block' | 'block';
+  display?: string;
   children: ReactNode;
 }
 
@@ -22,33 +22,39 @@ export const InputDropdown = ({
   dropdown,
   list,
   onOptionClick,
-  display = 'block',
+  display = '100%',
   children,
 }: PropsType) => {
   return (
-    <OutsideClickHandler display={display} onOutsideClick={onOutsideClick}>
-      <_Wrapper>
-        {children}
-        {dropdown && (
-          <_DropWrapper>
-            {list.map((text) => (
-              <_DropText
-                as="button"
-                size="body1"
-                onClick={() => onOptionClick(text)}
-              >
-                {text}
-              </_DropText>
-            ))}
-          </_DropWrapper>
-        )}
-      </_Wrapper>
-    </OutsideClickHandler>
+    <_Wrapper width={display}>
+      <OutsideClickHandler
+        display={display === 'fit-content' ? 'inline-block' : 'block'}
+        onOutsideClick={onOutsideClick}
+      >
+        <_Wrapper>
+          {children}
+          {dropdown && (
+            <_DropWrapper>
+              {list.map((text) => (
+                <_DropText
+                  as="button"
+                  size="body1"
+                  onClick={() => onOptionClick(text)}
+                >
+                  {text}
+                </_DropText>
+              ))}
+            </_DropWrapper>
+          )}
+        </_Wrapper>
+      </OutsideClickHandler>
+    </_Wrapper>
   );
 };
 
-const _Wrapper = styled.div`
+const _Wrapper = styled.div<{ width?: string }>`
   position: relative;
+  width: ${({ width }) => width};
 `;
 
 const _DropWrapper = styled.div`
