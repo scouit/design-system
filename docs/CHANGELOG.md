@@ -1,3 +1,10 @@
+## [1.2.11](https://github.com/scouit/design-system/compare/v1.2.10...v1.2.11) (2023-05-14)
+
+
+### Bug Fixes
+
+* 컴포넌트 css props 변경 ([8fcd8a9](https://github.com/scouit/design-system/commit/8fcd8a99c0ebbbdac89703d21297519b6f93bdcb))
+
 ## [1.2.10](https://github.com/scouit/design-system/compare/v1.2.9...v1.2.10) (2023-05-10)
 
 ## [1.2.9](https://github.com/scouit/design-system/compare/v1.2.8...v1.2.9) (2023-04-20)
