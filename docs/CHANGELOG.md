@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/scouit/design-system/compare/v1.3.1...v1.3.2) (2023-05-23)
+
+
+### Bug Fixes
+
+* 이미지 컴포넌트 Fragment 제거 ([b81d2f3](https://github.com/scouit/design-system/commit/b81d2f35dee677fc5388bc236321280087112196))
+
 ## [1.3.1](https://github.com/scouit/design-system/compare/v1.3.0...v1.3.1) (2023-05-23)
 
 
