@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/scouit/design-system/compare/v1.3.0...v1.3.1) (2023-05-23)
+
+
+### Bug Fixes
+
+* dropdown 배경색 투명 -> 흰색 ([35a75cd](https://github.com/scouit/design-system/commit/35a75cd3faf451a77e9d396a9e36652c965de7d8))
+
 # [1.3.0](https://github.com/scouit/design-system/compare/v1.2.12...v1.3.0) (2023-05-23)
 
 
