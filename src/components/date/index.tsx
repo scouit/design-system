@@ -89,7 +89,7 @@ const _Wrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.color.gray500};
   border-radius: ${({ theme }) => theme.borderRadius.small};
   width: 100%;
-  height: 58px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -125,7 +125,7 @@ const _CalenderWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.primary25};
   position: absolute;
   z-index: 100;
-  top: 91px;
+  top: 86px;
   left: 0;
   box-shadow: ${({ theme }) => theme.shadow.md};
 `;

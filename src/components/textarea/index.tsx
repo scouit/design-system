@@ -63,7 +63,7 @@ const _Textarea = styled.textarea`
   ${({ theme }) => {
     const { font, color, shadow, borderRadius } = theme;
     return css`
-      ${font.heading4};
+      ${font.heading3};
       color: ${color.gray900};
       border-radius: ${borderRadius.medium};
       border: 1px solid ${color.gray200};

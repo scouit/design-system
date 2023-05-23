@@ -72,6 +72,7 @@ const _Input = styled.input`
   border: 1px solid ${({ theme }) => theme.color.gray500};
   color: ${({ theme }) => theme.color.gray500};
   padding: 0 16px;
+  background-color: ${({ theme }) => theme.color.gray25};
   border-radius: ${({ theme }) => theme.borderRadius.small};
   ${({ theme }) => theme.font.heading3};
 `;

@@ -105,6 +105,7 @@ const _Wrapper = styled.div`
   position: relative;
   height: 48px;
   width: 240px;
+  background-color: ${({ theme }) => theme.color.gray25};
   border-radius: ${({ theme }) => theme.borderRadius.small};
   border: 1px solid ${({ theme }) => theme.color.gray400};
 `;

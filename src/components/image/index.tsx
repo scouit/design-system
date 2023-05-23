@@ -121,6 +121,7 @@ export const ImageInput = ({
 
 const _Wrapper = styled.div`
   display: flex;
+  background-color: ${({ theme }) => theme.color.gray25};
 `;
 
 const _ImageList = styled.div`
