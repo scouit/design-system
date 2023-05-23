@@ -65,7 +65,7 @@ export const ImageInput = ({
   };
 
   return (
-    <>
+    <div>
       <_Label size="title2" color="gray500">
         {label}
       </_Label>
@@ -113,7 +113,7 @@ export const ImageInput = ({
           )}
         </div>
       </_Wrapper>
-    </>
+    </div>
   );
 };
 
