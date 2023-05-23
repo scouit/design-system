@@ -46,9 +46,11 @@ export const DateInput = ({
   return (
     <OutsideClickHandler display="block" onOutsideClick={closeDropdown}>
       <DropdownRelative>
-        <_Label size="title2" color="gray900">
-          {label}
-        </_Label>
+        {label && (
+          <_Label size="title2" color="gray900">
+            {label}
+          </_Label>
+        )}
         <_Wrapper onClick={openDropdown}>
           <_TextValue
             value={CalenderDateValue()}
@@ -129,6 +131,5 @@ const _CalenderWrapper = styled.div`
 `;
 
 const _Label = styled(Text)`
-  position: absolute;
-  top: -27px;
+  margin-bottom: 8px;
 `;

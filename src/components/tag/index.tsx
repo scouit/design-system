@@ -98,9 +98,11 @@ export const TagInput = ({
       onOutsideClick={closeDropdown}
     >
       <_Wrapper width={width}>
-        <_Label size="title3" color="gray400">
-          {label}
-        </_Label>
+        {label && (
+          <_Label size="title2" color="gray400">
+            {label}
+          </_Label>
+        )}
         {list.map((skills, index) => (
           <_Skill
             backColor="gray900"
@@ -135,7 +137,7 @@ const _Skill = styled(Text)<{ backColor: keyOfColor }>`
   display: flex;
   align-items: center;
   gap: 6px;
-  border-radius: ${({ theme }) => theme.borderRadius.medium};
+  border-radius: ${({ theme }) => theme.borderRadius.small};
   background-color: ${({ theme, backColor }) => theme.color[backColor]};
 `;
 

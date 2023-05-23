@@ -16,6 +16,7 @@ export const Template: ComponentStory<typeof TagInput> = () => {
 
   return (
     <TagInput
+      label='백기'
       width="800px"
       placeholder="홀더"
       onChange={onChange}

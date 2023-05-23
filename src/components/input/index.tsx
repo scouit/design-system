@@ -82,9 +82,11 @@ export const Input = ({
       onOutsideClick={closeDropdown}
       display={width}
     >
-      <_Label size="title2" color="gray900">
-        {label}
-      </_Label>
+      {label && (
+        <_Label size="title2" color="gray900">
+          {label}
+        </_Label>
+      )}
       <_Wrapper width={width} isError={isError} disable={disable}>
         {PreviewIcon}
         <_Input

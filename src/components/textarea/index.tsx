@@ -27,10 +27,12 @@ export const Textarea = ({
 
   return (
     <_Wrapper width={width} isLimitOver={isLimitOver}>
-      <_Label size="title2">
-        {label}
-        {important && <_Important>*</_Important>}
-      </_Label>
+      {label && (
+        <_Label size="title2">
+          {label}
+          {important && <_Important>*</_Important>}
+        </_Label>
+      )}
       <_Textarea
         name={name}
         value={value}

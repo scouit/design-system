@@ -1,15 +1,22 @@
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { Plus, TrashCan } from '../../assets/svg';
+import { Text } from '../text';
 
 interface PropsType {
   textList: string[];
+  label?: string;
   name: string;
   onChange: (value: string[]) => void;
   placeholder: string;
 }
 
-export const TextList = ({ textList, onChange, placeholder }: PropsType) => {
+export const TextList = ({
+  textList,
+  onChange,
+  placeholder,
+  label,
+}: PropsType) => {
   const onItemChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     const temp = [...textList];
@@ -26,6 +33,7 @@ export const TextList = ({ textList, onChange, placeholder }: PropsType) => {
   };
   return (
     <_Wrapper>
+      {label && <_Label size="title2">{label}</_Label>}
       {textList.map((text, index) => (
         <_TextItem>
           <_Input
@@ -70,7 +78,7 @@ const _Input = styled.input`
 
 const _Add = styled.div`
   width: calc(100% - 48px);
-  height: 38px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,9 +92,15 @@ const _Add = styled.div`
 const _Remove = styled(_Add)`
   cursor: pointer;
   width: 38px;
+  height: 44px;
+
   border: 1px solid ${({ theme }) => theme.color.gray500};
   background-color: ${({ theme }) => theme.color.gray25};
   :hover {
     background-color: ${({ theme }) => theme.color.gray100};
   }
+`;
+
+const _Label = styled(Text)`
+  margin-bottom: 8px;
 `;

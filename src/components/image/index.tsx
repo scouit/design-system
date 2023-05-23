@@ -66,9 +66,11 @@ export const ImageInput = ({
 
   return (
     <div>
-      <_Label size="title2" color="gray500">
-        {label}
-      </_Label>
+      {label && (
+        <_Label size="title2" color="gray500">
+          {label}
+        </_Label>
+      )}
       <_Wrapper>
         <_ImgInput
           id="imgInput"

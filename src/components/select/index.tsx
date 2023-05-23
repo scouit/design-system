@@ -64,8 +64,8 @@ export const Select = ({
 
   return (
     <OutsideClick display="inline-block" onOutsideClick={clearValue}>
+      {label && <_Label size="title2">{label}</_Label>}
       <_Wrapper>
-        <_Label size="body3">{label}</_Label>
         <_SelectWrapper onClick={invertState}>
           {isInput ? (
             <_SelectInput
@@ -103,7 +103,7 @@ export const Select = ({
 
 const _Wrapper = styled.div`
   position: relative;
-  height: 38px;
+  height: 48px;
   width: 240px;
   border-radius: ${({ theme }) => theme.borderRadius.small};
   border: 1px solid ${({ theme }) => theme.color.gray400};
@@ -120,7 +120,7 @@ const _SelectWrapper = styled.div`
 
 const _OptionWrapper = styled.div`
   position: absolute;
-  top: 48px;
+  top: 54px;
   width: 100%;
   z-index: 100;
   border-radius: ${({ theme }) => theme.borderRadius.small};
@@ -134,7 +134,7 @@ const _Option = styled(Text)`
   display: flex;
   align-items: center;
   padding: 0 20px;
-  height: 37px;
+  height: 42px;
   cursor: pointer;
   :hover {
     background-color: ${({ theme }) => theme.color.primary600};
@@ -157,6 +157,5 @@ const _SelectInput = styled.input`
 `;
 
 const _Label = styled(Text)`
-  position: absolute;
-  top: -20px;
+  margin-bottom: 8px;
 `;
