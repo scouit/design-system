@@ -65,6 +65,7 @@ const _DropWrapper = styled.div`
   left: 0;
   top: calc(100% + 10px);
   border: 1px;
+  background-color: ${({ theme }) => theme.color.gray0};
   box-shadow: ${({ theme }) => theme.shadow.xl};
 `;
 
