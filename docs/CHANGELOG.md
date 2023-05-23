@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/scouit/design-system/compare/v1.2.12...v1.3.0) (2023-05-23)
+
+
+### Features
+
+* dropdown 형식 z-index, calender이 기본적으로 열려있음 ([e0f40b7](https://github.com/scouit/design-system/commit/e0f40b724de971587ed42d46394294d58125a981))
+
 ## [1.2.12](https://github.com/scouit/design-system/compare/v1.2.11...v1.2.12) (2023-05-14)
 
 
