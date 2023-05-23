@@ -60,6 +60,7 @@ const _Wrapper = styled.div<{ width?: string }>`
 const _DropWrapper = styled.div`
   position: absolute;
   width: 100%;
+  z-index: 100;
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   left: 0;
   top: calc(100% + 10px);

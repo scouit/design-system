@@ -122,6 +122,7 @@ const _OptionWrapper = styled.div`
   position: absolute;
   top: 48px;
   width: 100%;
+  z-index: 100;
   border-radius: ${({ theme }) => theme.borderRadius.small};
   border: 1px solid ${({ theme }) => theme.color.gray400};
   overflow-y: scroll;

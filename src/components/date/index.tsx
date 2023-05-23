@@ -28,7 +28,7 @@ export const DateInput = ({
     state: dropdown,
     correctState: openDropdown,
     incorrectState: closeDropdown,
-  } = useInversion(true);
+  } = useInversion(false);
 
   const CalenderDateValue = () => {
     if (value) {
@@ -122,9 +122,10 @@ const _CalenderWrapper = styled.div`
   border-radius: 16px;
   background-color: ${({ theme }) => theme.color.primary25};
   position: absolute;
-  z-index: 90;
+  z-index: 100;
   top: 91px;
   left: 0;
+  box-shadow: ${({ theme }) => theme.shadow.md};
 `;
 
 const _Label = styled(Text)`
