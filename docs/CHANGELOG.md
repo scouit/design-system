@@ -1,3 +1,10 @@
+## [1.2.12](https://github.com/scouit/design-system/compare/v1.2.11...v1.2.12) (2023-05-14)
+
+
+### Bug Fixes
+
+* flex에서 input 적용 안됨, button height의 타입에러 수정 ([bdfb039](https://github.com/scouit/design-system/commit/bdfb039b07ed103ca6eb8ec339ed578e53b04772))
+
 ## [1.2.11](https://github.com/scouit/design-system/compare/v1.2.10...v1.2.11) (2023-05-14)
 
 
