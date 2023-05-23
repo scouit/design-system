@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/scouit/design-system/compare/v1.3.2...v1.3.3) (2023-05-23)
+
+
+### Bug Fixes
+
+* label의 크기, 위치 변경 ([8d633cb](https://github.com/scouit/design-system/commit/8d633cbd4083b52381bdb07433c9c2fff67d1da3))
+
 ## [1.3.2](https://github.com/scouit/design-system/compare/v1.3.1...v1.3.2) (2023-05-23)
 
 
