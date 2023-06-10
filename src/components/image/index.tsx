@@ -14,21 +14,14 @@ interface PropsType {
   label: string;
   isLoading: boolean;
   imageList: string[];
-  name: string;
-  imgToUrl: (value: File) => Promise<string>;
+  name?: string;
   onChange: (value: { value: string[]; name: string }) => void;
 }
 
-export const ImageInput = ({
-  label,
-  imageList,
-  isLoading,
-  name,
-  imgToUrl,
-  onChange,
-}: PropsType) => {
+export const ImageInput = ({ label, imageList, name, onChange }: PropsType) => {
   const fileRef = useRef<HTMLInputElement | null>(null);
   const [clickedImage, setImageIndex] = useState<number | null>(null);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   const onChangeIncludeName = (value: string[]) => {
     onChange({ value, name });
@@ -46,10 +39,14 @@ export const ImageInput = ({
     const file = e.target.files[0];
     const render = new FileReader();
     render.readAsDataURL(file);
+    setLoading(true);
     render.onloadend = async () => {
-      const resultURL = await imgToUrl(file);
-      onChangeIncludeName(fileChangeOrAdd(resultURL));
-      setImageIndex(null);
+      setTimeout(() => {
+        const resultURL = render.result as string;
+        onChangeIncludeName(fileChangeOrAdd(resultURL));
+        setImageIndex(null);
+        setLoading(false);
+      }, 500);
     };
   };
 

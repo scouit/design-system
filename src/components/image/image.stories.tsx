@@ -15,7 +15,7 @@ export default {
 
 type DefaultProps = ObjectExclude<
   Parameter<typeof ImageInput>,
-  'label' | 'imageList' | 'imgToUrl' | 'onChagne' | 'isLoading'
+  'label' | 'imageList' | 'onChange' | 'isLoading'
 >;
 
 const testPromise = () => {
@@ -46,8 +46,7 @@ export const Template: ComponentStoryType<DefaultProps> = (arg) => {
       isLoading={isLoading}
       label="이미지 (최대 10개)"
       imageList={state}
-      imgToUrl={imgToUrl}
-      onChagne={onChange}
+      onChange={onChange}
       name=""
     />
   );
