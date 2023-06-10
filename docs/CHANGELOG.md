@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/scouit/design-system/compare/v1.3.5...v1.3.6) (2023-06-10)
+
+
+### Bug Fixes
+
+* imgs container remove background-color ([6cd88e7](https://github.com/scouit/design-system/commit/6cd88e73ef948206f2d4ef2a6da8875a7c95dd67))
+
 ## [1.3.5](https://github.com/scouit/design-system/compare/v1.3.4...v1.3.5) (2023-06-10)
 
 
