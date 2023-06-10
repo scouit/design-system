@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/scouit/design-system/compare/v1.3.3...v1.3.4) (2023-05-23)
+
+
+### Bug Fixes
+
+* 컴포넌트 input 크기 및 배경 색 조정 ([cd1bd48](https://github.com/scouit/design-system/commit/cd1bd4850a257b5615b5d1c7cf1c491ffe1e95d3))
+
 ## [1.3.3](https://github.com/scouit/design-system/compare/v1.3.2...v1.3.3) (2023-05-23)
 
 
